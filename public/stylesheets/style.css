@@ -1,0 +1,149 @@
+.mainBody {
+  background: url("../images/background.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+
+}
+
+.mainButtons {
+  padding: 0px 50px 0px 50px;
+  border: 2px solid #B2DFDB;
+  fill-opacity: 0;
+  color: #B2DFDB;
+  font-size: xx-large;
+}
+
+.mainButtons:hover {
+  fill-opacity: 1;
+  background-color: #B2DFDB !important;
+  color: white;
+}
+
+.mainButtonsContainer {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.md-whiteframe {
+  background: #fff;
+
+  margin: 30px;
+  height: 100px;
+}
+.newproblem {
+  padding-top: 50px;
+  padding-left: 150px;
+  padding-right: 150px;
+}
+.innerBox {
+  overflow-y: scroll;
+  height: 600px;
+}
+
+.bodyContainer {
+  width: 100%;
+  height: 100%;
+
+}
+.heading {
+  width: 100%;
+  height: 50px;
+  top: 0;
+}
+a {
+  color: black;
+  text-decoration: none;
+}
+.courseContainer {
+  margin-top: 15px;
+  text-align: center;
+  padding-top: 5px;
+  padding-left: 15px;
+  padding-bottom: 5px;
+  padding-right: 15px;
+  background: white;
+  height: auto;
+  width: auto;
+  position: relative;
+}
+.iconClass {
+  height: 50px;
+  width: 50px;
+}
+.rightBottom {
+  position: absolute; right: 0; bottom: 0;
+}
+.Container{
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  height: 100%;
+  width: 100%;
+}
+
+/* Registeration */
+.outer_center{
+  position: absolute;
+  height: 90%;
+  width: 50%;
+  margin: 0 25%;
+}
+
+.team_body{
+  height: 90%;
+  width: 100%;
+}
+.whiteframedemoBasicUsage md-whiteframe {
+  background: ;
+  margin: 20px;
+  padding: 20px;
+  width: 1300px;
+  height: 200px;
+  transition: 0.3s;
+  box-shadow: $whiteframe-shadow-10dp;
+}
+
+.whiteframedemoBasicUsage md-whiteframe:hover {
+  background: #26C6DA;
+  height: 250px;
+  width: 1330px;
+}
+
+.shadowcustom{
+  background: ;
+  margin: 20px;
+  padding: 20px;
+  width: 1300px;
+  height: 200px;
+  transition: 0.3s;
+  box-shadow: md-whiteframe-z1;
+}
+
+.shadowcustum:hover{
+  background: #26C6DA;
+  height: 250px;
+  width: 1330px;
+  box-shadow: md-whiteframe-z5;
+}
+h1 {
+  display: block;
+  font-size: 2em;
+  margin-top: 0.67em;
+  margin-bottom: 0.67em;
+  margin-left: 0;
+  margin-right: 0;
+  font-weight: bold;
+}
+
+#circle{
+  width: 50px;
+  height: 50px;
+  -moz-border-radius: 100px;
+  -webkit-border-radius: 100px;
+  border-radius: 100px;
+}
