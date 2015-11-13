@@ -6,7 +6,7 @@
   background-size: cover;
   height: 100%;
   width: 100%;
-
+  line-height: 1;
 }
 
 .mainButtons {
@@ -85,6 +85,58 @@ a {
   height: 100%;
   width: 100%;
 }
+/* Header Css */
+.navbar{
+  width: 100%;
+  font-size: 12px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 9;
+}
+.navbar li {
+  display: inline-block;
+  position: relative;
+  margin-top: 5px;
+  margin-left: 5px;
+}
+.navbar-inner {
+  width: 100%;
+  margin: 0 auto;
+  font-size: 14px;
+  padding: 25px 100px;
+}
+.navbar-inner .logo {
+  float: left;
+  font-size: 16px;
+  font-weight: 600;
+}
+#navbar-toggle {
+  display: none;
+  cursor: pointer;
+}
+#navigation {
+  float: right;
+  margin-top: 10px;
+}
+.lang {
+  float: right;
+  margin-top: 5px;
+  padding: 10px;
+  border: 1px solid rgba(255,255,255,0.15);
+  background: rgba(18,25,32,0.25);
+  border-radius: 4px;
+  margin-right: 30px;
+}
+.lang i {
+  color: rgba(255,255,255,0.15);
+}
+.lang a.active {
+  color: rgba(255,255,255,1);
+  border-bottom: 1px solid #ed485c;
+}
+.clear { clear: both; }
+
 
 /* Registeration */
 .outer_center{
@@ -105,7 +157,7 @@ a {
   width: 1300px;
   height: 200px;
   transition: 0.3s;
-  box-shadow: $whiteframe-shadow-10dp;
+  box-shadow: whiteframe-shadow-10dp;
 }
 
 .whiteframedemoBasicUsage md-whiteframe:hover {
