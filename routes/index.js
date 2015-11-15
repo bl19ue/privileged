@@ -54,4 +54,8 @@ process.on('uncaughtException', function(err) {
     console.log("Error:" + err);
 });
 
+router.get('/index', function(req, res, next) {
+  res.render('app', { title: 'Privileged4All' });
+});
+
 module.exports = router;
