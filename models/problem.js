@@ -1,0 +1,15 @@
+var mongoose = require('mongoose');
+
+var problemSchema = new mongoose.Schema({
+    owner : String,
+    title : String,
+    description : String,
+    tools : [String],
+    technologies : [String],
+    problem_media : [String],
+    my_solution : String,
+    date: String
+});
+
+
+mongoose.model('problem', problemSchema, 'problem');
