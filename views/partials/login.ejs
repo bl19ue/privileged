@@ -1,43 +1,33 @@
-<div class="navbar">
-    <div class="navbar-inner">
-        <div class="logo"><img src="images/logo-top.png" alt=""> Privileged4All</div>
-        <div data-toggle="modal" data-target="#menu" id="navbar-toggle"><i class="btr bt-bars"></i></div>
-        <div id="navigation">
-            <li data-menuanchor="start"><a href="#start">Start</a></li>
-            <li data-menuanchor="features"><a href="#features">Features</a></li>
-            <li data-menuanchor="roadmap"><a href="#roadmap">Roadmap</a></li>
-            <li data-menuanchor="started"><a href="#started">Get Started</a></li>
-            <li><a href="register.ejs" class="action" data-toggle="modal" data-target="#action">Sign up</a></li>
-        </div>
+<div class="login-box" ng-controller="loginCtrl as ctrl">
+    <div class="login-logo">
+        <a href="/"><b>Privileged</b><i>4All</i></a>
+    </div>
+    <div class="login-box-body">
+        <p class="login-box-msg">User Login</p>
+
+        <form action="#" method="post">
+            <div class="form-group icon-support form-row">
+                <div class="item control-label">Email ID</div>
+                <input type="email" class="form-control">
+                <!--<span class="glyphicon glyphicon-user glyphicon-custom-position"></span>-->
+            </div>
+            <div class="form-group icon-support form-row">
+                <div class="item control-label">Password</div>
+                <input type="password" class="form-control">
+            </div>
+            <div class="signup-footer">
+                <input class="btn btn-submit" type="submit" value="Sign In" />
+            </div>
+        </form>
+        <p class="login-box-anchor"><a href="#forgot">forgot password ?? click here..</a></p>
     </div>
 </div>
-
-<div id="fullpage">
-    <div class="section intro" id="section0">
-        <div>Home</div>
-    </div>
-    <div class="section features" id="section1">
-        <div class="slide">
-            <div class="page-header">Features</div>
-            <div class="page-header-label"><i class="btl bt-arrow-left"></i> what to expect <i class="btl bt-arrow-right"></i></div>
-        </div>
-        <div class="slide">
-            <div class="page-header">Features</div>
-            <div class="page-header-label"><i class="btl bt-arrow-left"></i> what to expect <i class="btl bt-arrow-right"></i></div>
-        </div>
-        <div class="slide">
-            <div class="page-header">Features</div>
-            <div class="page-header-label"><i class="btl bt-arrow-left"></i> what to expect <i class="btl bt-arrow-right"></i></div>
-        </div>
-        <div class="slide">
-            <div class="page-header">Features</div>
-            <div class="page-header-label"><i class="btl bt-arrow-left"></i> what to expect <i class="btl bt-arrow-right"></i></div>
-        </div>
-    </div>
-    <div class="section roadmap" id="section2">
-
-    </div>
-    <div class="section footer" id="section3">
-        <div>Footer</div>
+<!-- Modal for forgot password -->
+<div id="forgot" class="modalDialog">
+    <div>
+        <a href="#close" title="Close" class="close">X</a>
+        <h2>Modal Box</h2>
+        <p>This is a sample modal box that can be created using the powers of CSS3.</p>
+        <p>You could do a lot of things here like have a pop-up ad that shows when your website loads, or create a login/register form for users.</p>
     </div>
 </div>

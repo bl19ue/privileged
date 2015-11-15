@@ -281,13 +281,16 @@ a {
 input[type="text"] {  height: 42px;  border: 1px solid #546E7A; }
 .login-box, .register-box {  width: 50%;  margin: 5% auto;  }
 .login-logo, .register-logo {  font-size: 35px;  text-align: center;  margin-bottom: 25px;  font-weight: 300;  }
-.login-logo a, .register-logo a {  color: #fafafa;  }
+.login-logo a, .register-logo a {  color: #fafafa; transition: transform .2s linear; }
+.login-logo a:hover, .register-logo a:hover {  color: #fafafa; text-decoration: none; transform: scale(1.1,1.1);
+  transition: transform 500ms linear 0ms; cursor: pointer;}
 
 .login-box-body, .register-box-body {
-  background: #fff;  padding: 20px;  border-top: 0;  color: #666;  border-radius: 3px;  }
+  background: #fff;  padding: 20px;  border-top: 0;  color: #E0E0E0;  border-radius: 3px;  }
 .login-box-msg, .register-box-msg {
   margin: 0;  text-align: center;  padding: 0 20px 20px 20px;  font-size: 30px;  font-weight:100;  }
-
+.login-box-anchor { text-align: center; margin-top: -10%; transition: transform .3s linear; }
+.login-box-anchor a:hover { text-decoration: none;  cursor: pointer;  transform: scale(1.1); transition: transform 500ms linear 0ms; }
 .icon-support {  position: relative;  }
 .glyphicon-custom-position {  top: -25px;  left: 95%;  }
 .control-label:after {  content:"*";  color:red;  margin-left: 5px;  }

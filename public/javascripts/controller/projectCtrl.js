@@ -4,6 +4,12 @@ angular.module('myApp')
         $scope.register = function() {
             $state.go('register');
         }
+        $scope.login = function() {
+            $state.go('login');
+        }
+        $scope.home = function() {
+            $state.go('home');
+        }
     }])
     .controller('registerCtrl', function(){
         var self = this;

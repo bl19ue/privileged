@@ -12,6 +12,11 @@ app.config(['$stateProvider', '$urlRouterProvider',
             templateUrl: '/partials/register.ejs',
             controller: 'registerCtrl'
         });
+        $stateProvider.state('home', {
+            url: '/home',
+            templateUrl: '/partials/home.ejs',
+            controller: 'homeCtrl'
+        });
 
         $urlRouterProvider.otherwise('register');
     }
