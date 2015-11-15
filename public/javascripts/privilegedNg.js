@@ -1,4 +1,4 @@
-var app = angular.module('myApp', ['ui.router', 'ngMaterial']);
+var app = angular.module('myApp', ['fullPage.js','ui.router', 'ngMaterial']);
 
 app.config(['$stateProvider', '$urlRouterProvider',
     function($stateProvider, $urlRouterProvider){
