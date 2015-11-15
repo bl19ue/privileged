@@ -1,13 +1,18 @@
-var app = angular.module('myApp', ['fullPage.js','ui.router', 'ngMaterial']);
+var app = angular.module('myApp', ['ui.router', 'ngMaterial']);
 
 app.config(['$stateProvider', '$urlRouterProvider',
     function($stateProvider, $urlRouterProvider){
-        $stateProvider.state('home', {
-            url: '/home',
-            templateUrl: '/partials/home.ejs',
-            controller: 'homeCtrl'
+        $stateProvider.state('login', {
+            url: '/login',
+            templateUrl: '/partials/login.ejs',
+            controller: 'loginCtrl'
+        });
+        $stateProvider.state('register', {
+            url: '/register',
+            templateUrl: '/partials/register.ejs',
+            controller: 'registerCtrl'
         });
 
-        $urlRouterProvider.otherwise('home');
+        $urlRouterProvider.otherwise('register');
     }
 ]);

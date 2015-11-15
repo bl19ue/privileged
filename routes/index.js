@@ -3,7 +3,11 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Privileged4All' });
+  res.render('index');
+});
+
+router.get('/index', function(req, res, next) {
+  res.render('app', { title: 'Privileged4All' });
 });
 
 module.exports = router;
