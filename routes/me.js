@@ -102,6 +102,7 @@ router.get('/feeds/:page_num', ensureAuthorized, function(req, res) {
             databaseCalls.redisCalls.findResultsByToken(req.token).done(function(obj) {
                 //obj = JSON.parse(JSON.stringify(obj));
                 var page_num = req.params.page_num;
+                page_num = page_num * 10;
                 if(page_num + 10 <= obj.length - 1) {
                     obj = obj.slice(page_num, page_num + 10);
                 } else {
@@ -118,6 +119,12 @@ router.get('/feeds/:page_num', ensureAuthorized, function(req, res) {
                     var interests = search || obj.data.interests;
                     databaseCalls.problemDatabaseCalls.findProblemByInterests(interests).done(function(obj) {
                         databaseCalls.redisCalls.saveRequestAndResult(interests, obj.data, req.token);
+                        //For sending not more than 10 results
+                        if(obj.data.length < 10) {
+                            obj.data = obj.data.slice(0, obj.data.length);
+                        } else {
+                            obj.data = obj.data.slice(0, 11);
+                        }
                         response(obj, obj.type, res);
                     });
                 }
@@ -145,5 +152,7 @@ router.post('/problem', ensureAuthorized, function(req, res) {
         response(obj, obj.type, res);
     });
 });
+
+
 
 module.exports = router;

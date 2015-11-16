@@ -8,7 +8,10 @@ var problemSchema = new mongoose.Schema({
     technologies : [String],
     problem_media : [String],
     my_solution : String,
-    date: String
+    date: String,
+    upvotes: Number,
+    people: [String],
+    teams: [String]
 });
 
 
