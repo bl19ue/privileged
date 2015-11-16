@@ -134,11 +134,14 @@ router.get('/feeds/:page_num', ensureAuthorized, function(req, res) {
 });
 
 /**
- * Returns single problem
+ * Returns single problem with it's post
  */
 router.get('/problem/:problem_id', ensureAuthorized, function(req, res) {
     databaseCalls.problemDatabaseCalls.findProblemById(req.params.problem_id).done(function(obj) {
-        response(obj, obj.type, res);
+        databaseCalls.postDatabaseCalls.findPostsByProblemId(req.params.problem_id).done(function(problems_obj) {
+            obj.problems = problems_obj;
+            response(obj, obj.type, res);
+        });
     });
 });
 
@@ -152,7 +155,6 @@ router.post('/problem', ensureAuthorized, function(req, res) {
         response(obj, obj.type, res);
     });
 });
-
 
 
 module.exports = router;

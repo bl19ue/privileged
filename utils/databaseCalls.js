@@ -1,7 +1,12 @@
 var messages = require('./messages');
+
 var mongoose = require('mongoose');
 var problemSchema = mongoose.model('problem');
 var userSchema = mongoose.model('user');
+var postSchema = mongoose.model('post');
+var teamSchema = mongoose.model('team');
+var commentSchema = mongoose.model('comment');
+
 var httpStatus = require('http-status-codes');
 var q = require('q');
 
@@ -218,6 +223,130 @@ var problemDatabaseCalls = {
     }
 };
 
+/**
+ * Post database calls
+ * @type {{findPostsByProblemId: Function}}
+ */
+var postDatabaseCalls = {
+    /**
+     * Returns the posts of a problem
+     *
+     * @param problem_id
+     * @returns {*}
+     */
+    findPostsByProblemId : function(problem_id) {
+        var deferred = q.defer();
+        var object = {};
+        postSchema.find({problem: problem_id}, function(err, problems) {
+            if(err) {
+                object.isError = true;
+                object.errorMessage = err;
+                object.type = httpStatus.INTERNAL_SERVER_ERROR;
+                deferred.resolve(object);
+            } else if(problems) {
+                object.isError = false;
+                object.data = problems;
+                object.type = httpStatus.OK;
+                deferred.resolve(object);
+            } else {
+                object.isError = false;
+                object.errorMessage = messages.ITEM_NOT_FOUND;
+                object.type = httpStatus.NOT_FOUND;
+                deferred.resolve(object);
+            }
+        });
+        return deferred.promise;
+    }
+};
+
+/**
+ * Comments database calls
+ *
+ * @type {{findCommentsByPostId: Function, saveCommentForPost: Function}}
+ */
+var commentsDatabaseCalls = {
+    /**
+     * Returns the comments of a single post
+     *
+     * @param post_id
+     * @returns {*}
+     */
+    findCommentsByPostId : function(post_id) {
+        var deferred = q.defer();
+        var object = {};
+        commentSchema.find({problem: post_id}, function(err, comments) {
+            if(err) {
+                object.isError = true;
+                object.errorMessage = err;
+                object.type = httpStatus.INTERNAL_SERVER_ERROR;
+                deferred.resolve(object);
+            } else if(comments) {
+                object.isError = false;
+                object.data = comments;
+                object.type = httpStatus.OK;
+                deferred.resolve(object);
+            } else {
+                object.isError = false;
+                object.errorMessage = messages.ITEM_NOT_FOUND;
+                object.type = httpStatus.NOT_FOUND;
+                deferred.resolve(object);
+            }
+        });
+        return deferred.promise;
+    },
+
+    /**
+     * Adds a new comment to the post
+     *
+     * @param post_id
+     * @param owner
+     * @param description
+     * @returns {*}
+     */
+    saveCommentForPost : function(post_id, owner, description) {
+        var deferred = q.defer();
+        var object = {};
+        var newComment = {};
+        commentSchema.findOne({post: post_id}, function(err, commentObj) {
+            if(commentObj) {
+                commentObj.comment.push({
+                    owner: owner,
+                    description: description
+                });
+                newComment = commentObj;
+            } else {
+                newComment = new commentSchema();
+                newComment.post = post_id;
+                newComment.comment = [];
+                newComment.comment.push({
+                    owner: owner,
+                    description: description
+                });
+            }
+
+            newComment.save(function(err, comment) {
+                if(err) {
+                    object.isError = true;
+                    object.errorMessage = err;
+                    object.type = httpStatus.INTERNAL_SERVER_ERROR;
+                    deferred.resolve(object);
+                } else if(comment) {
+                    object.isError = false;
+                    object.data = comment;
+                    object.type = httpStatus.OK;
+                    deferred.resolve(object);
+                } else {
+                    object.isError = false;
+                    object.errorMessage = messages.ITEM_NOT_FOUND;
+                    object.type = httpStatus.NOT_FOUND;
+                    deferred.resolve(object);
+                }
+            });
+        });
+        return deferred.promise;
+    }
+};
+
 var req = "request";
 var res = "result";
 
@@ -296,3 +425,5 @@ var redisCalls = {
 exports.userDatabaseCalls = userDatabaseCalls;
 exports.problemDatabaseCalls = problemDatabaseCalls;
 exports.redisCalls = redisCalls;
+exports.postDatabaseCalls = postDatabaseCalls;
+exports.commentsDatabaseCalls = commentsDatabaseCalls;
