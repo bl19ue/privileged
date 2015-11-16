@@ -1,39 +1,40 @@
-<div class="register-box" ng-controller="registerCtrl as ctrl">
-    <div class="register-logo">
-        <a href="/"><b>Privileged</b><i>4All</i></a>
+<div class="dashboard" ng-controller="homeCtrl as ctrl">
+    <div class="dashboard-header">
+        <div class="dashboard-header-inner">
+            <div class="logo"><img src="images/logo-top.png" alt=""> Privileged4All</div>
+            <div class="searchBox">
+               <input type="text" class="form-control">
+            </div>
+            <div class="logout">
+                <a class="action" data-target="#action" ng-click="logout(target)">Logout</a>
+            </div>
+            <div class="clear"></div>
+        </div>
     </div>
-    <div class="register-box-body">
-        <p class="register-box-msg">Join our community now</p>
+    <div class="dashboard-body">
+        <div class="sidebar left containers">
+            <div>
+                <li>A1</li>
+                <li>A1</li>
+                <li>A1</li>
+                <li>A1</li>
+            </div>
+        </div>
+        <div class="body-middle containers">
+            <div class="content-scroll">
+                <div class="content" ng-repeat="i in [1,2,3,4,5,6]">
 
-        <form action="#" method="post">
-            <div class="form-group icon-support form-row">
-                <div class="item control-label">your name</div>
-                <input type="text" class="form-control">
-                <!--<span class="glyphicon glyphicon-user glyphicon-custom-position"></span>-->
+                    <% include card %>
+                </div>
             </div>
-            <div class="form-group icon-support form-row">
-                <div class="item control-label">your last name</div>
-                <input type="text" class="form-control">
-            </div>
-            <div class="form-group icon-support form-row">
-                <div class="item control-label">your email address</div>
-                <input type="text" class="form-control">
-            </div>
-            <div class="form-group icon-support form-row">
-                <div class="item control-label">your interests</div>
-                <md-content class="md-padding" layout="column">
-                    <md-chips ng-model="ctrl.roInterests" readonly="ctrl.readonly">
-                        <md-chip-template>
-                            <strong>{{$chip}}</strong>
-                        </md-chip-template>
-                    </md-chips>
-                </md-content>
-            </div>
+        </div>
+        <div class="sidebar right containers">
+            <div class="cont-right-top blocks">
 
-            <div class="signup-footer">
-                <input class="btn btn-submit" type="submit" value="Join" />
             </div>
-        </form>
+            <div class="cont-right-bottom blocks">
 
+            </div>
+        </div>
     </div>
 </div>
