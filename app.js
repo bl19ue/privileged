@@ -11,10 +11,14 @@ mongoose.connect('mongodb://assignment6:sumit@ds051843.mongolab.com:51843/assign
 
 require('./models/problem');
 require('./models/user');
+require('./models/post');
+require('./models/team');
+require('./models/comment');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var me = require('./routes/me');
+var post = require('./routes/post');
 
 var app = express();
 
@@ -41,6 +45,7 @@ app.use(express.static(path.join(__dirname, 'views')));
 app.use('/', routes);
 app.use('/users', users);
 app.use('/me', me);
+app.use('/post', post);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
