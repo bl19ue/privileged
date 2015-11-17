@@ -13,18 +13,15 @@
     </div>
     <div class="dashboard-body">
         <div class="sidebar left containers">
-            <div>
-                <li>A1</li>
-                <li>A1</li>
-                <li>A1</li>
-                <li>A1</li>
+            <h3>My Projects</h3>
+            <div class="nav-links" ng-repeat="i in [1,2,3,4,5,6]">
+                <li><a href="#"></a>title</li>
             </div>
         </div>
         <div class="body-middle containers">
             <div class="content-scroll">
-                <div class="content" ng-repeat="i in [1,2,3,4,5,6]">
-
-                    <% include card %>
+                <div ng-repeat="i in [{'title':'Test1', 'Desc':'Hi this is test sample ONE.And this the long limit range for the the description. We should limit this.'}, {'title':'Test2', 'Desc':'Hi this is test sample TWO'}, {'title':'Test3', 'Desc':'Hi this is test sample THREE'}]">
+                    <postcard item="i"></postcard>
                 </div>
             </div>
         </div>

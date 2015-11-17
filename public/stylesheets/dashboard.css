@@ -10,14 +10,21 @@
 .logout a.action {  margin: 0.5% 0;  padding: 10px;  color: rgba(255,255,255,1);  border: 1px solid #ed485c;  border-radius: 4px;  }
 .logout a.action:hover {  background: #ed485c;  color: #fff;  text-decoration: none; cursor: pointer; }
 
-.dashboard-body { position: absolute; height: 90%; width: 100%; background: #fff; color: #000; }
+.dashboard-body { position: absolute; height: 90%; width: 100%; background: #F3F3F3; color: #000; }
 .dashboard-body .containers {  position: relative; float: left; margin: 2% 2%; }
 .dashboard-body .sidebar {  width: 20%; min-height: 90%; background: #FBFBFB; }
-.dashboard-body .body-middle {  width: 48%; height: 90%; overflow: hidden; background: #F3F3F3;  }
-.dashboard-body .body-middle .content-scroll { height: auto; overflow: scroll; }
+.dashboard-body .left h3 { text-align: center; }
+.dashboard-body .nav-links {  height: auto; width: 100%; font-size: 16px; margin: 5px; }
+.dashboard-body .body-middle {  width: 48%; height: 90%; overflow-y: scroll; background: transparent;  }
+.dashboard-body .body-middle .content-scroll { height: auto; }
 .content-scroll .content {  height: 100px; }
 .dashboard-body .center { width: 50%; height: 100%; }
 .dashboard-body .containers .blocks { float: left; width: 100%; min-height: 45%; margin-top: 5px; border: solid red 1px; }
+
+md-card .trim-desc {  overflow: hidden;  text-overflow: ellipsis;  white-space: nowrap;  display: inline-block;  }
+.glyphicon-icons { float: left; font-size: 16px;  font-weight: 600;  }
+.glyphicon-icons img { margin-left: 20px; width: auto; height: 20px; }
+.glyphicon-icons p {  margin-left: 5px;  }
 
 
 .login-box-msg, .register-box-msg {
