@@ -1,5 +1,5 @@
 angular.module('myApp')
-    .factory('feeds', ['$state', '$http', function($state, $http) {
+    .factory('feedService', ['$state', '$http', function($state, $http) {
         var feedsObject = {
             feeds: []
         };

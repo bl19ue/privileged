@@ -1,8 +1,22 @@
-angular.module('myApp')
-.factory('user', ['$state', '$http', function($state, $http) {
+angular
+    .module('myApp')
+    .factory('userService', UserService);
+
+    UserService.$inject = ['$state', '$http'];
+
+    function UserService ($state, $http) {
         var userObject = {
             user: {},
             token: ''
+        };
+
+        userObject.setUserObject = setUserObject;
+        userObject.signin = signin;
+        userObject.register = register;
+
+        function setUserObject(user, token) {
+            userObject.user = user;
+            userObject.token = token;
         };
 
         /**
@@ -12,22 +26,22 @@ angular.module('myApp')
          * @param password
          * @returns {*|{get}}
          */
-        userObject.signin = function(email, password){
+        function signin(email, password){
             var obj = {
                 email: email,
                 password: password
             };
-            return $http.post('/authenticate', obj).then(function(response) {
-                if(response.status === 200) {
-                    userObject.error = false;
+            return $http.post('/authenticate', obj).then(loginResponse);
+        };
 
-                    angular.copy(response.data, userObject.user);
-                    userObject.token = response.data.token;
-                } else {
-                    userObject.error = true;
-                    userObject.errorMessage = response.errorMessage;
-                }
-            });
+        function loginResponse(response) {
+            if(response.status === 200) {
+                angular.copy(response.data, userService.user);
+                userService.token = response.data.token;
+            } else {
+                //logging
+            }
+            return response;
         };
 
         /**
@@ -36,20 +50,21 @@ angular.module('myApp')
          * @param user
          * @returns {*|{get}}
          */
-        userObject.register = function(user) {
-            return $http.post('/register', user).then(function(response) {
-                if(response.status === 200) {
-                    userObject.error = false;
-
-                    angular.copy(response.data, userObject.user);
-                    userObject.token = response.data.token;
-                } else {
-                    userObject.error = true;
-                    userObject.errorMessage = response.errorMessage;
-                }
-            });
+        function register(user) {
+            return $http.post('/register', user).then( resgisterResponse);
         };
 
+        function resgisterResponse (response) {
+            if(response.status === 200) {
+                userObject.error = false;
+                angular.copy(response.data, userObject.user);
+                userObject.token = response.data.token;
+            } else {
+                userObject.error = true;
+                userObject.errorMessage = response.errorMessage;
+            }
+            return response;
+        }
+
         return userObject;
-    }]
-);
+    }

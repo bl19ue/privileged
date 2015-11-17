@@ -1,8 +1,11 @@
 /**
  * Created by Neeraj on 11/16/2015.
  */
-angular.module('myApp')
-    .directive('postcard', function() {
+angular
+    .module('myApp')
+    .directive('postcard', Postcard);
+
+    function Postcard() {
         return ({
             restrict: 'E',
             replace: true,
@@ -19,4 +22,4 @@ angular.module('myApp')
                 console.log('data: ' + scope.data.title);
             }
         })
-    });
+    }

@@ -5,19 +5,23 @@
     <div class="register-box-body">
         <p class="register-box-msg">Join our community now</p>
 
-        <form action="#" method="post">
+        <form name="registerForm" ng-submit="register()">
             <div class="form-group icon-support form-row">
                 <div class="item control-label">your name</div>
-                <input type="text" class="form-control">
+                <input type="text" class="form-control" ng-model="user.name">
                 <!--<span class="glyphicon glyphicon-user glyphicon-custom-position"></span>-->
             </div>
             <div class="form-group icon-support form-row">
-                <div class="item control-label">your last name</div>
-                <input type="text" class="form-control">
+                <div class="item control-label">your email address</div>
+                <input type="text" class="form-control" ng-model="user.email">
             </div>
             <div class="form-group icon-support form-row">
-                <div class="item control-label">your email address</div>
-                <input type="text" class="form-control">
+                <div class="item control-label">your password</div>
+                <input type="password" class="form-control" ng-model="user.password">
+            </div>
+            <div class="form-group icon-support form-row">
+                <div class="item control-label">confirm password</div>
+                <input type="password" class="form-control">
             </div>
             <div class="form-group icon-support form-row">
                 <div class="item control-label">your interests</div>
@@ -34,6 +38,6 @@
                 <input class="btn btn-submit" type="submit" value="Join" />
             </div>
         </form>
-        <div class="register-box-anchor"><a href="/index#/login">Already a member? Sign In here</a><a href="/index#/home">home</a></div>
+        <div class="register-box-anchor"><a href="/index#/login">Already a member? Sign In here</a></div>
     </div>
 </div>
