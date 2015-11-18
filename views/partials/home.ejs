@@ -1,4 +1,4 @@
-<div class="dashboard" ng-controller="homeCtrl as ctrl">
+<div class="dashboard">
     <div class="dashboard-header">
         <div class="dashboard-header-inner">
             <div class="logo"><img src="images/logo-top.png" alt=""> Privileged4All</div>
@@ -6,7 +6,7 @@
                <input type="text" class="form-control">
             </div>
             <div class="logout">
-                <a class="action" data-target="#action" ng-click="logout(target)">Logout</a>
+                <a class="action" data-target="#action" ng-click="feedVm.logout(target)">Logout</a>
             </div>
             <div class="clear"></div>
         </div>
@@ -20,8 +20,8 @@
         </div>
         <div class="body-middle containers">
             <div class="content-scroll">
-                <div ng-repeat="i in feeds">
-                    <postcard item="i"></postcard>
+                <div ng-repeat="i in feedVm.feeds">
+                    <postcard></postcard>
                 </div>
             </div>
         </div>

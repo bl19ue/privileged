@@ -88,48 +88,72 @@ var convertToArray = function(string) {
     return string;
 }
 
+var ensureInterestsOrSearch = function(req, res, next) {
+    var search = req.query.search;
+    if(search) {
+        search = convertToArray(search);
+        req.search = search;
+        next();
+    } else {
+        databaseCalls.redisCalls.findInterestsByToken(req.token).done(function(interestObj) {
+            if(interestObj.length > 0) {
+                search = interestObj;
+                search = convertToArray(search);
+                req.search = search;
+                next();
+            } else {
+                databaseCalls.userDatabaseCalls.findUserByToken(req.token).done(function(userObj) {
+                    if(userObj.type === httpStatus.OK) {
+                        search = userObj.data._doc.interests;
+                        databaseCalls.redisCalls.saveUserInterests(req.token, search);
+                        req.search = search;
+                        next();
+                    } else {
+                        response(userObj, userObj.type, res);
+                    }
+                });
+            }
+        });
+    }
+}
+
+var checkRedis = function(req, res, next) {
+    var search = req.search;
+    databaseCalls.redisCalls.findRequestByToken(req.token).done(function(requestObj) {
+        if(requestObj && compareArray(requestObj, search)) {
+            databaseCalls.redisCalls.findResultsByToken(req.token).done(function(resultObj) {
+                var page_num = req.params.page_num;
+                page_num = page_num * 10;
+                if(page_num + 10 <= resultObj.length - 1) {
+                    resultObj = resultObj.slice(page_num, page_num + 10);
+                } else {
+                    resultObj = resultObj.slice(page_num, resultObj.length);
+                }
+                for(var i=0;i<resultObj.length;i++) {
+                    resultObj[i] = JSON.parse(resultObj[i]);
+                }
+                response(resultObj, httpStatus.OK, res);
+            });
+        } else {
+            next();
+        }
+    });
+}
+
 /**
  * Returns problem according to search by page number, caches when required
  */
-router.get('/feeds/:page_num', ensureAuthorized, function(req, res) {
-    var search = req.query.search;
-    search = convertToArray(search);
-
-    databaseCalls.redisCalls.findRequestByToken(req.token).done(function(obj) {
-        //obj = JSON.parse(JSON.stringify(obj));
-        obj = convertToArray(obj);
-        if(obj && compareArray(obj, search)) {
-            databaseCalls.redisCalls.findResultsByToken(req.token).done(function(obj) {
-                //obj = JSON.parse(JSON.stringify(obj));
-                var page_num = req.params.page_num;
-                page_num = page_num * 10;
-                if(page_num + 10 <= obj.length - 1) {
-                    obj = obj.slice(page_num, page_num + 10);
-                } else {
-                    obj = obj.slice(page_num, obj.length);
-                }
-                for(var i=0;i<obj.length;i++) {
-                    obj[i] = JSON.parse(obj[i]);
-                }
-                response(obj, httpStatus.OK, res);
-            });
+router.get('/feeds/:page_num', ensureAuthorized, ensureInterestsOrSearch, checkRedis, function(req, res) {
+    var search = req.search;
+    databaseCalls.problemDatabaseCalls.findProblemBySearch(search).done(function(problemsObj) {
+        databaseCalls.redisCalls.saveRequestAndResult(search, problemsObj.data, req.token);
+        //For sending not more than 10 results
+        if(problemsObj.data.length < 10) {
+            problemsObj.data = problemsObj.data.slice(0, obj.data.length);
         } else {
-            databaseCalls.userDatabaseCalls.findUserByToken(req.token).done(function(obj) {
-                if(obj.type === httpStatus.OK) {
-                    var interests = search || obj.data.interests;
-                    databaseCalls.problemDatabaseCalls.findProblemByInterests(interests).done(function(obj) {
-                        databaseCalls.redisCalls.saveRequestAndResult(interests, obj.data, req.token);
-                        //For sending not more than 10 results
-                        if(obj.data.length < 10) {
-                            obj.data = obj.data.slice(0, obj.data.length);
-                        } else {
-                            obj.data = obj.data.slice(0, 11);
-                        }
-                        response(obj, obj.type, res);
-                    });
-                }
-            });
+            problemsObj.data = problemsObj.data.slice(0, 11);
         }
+        response(problemsObj, problemsObj.type, res);
     });
 });
 

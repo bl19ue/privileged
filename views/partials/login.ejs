@@ -1,4 +1,4 @@
-<div class="login-box" ng-controller="loginCtrl as userVm">
+<div class="login-box" ng-controller="loginController as userVm">
     <div class="login-logo">
         <a href="/"><b>Privileged</b><i>4All</i></a>
     </div>
@@ -24,6 +24,8 @@
             <a>  |  </a>
             <a href="/index#/register">Sign Up</a>
         </div>
-        <div>{{userVm.user.email}}</div>
+        <div>
+            <span ng-show="userVm.isError">Invalid ID or password</span>
+        </div>
     </div>
 </div>

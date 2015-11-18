@@ -133,7 +133,7 @@ var problemDatabaseCalls = {
      * @param interests
      * @returns {*|promise}
      */
-    findProblemByInterests: function (interests) {
+    findProblemBySearch: function (interests) {
         var deferred = q.defer();
         var object = {};
         problemSchema.find({$or: [ {tools: {$in: interests}}, {technologies: {$in: interests}}]}, null, {limit: 200},
@@ -349,6 +349,7 @@ var commentsDatabaseCalls = {
 
 var req = "request";
 var res = "result";
+var interests = "interests";
 
 /**
  * Redis caching methods
@@ -398,6 +399,21 @@ var redisCalls = {
         return deferred.promise;
     },
 
+    findInterestsByToken : function(token) {
+        var deferred = q.defer();
+        var object = {};
+        cache.lrange(token + interests, 0, -1, function(err, results) {
+            if(err) {
+                object = null;
+                deferred.resolve(object);
+            } else {
+                deferred.resolve(results);
+            }
+        });
+
+        return deferred.promise;
+    },
+
     /**
      * Caches the user's request and result in redis
      *
@@ -406,8 +422,8 @@ var redisCalls = {
      * @param token
      */
     saveRequestAndResult : function(request, results, token) {
-        console.log("req" + request);
-        console.log("s" + JSON.stringify(request));
+        cache.del(token + req);
+        cache.del(token + res);
         var multi = cache.multi();
 
         for(var i=0;i<request.length;i++) {
@@ -419,6 +435,17 @@ var redisCalls = {
         }
 
         multi.exec(function(errors, results1) {});
+    },
+
+    saveUserInterests : function(token, interestsObj) {
+        cache.del(token + interests);
+        var multi = cache.multi();
+
+        for(var i=0;i<interestsObj.length;i++) {
+            multi.rpush(token + interests, interestsObj[i]);
+        }
+
+        multi.exec(function(errors, results) {});
     }
 };
 

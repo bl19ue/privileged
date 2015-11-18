@@ -1,6 +1,6 @@
 angular
     .module('myApp')
-    .controller('projectCtrl', ProjectCtrl)
+    .controller('projectCtrl', ProjectCtrl);
 
     ProjectCtrl.$inject = ['$state'];
 

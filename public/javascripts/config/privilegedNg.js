@@ -1,27 +1,34 @@
-app.config([
-    '$stateProvider',
-    '$urlRouterProvider',
-    function($stateProvider, $urlRouterProvider){
-        $stateProvider.state('login', {
-            url: '/login',
-            templateUrl: '/partials/login.ejs',
-            controller: 'loginCtrl'
-        });
-        $stateProvider.state('register', {
-            url: '/register',
-            templateUrl: '/partials/register.ejs',
-            controller: 'registerCtrl'
-        });
-        $stateProvider.state('home', {
-            url: '/home',
-            templateUrl: '/partials/home.ejs',
-            controller: 'homeCtrl',
-            resolve: {
-                problem_feeds: ['feeds', 'user', function(feeds, user) {
-                    return feeds.getfeeds(user.token, [], 0);
-                }]
-            }
-        });
-        $urlRouterProvider.otherwise('register');
-    }
-]);
+angular
+    .module('myApp')
+    .config(configure);
+
+configure.$inject = ['$stateProvider', '$urlRouterProvider'];
+
+function configure($stateProvider, $urlRouterProvider){
+    $stateProvider.state('login', {
+        url: '/login',
+        templateUrl: '/partials/login.ejs',
+        controller: 'loginController'
+    });
+    $stateProvider.state('register', {
+        url: '/register',
+        templateUrl: '/partials/register.ejs',
+        controller: 'registerController'
+    });
+    $stateProvider.state('home', {
+        url: '/home',
+        templateUrl: '/partials/home.ejs',
+        controller: 'feedController',
+        controllerAs: 'feedVm',
+        resolve: {
+            feedsProv: getProblemFeeds
+        }
+    });
+    $urlRouterProvider.otherwise('register');
+}
+
+getProblemFeeds.$inject = ['userService', 'feedService'];
+
+function getProblemFeeds(userService, feedService) {
+    return feedService.getFeeds(userService.user.token, [], 0);
+}
