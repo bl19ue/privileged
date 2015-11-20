@@ -86,6 +86,32 @@ var userDatabaseCalls = {
         return deferred.promise;
     },
 
+    findUserById : function(user_id) {
+        var deferred = q.defer();
+        var object = {};
+        userSchema.findOne({ _id: new ObjectId(user_id)}, function(err, user) {
+
+            if(err) {
+                object.isError = true;
+                object.errorMessage = err;
+                object.type = httpStatus.INTERNAL_SERVER_ERROR;
+                deferred.resolve(object);
+            } else if(user) {
+                object.isError = false;
+                object.data = user;
+                object.type = httpStatus.OK;
+                deferred.resolve(object);
+            } else {
+                object.isError = false;
+                object.errorMessage = messages.USER_NOT_FOUND;
+                object.type = httpStatus.NOT_FOUND;
+                deferred.resolve(object);
+            }
+        });
+
+        return deferred.promise;
+    },
+
     /**
      * Save user
      *
@@ -274,7 +300,7 @@ var commentsDatabaseCalls = {
     findCommentsByPostId : function(post_id) {
         var deferred = q.defer();
         var object = {};
-        commentSchema.find({problem: post_id}, function(err, comments) {
+        commentSchema.find({post: post_id}, function(err, comments) {
             if(err) {
                 object.isError = true;
                 object.errorMessage = err;
@@ -343,6 +369,105 @@ var commentsDatabaseCalls = {
                 }
             });
         });
+        return deferred.promise;
+    }
+};
+
+/**
+ * Team database calls
+ *
+ * @type {{findTeamByTeamId: Function, findTeamsByProblemId: Function, saveTeam: Function}}
+ */
+var teamDatabaseCalls = {
+    /**
+     * Finds team by team Id
+     *
+     * @param team_id
+     * @returns {*|promise}
+     */
+    findTeamByTeamId : function(team_id) {
+        var deferred = q.defer();
+        var object = {};
+        teamSchema.find({_id: new ObjectId(team_id)}, function(err, team) {
+            if(err) {
+                object.isError = true;
+                object.errorMessage = err;
+                object.type = httpStatus.INTERNAL_SERVER_ERROR;
+                deferred.resolve(object);
+            } else if(team) {
+                object.isError = false;
+                object.data = team;
+                object.type = httpStatus.OK;
+                deferred.resolve(object);
+            } else {
+                object.isError = false;
+                object.errorMessage = messages.ITEM_NOT_FOUND;
+                object.type = httpStatus.NOT_FOUND;
+                deferred.resolve(object);
+            }
+        });
+        return deferred.promise;
+    },
+
+    /**
+     * Finds teams under a problem
+     *
+     * @param problem_id
+     * @returns {*|promise}
+     */
+    findTeamsByProblemId : function(problem_id) {
+        var deferred = q.defer();
+        var object = {};
+        teamSchema.find({problem: problem_id}, function(err, teams) {
+            if(err) {
+                object.isError = true;
+                object.errorMessage = err;
+                object.type = httpStatus.INTERNAL_SERVER_ERROR;
+                deferred.resolve(object);
+            } else if(teams) {
+                object.isError = false;
+                object.data = teams;
+                object.type = httpStatus.OK;
+                deferred.resolve(object);
+            } else {
+                object.isError = false;
+                object.errorMessage = messages.ITEM_NOT_FOUND;
+                object.type = httpStatus.NOT_FOUND;
+                deferred.resolve(object);
+            }
+        });
+        return deferred.promise;
+    },
+
+    /**
+     * Saves a team
+     *
+     * @param team
+     * @returns {*|promise}
+     */
+    saveTeam : function(team) {
+        var deferred = q.defer();
+        var object = {};
+        team.save(function(err, savedTeam) {
+            if(err) {
+                object.isError = true;
+                object.errorMessage = err;
+                object.type = httpStatus.INTERNAL_SERVER_ERROR;
+                deferred.resolve(object);
+            } else if(savedTeam) {
+                object.isError = false;
+                object.message = messages.SAVED_SUCCESSFULLY;
+                object.data = savedTeam;
+                object.type = httpStatus.OK;
+                deferred.resolve(object);
+            } else {
+                object.isError = false;
+                object.errorMessage = messages.CANNOT_SAVE;
+                object.type = httpStatus.NOT_FOUND;
+                deferred.resolve(object);
+            }
+        });
+
         return deferred.promise;
     }
 };
@@ -454,3 +579,4 @@ exports.problemDatabaseCalls = problemDatabaseCalls;
 exports.redisCalls = redisCalls;
 exports.postDatabaseCalls = postDatabaseCalls;
 exports.commentsDatabaseCalls = commentsDatabaseCalls;
+exports.teamDatabaseCalls = teamDatabaseCalls;

@@ -10,7 +10,7 @@ var jwt = require("jsonwebtoken");
 
 var mongoose = require('mongoose');
 var problemSchema = mongoose.model('problem');
-var userSchema = mongoose.model('user');
+var teamSchema = mongoose.model('team');
 
 /**
  * Responds the user for any request
@@ -42,6 +42,9 @@ var ensureAuthorized = function(req, res, next) {
     }
 };
 
+/**
+ * Returns the user's profile
+ */
 router.get('/', ensureAuthorized, function(req, res) {
     databaseCalls.userDatabaseCalls.findUserByToken(req.token).done(function(obj) {
         response(obj, obj.type, res);
@@ -88,6 +91,13 @@ var convertToArray = function(string) {
     return string;
 }
 
+/**
+ * A middleware to handle search parameter, if no search is passed from user, it will attach interests of that user.
+ *
+ * @param req
+ * @param res
+ * @param next
+ */
 var ensureInterestsOrSearch = function(req, res, next) {
     var search = req.query.search;
     if(search) {
@@ -117,6 +127,13 @@ var ensureInterestsOrSearch = function(req, res, next) {
     }
 }
 
+/**
+ * Checks redis for results to do pagination.
+ *
+ * @param req
+ * @param res
+ * @param next
+ */
 var checkRedis = function(req, res, next) {
     var search = req.search;
     databaseCalls.redisCalls.findRequestByToken(req.token).done(function(requestObj) {
@@ -180,5 +197,82 @@ router.post('/problem', ensureAuthorized, function(req, res) {
     });
 });
 
+/**
+ * For getting all the teams working on this problem
+ */
+router.get('/problem/:problem_id/teams', ensureAuthorized, function(req, res) {
+    databaseCalls.teamDatabaseCalls.findTeamsByProblemId(req.params.problem_id).done(function(teamsObj) {
+        response(teamsObj, teamsObj.type, res);
+    });
+});
+
+/**
+ * For creating a new team under a problem
+ */
+router.post('/problem/:problem_id/teams', ensureAuthorized, function(req, res) {
+    databaseCalls.userDatabaseCalls.findUserByToken(req.token).done(function(userObj) {
+        if(userObj.type === httpStatus.OK) {
+            var user = userObj.data;
+            var newTeam = new teamSchema(req.body);
+            newTeam.problem = req.params.problem_id;
+            newTeam.owner = user._id;
+
+            databaseCalls.teamDatabaseCalls.saveTeam(newTeam).done(function(teamObj) {
+                response(teamObj, teamObj.type, res);
+                var team = teamObj.data;
+
+                databaseCalls.problemDatabaseCalls.findProblemById(team.problem).done(function(problemObj) {
+                    var problem = problemObj.data;
+                    problem.teams.push(team._id);
+                    problem.people.push(team.owner);
+                    databaseCalls.problemDatabaseCalls.saveProblem(problem);
+                });
+
+                databaseCalls.userDatabaseCalls.findUserById(user._id).done(function(savedUserObj) {
+                    var savedUser = savedUserObj.data;
+                    savedUser.problems_working.push(team.problem);
+                    savedUser.teams_owned.push(team._id);
+                    databaseCalls.userDatabaseCalls.saveUser(savedUser);
+                });
+            });
+        } else {
+            response(userObj, userObj.type, res);
+        }
+    });
+});
+
+/**
+ * For joining a new team
+ */
+router.post('/problem/:problem_id/teams/:team_id/join', ensureAuthorized, function(req, res) {
+    databaseCalls.teamDatabaseCalls.findTeamByTeamId(req.params.team_id).done(function(teamObj) {
+        if(teamObj.type === httpStatus.OK) {
+            var team = teamObj.data;
+            databaseCalls.userDatabaseCalls.findUserByToken(req.token).done(function(userObj) {
+                if(userObj.type === httpStatus.OK) {
+                    var user = userObj.data;
+                    user.problems_working.push(req.params.problem_id);
+                    user.teams_working.push(team._id);
+
+                    team.members.push(user._id);
+
+                    databaseCalls.teamDatabaseCalls.saveTeam(team).done(function (savedTeamObj) {
+                        response(savedTeamObj, savedTeamObj.type, res);
+                    });
+
+                    databaseCalls.problemDatabaseCalls.findProblemById(req.params.problem_id).done(function (problemObj) {
+                        var problem = problemObj.data;
+                        problem.members.push(user._id);
+                        databaseCalls.problemDatabaseCalls.saveProblem(problem);
+                    });
+                } else {
+                    response(userObj, userObj.type, res);
+                }
+            });
+        } else {
+            response(teamObj, teamObj.type, res);
+        }
+    });
+});
 
 module.exports = router;
