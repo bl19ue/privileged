@@ -119,7 +119,6 @@ var userDatabaseCalls = {
         return deferred.promise;
     }
 };
-
 /**
  * Problem model database calls
  *
@@ -421,6 +420,8 @@ var redisCalls = {
         multi.exec(function(errors, results1) {});
     }
 };
+
+
 
 exports.userDatabaseCalls = userDatabaseCalls;
 exports.problemDatabaseCalls = problemDatabaseCalls;

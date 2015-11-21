@@ -19,7 +19,7 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 var me = require('./routes/me');
 var post = require('./routes/post');
-
+var team = require('./routes/team')
 var app = express();
 
 // view engine setup
@@ -46,6 +46,7 @@ app.use('/', routes);
 app.use('/users', users);
 app.use('/me', me);
 app.use('/post', post);
+app.use('/',team);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
