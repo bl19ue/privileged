@@ -1,4 +1,4 @@
-<div class="dashboard" ng-controller="homeCtrl as ctrl">
+<div class="dashboard">
     <div class="dashboard-header">
         <div class="dashboard-header-inner">
             <div class="logo"><img src="images/logo-top.png" alt=""> Privileged4All</div>
@@ -6,25 +6,22 @@
                <input type="text" class="form-control">
             </div>
             <div class="logout">
-                <a class="action" data-target="#action" ng-click="logout(target)">Logout</a>
+                <a class="action" data-target="#action" ng-click="feedVm.logout(target)">Logout</a>
             </div>
             <div class="clear"></div>
         </div>
     </div>
     <div class="dashboard-body">
         <div class="sidebar left containers">
-            <div>
-                <li>A1</li>
-                <li>A1</li>
-                <li>A1</li>
-                <li>A1</li>
+            <h3>My Projects</h3>
+            <div class="nav-links" ng-repeat="i in [1,2,3,4,5,6]">
+                <li><a href="#"></a>title</li>
             </div>
         </div>
         <div class="body-middle containers">
             <div class="content-scroll">
-                <div class="content" ng-repeat="i in [1,2,3,4,5,6]">
-
-                    <% include card %>
+                <div ng-repeat="i in feedVm.feeds">
+                    <postcard></postcard>
                 </div>
             </div>
         </div>

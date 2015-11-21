@@ -7,6 +7,7 @@ var problemSchema = new mongoose.Schema({
     tools : [String],
     technologies : [String],
     problem_media : [String],
+    github_url: String,
     my_solution : String,
     date: String,
     upvotes: Number,
