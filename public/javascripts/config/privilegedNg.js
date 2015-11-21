@@ -24,6 +24,12 @@ function configure($stateProvider, $urlRouterProvider){
             feedsProv: getProblemFeeds
         }
     });
+    $stateProvider.state('problem', {
+        url: '/problem',
+        templateUrl: '/partials/problem.ejs',
+        controller: 'problemController',
+        controllerAs: 'problemVm'
+    });
     $urlRouterProvider.otherwise('register');
 }
 

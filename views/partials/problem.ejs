@@ -1,0 +1,82 @@
+<div class="dashboard">
+    <div class="dashboard-header">
+
+    </div>
+    <div class="dashboard-body">
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <div class="box box-problem">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Your Idea and Solution</h3>
+                    </div><!-- /.box-header -->
+                    <!-- form start -->
+                    <form class="form-horizontal">
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label for="inputTitle" class="col-sm-2 ctrl-label-required">Title</label>
+                                <div class="col-sm-10">
+                                    <input type="text" ng-model="problemVm.problem.title" class="form-control" id="inputTitle" placeholder="Title">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="description" class="col-sm-2 ctrl-label-required">Description</label>
+                                <div class="col-sm-10">
+                                    <textarea id="description" cols="50" ng-model="problemVm.problem.description" rows="6" class="form-control" placeholder="Problem description"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="solution" class="col-sm-2 ctrl-label">Your Solution</label>
+                                <div class="col-sm-10">
+                                    <textarea id="solution" ng-model="problemVm.problem.solution" cols="50" rows="6" class="form-control" placeholder="Your Solution"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="technologies" class="col-sm-2 ctrl-label">Technologies</label>
+                                <md-content class="md-padding chips-container" layout="column">
+                                    <md-chips class='problem-chips' ng-model="problemVm.roTechnologies" readonly="problemVm.readonly">
+                                        <md-chip-template>
+                                            <strong>{{$chip}}</strong>
+                                        </md-chip-template>
+                                    </md-chips>
+                                </md-content>
+                            </div>
+                            <div class="form-group">
+                                <label for="tools" class="col-sm-2 ctrl-label">Tools</label>
+                                <md-content class="md-padding chips-container" layout="column">
+                                    <md-chips class='problem-chips' ng-model="problemVm.roTools" readonly="problemVm.readonly">
+                                        <md-chip-template>
+                                            <strong>{{$chip}}</strong>
+                                        </md-chip-template>
+                                    </md-chips>
+                                </md-content>
+                            </div>
+                            <div class="form-group">
+                                <label for="attachment" class="col-sm-2 ctrl-label">Media Attachments</label>
+                                <div class="col-sm-10">
+                                    <!-- file-model is a directive -->
+                                    <input type="file" file-model="problemVm.myFile" class="upload-form-control" id="fileupload" style="display:inline"/>
+                                    <input type="submit" class="btnUpload btn btn-default" ng-click="problemVm.uploadMedia()" value="Upload"></input>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-2"></div>
+                                <div class="col-sm-10">
+                                    <div ng-show="problemVm.progressVisible">
+                                        <div>{{problemVm.progress}}%</div>
+                                        <progress value="{{problemVm.progress}}" max="100"></progress>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div><!-- /.box-body -->
+                        <div class="box-footer">
+                            <button class="btn btnSubmitIdea" ng-disabled="problemVm.submitdisabled" ng-click="problemVm.submitProblem()">Submit</button>
+                        </div><!-- /.box-footer -->
+                    </form>
+                </div><!-- box box-info -->
+            </div> <!-- col-md-6 -->
+            <div class="col-md-3"></div>
+        </div>
+    </div><!-- dashboard body -->
+</div>

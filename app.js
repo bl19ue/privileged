@@ -19,6 +19,7 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 var me = require('./routes/me');
 var post = require('./routes/post');
+var mediaupload = require('./routes/mediaupload');
 
 var app = express();
 
@@ -46,6 +47,7 @@ app.use('/', routes);
 app.use('/users', users);
 app.use('/me', me);
 app.use('/post', post);
+app.use('/upload', mediaupload);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
