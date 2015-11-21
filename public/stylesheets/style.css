@@ -1,72 +1,49 @@
 body { font-family: 'Lato', Arial, Helvetica, sans-serif; color:#fff; height: 100%; background: rgba(35,41,48,1); font-weight: 300; font-size: 14px;}
 html { height: 100%; width:100%; background: rgba(35,41,48,1); }
-
 * {
-  margin:0;
-  padding:0;
-  transition: background .4s ease-in-out, color .4s ease-in-out, border .4s ease-in-out;
-  -webkit-transition: background .4s ease-in-out, color .4s ease-in-out, border .4s ease-in-out;
-  -moz-transition: background .4s ease-in-out, color .4s ease-in-out, border .4s ease-in-out;
-  -o-transition: background .4s ease-in-out, color .4s ease-in-out, border .4s ease-in-out;
+ margin:0; padding:0;
+ transition: background .4s ease-in-out, color .4s ease-in-out, border .4s ease-in-out;
+ -webkit-transition: background .4s ease-in-out, color .4s ease-in-out, border .4s ease-in-out;
+ -moz-transition: background .4s ease-in-out, color .4s ease-in-out, border .4s ease-in-out;
+ -o-transition: background .4s ease-in-out, color .4s ease-in-out, border .4s ease-in-out
 }
-.clear {  clear: both;  }
-
+.clear { clear: both }
 /* -------------------------------------------- Login/SignUp -----------------------------------------*/
-
-input[type="text"] {  height: 42px;  border: 1px solid #546E7A; }
-
-.login-logo, .register-logo {  font-size: 35px;  text-align: center;  margin-bottom: 25px;  font-weight: 300;  }
-.login-logo a, .register-logo a {  color: #fafafa; transition: transform .2s linear; }
-.login-logo a:hover, .register-logo a:hover {  color: #fafafa; text-decoration: none; transform: scale(1.1,1.1);
-  transition: transform 500ms linear 0ms; cursor: pointer;}
-
-.login-box, .register-box {  width: 50%;  margin: 5% auto;  }
-.login-box-body, .register-box-body {
-  background: #fff;  padding: 20px;  border-top: 0;  color: #E0E0E0;  border-radius: 3px;  }
-.login-box-msg, .register-box-msg {
-  margin: 0;  text-align: center;  padding: 0 20px 20px 20px;  font-size: 30px;  font-weight:100;  }
+input[type="text"] { height: 42px; border: 1px solid #546E7A; }
+.login-logo, .register-logo { font-size: 35px; text-align: center; margin-bottom: 25px; font-weight: 300; }
+.login-logo a, .register-logo a { color: #fafafa; transition: transform .2s linear; }
+.login-logo a:hover, .register-logo a:hover { color: #fafafa; text-decoration: none; transform: scale(1.1,1.1); transition: transform 500ms linear 0ms; cursor: pointer;}
+.login-box, .register-box { width: 50%; margin: 5% auto; }
+.login-box-body, .register-box-body { background: #fff; padding: 20px; border-top: 0; color: #E0E0E0; border-radius: 3px; }
+.login-box-msg, .register-box-msg { margin: 0; text-align: center; padding: 0 20px 20px 20px; font-size: 30px; font-weight:100; }
 .login-box-anchor, .register-box-anchor { text-align: center; margin-top: -10%; transition: transform .3s linear; }
-.login-box-anchor a:hover, .register-box-anchor a:hover { text-decoration: none;  cursor: pointer;
-  transform: scale(1.1); transition: transform 500ms linear 0ms; }
+.login-box-anchor a:hover, .register-box-anchor a:hover { text-decoration: none; cursor: pointer; transform: scale(1.1); transition: transform 500ms linear 0ms; }
 .login-separator { border-left: solid 2px grey; }
-.icon-support {  position: relative;  }
-.glyphicon-custom-position {  top: -25px;  left: 95%;  }
-.control-label:after {  content:"*";  color:red;  margin-left: 5px;  }
-.item {
-  width: 100%;  display: block;  padding: 0 75px 25px;
-  text-align: left;  text-transform: uppercase;  padding: 0;  margin: 4px;
-  color: #919498;  font-size: 12px;  font-weight: 300;
-}
-.form-row {  width: 100%;  padding: 0 75px 25px;  text-align: left;  }
-.signup-footer {  display: block;  text-align: center;  padding: 25px 25px 75px;  }
-.btn-submit {  min-width: 150px;  background-color: #ed485c;
-  transition: all 0.4s ease-in-out;  font-size: 14px;  padding: 15px;  color: white;  }
-.btn-submit:hover {  background-color: #d84153;  color:white;  font-size: 16px;  }
-.form-theme {  background: rgba(35,41,49,0.05);  border-top: 1px solid rgba(35,41,49,0.05);  }
-
+.icon-support { position: relative; }
+.glyphicon-custom-position { top: -25px; left: 95%; }
+.control-label:after { content:"*"; color:red; margin-left: 5px; }
+.item { width: 100%; display: block; padding: 0 75px 25px; text-align: left; text-transform: uppercase; padding: 0; margin: 4px; color: #919498; font-size: 12px; font-weight: 300; }
+.form-row { width: 100%; padding: 0 75px 25px; text-align: left; }
+.signup-footer { display: block; text-align: center; padding: 25px 25px 75px; }
+.btn-submit { min-width: 150px; background-color: #ed485c; transition: all 0.4s ease-in-out; font-size: 14px; padding: 15px; color: white; }
+.btn-submit:hover { background-color: #d84153; color:white; font-size: 16px; }
+.form-theme { background: rgba(35,41,49,0.05); border-top: 1px solid rgba(35,41,49,0.05); }
 /* -------------------------------------------- Section End -----------------------------------------*/
-
 /* -------------------------------------------- Dialog Box -----------------------------------------*/
 .dialog-header { background-color: rgb(0,0,0); }
-.conatiner-body{  margin-top: -10%; max-width: auto;  max-height: auto;  }
-.forgot-msg {
-  margin-top: 0; color: black; text-align: center;  padding: 0 20px 20px 20px;  font-size: 30px;  font-weight:100;  }
-
+.conatiner-body{ margin-top: -10%; max-width: auto; max-height: auto; }
+.forgot-msg { margin-top: 0; color: black; text-align: center; padding: 0 20px 20px 20px; font-size: 30px; font-weight:100; }
 /* -------------------------------------------- Dialog End -----------------------------------------*/
-
 /* -------------------------------------------- Page Header ----------------------------------------*/
-.navbar {  width: 100%;  font-size: 12px;  position: fixed;  left: 0;  top: 0;  z-index: 9;  }
-.navbar li {  display: inline-block;  position: relative;  margin-top: 5px;  margin-left: 5px;  }
-.navbar li a {  padding: 10px;  color: rgba(255,255,255,0.35);  }
-.navbar li a.action {  padding: 10px;  color: rgba(255,255,255,1);  border: 1px solid #ed485c;  border-radius: 4px;  }
-.navbar li a.action:hover {  background: #ed485c;  color: #fff;  text-decoration: none;  }
-.navbar li:hover a, .navbar li:focus a, .navbar li.active a {  color: rgba(255,255,255,0.8);
-  background: rgba(255,255,255,0.025);  border-radius: 4px;  text-decoration: none;  }
-.navbar-inner {  width: 100%;  margin: 0 auto;  font-size: 14px;  padding: 25px 100px;  }
-.navbar-inner .logo {  float: left;  font-size: 16px;  font-weight: 600;  }
-.navbar-inner .logo img {  width: 35px;  margin-right: 10px;  }
-
-#navbar-toggle {  display: none;  cursor: pointer;  }
-#navigation {  float: right;  margin-top: 10px;  }
-
+.navbar { width: 100%; font-size: 12px; position: fixed; left: 0; top: 0; z-index: 9; }
+.navbar li { display: inline-block; position: relative; margin-top: 5px; margin-left: 5px; }
+.navbar li a { padding: 10px; color: rgba(255,255,255,0.35); }
+.navbar li a.action { padding: 10px; color: rgba(255,255,255,1); border: 1px solid #ed485c; border-radius: 4px; }
+.navbar li a.action:hover { background: #ed485c; color: #fff; text-decoration: none; }
+.navbar li:hover a, .navbar li:focus a, .navbar li.active a { color: rgba(255,255,255,0.8); background: rgba(255,255,255,0.025); border-radius: 4px; text-decoration: none; }
+.navbar-inner { width: 100%; margin: 0 auto; font-size: 14px; padding: 25px 100px; }
+.navbar-inner.logo { float: left; font-size: 16px; font-weight: 600; }
+.navbar-inner.logo img { width: 35px; margin-right: 10px; }
+#navbar-toggle { display: none; cursor: pointer; }
+#navigation { float: right; margin-top: 10px; }
 /* -------------------------------------------- Header Ends----------------------------------------*/
