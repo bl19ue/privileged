@@ -13,7 +13,8 @@ function configure($stateProvider, $urlRouterProvider){
     $stateProvider.state('register', {
         url: '/register',
         templateUrl: '/partials/register.ejs',
-        controller: 'registerController'
+        controller: 'registerController',
+        controllerAs: 'registerVm'
     });
     $stateProvider.state('home', {
         url: '/home',

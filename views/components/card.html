@@ -1,13 +1,15 @@
 <md-content>
     <md-card>
         <md-card-content>
-            <div class="row">
+            <div class="row card-content">
                 <div class="col-md-2"><img alt="Profile Imgae"></div>
-                <p class="col-md-10" class="md-ttle">{{ intItem.title }}</p>
-                <p>Date : Nov 20, 2015</p>
+                <div class="col-md-10">
+                    <p>{{ feedItem.title }}</p>
+                    <p>Date : {{ feedItem.postDate}}</p>
+                </div>
             </div>
             <p class="trim-desc">
-                {{ intItem.desc | limitTo: intItem.limit }}
+                {{ feedItem.desc | limitTo: feedItem.limit }}{{feedItem.desc.length > feedItem.limit ? '...':''}}
             </p>
         </md-card-content>
         <md-card-actions layout="row" layout-align="start center">

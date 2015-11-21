@@ -19,8 +19,12 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 var me = require('./routes/me');
 var post = require('./routes/post');
+<<<<<<< HEAD
 var mediaupload = require('./routes/mediaupload');
 
+=======
+var team = require('./routes/team')
+>>>>>>> 111c11fcb1087613c93aa64d70741105d2c6891a
 var app = express();
 
 // view engine setup
@@ -47,7 +51,11 @@ app.use('/', routes);
 app.use('/users', users);
 app.use('/me', me);
 app.use('/post', post);
+<<<<<<< HEAD
 app.use('/upload', mediaupload);
+=======
+app.use('/',team);
+>>>>>>> 111c11fcb1087613c93aa64d70741105d2c6891a
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -14,10 +14,11 @@ angular
                 data: '=item'
             },
             link: function(scope, element, attrs) {
-                scope.intItem = {
+                scope.feedItem = {
                     title: scope.data.title,
-                    desc: scope.data.Desc,
-                    limit: 40
+                    postDate: scope.data.date,
+                    desc: scope.data.description,
+                    limit: 300
                 };
                 console.log('data: ' + scope.data.title);
             }
