@@ -4,6 +4,7 @@
             <div class="logo"><img src="images/logo-top.png" alt=""> Privileged4All</div>
             <div class="searchBox">
                <input type="text" class="form-control">
+                <a class="action" data-target="#action" ng-click="feedVm.search(target)">Search</a>
             </div>
             <div class="logout">
                 <a class="action" data-target="#action" ng-click="feedVm.logout(target)">Logout</a>
@@ -18,10 +19,12 @@
                 <li><a href="#"></a>title</li>
             </div>
         </div>
-        <div class="body-middle containers">
-            <div class="content-scroll">
-                <div ng-repeat="i in feedVm.feeds">
-                    <postcard></postcard>
+        <div class="body-middle containers uiScrollableArea">
+            <div class="uiScrollableAreaWrap scrollable">
+                <div class="uiScrollableAreaBody">
+                    <div ng-repeat="feed in feedVm.feeds">
+                        <postcard item="feed"></postcard>
+                    </div>
                 </div>
             </div>
         </div>

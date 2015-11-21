@@ -1,4 +1,4 @@
-<div class="register-box" ng-controller="registerCtrl as ctrl">
+<div class="register-box">
     <div class="register-logo">
         <a href="/"><b>Privileged</b><i>4All</i></a>
     </div>
@@ -8,16 +8,16 @@
         <form name="registerForm" ng-submit="register()">
             <div class="form-group icon-support form-row">
                 <div class="item control-label">your name</div>
-                <input type="text" class="form-control" ng-model="user.name">
+                <input type="text" class="form-control" ng-model="registerVm.user.name">
                 <!--<span class="glyphicon glyphicon-user glyphicon-custom-position"></span>-->
             </div>
             <div class="form-group icon-support form-row">
                 <div class="item control-label">your email address</div>
-                <input type="text" class="form-control" ng-model="user.email">
+                <input type="text" class="form-control" ng-model="registerVm.user.email">
             </div>
             <div class="form-group icon-support form-row">
                 <div class="item control-label">your password</div>
-                <input type="password" class="form-control" ng-model="user.password">
+                <input type="password" class="form-control" ng-model="registerVm.user.password">
             </div>
             <div class="form-group icon-support form-row">
                 <div class="item control-label">confirm password</div>
@@ -26,7 +26,7 @@
             <div class="form-group icon-support form-row">
                 <div class="item control-label">your interests</div>
                 <md-content class="md-padding" layout="column">
-                    <md-chips ng-model="ctrl.roInterests" readonly="ctrl.readonly">
+                    <md-chips ng-model="registerVm.roInterests" readonly="registerVm.readonly">
                         <md-chip-template>
                             <strong>{{$chip}}</strong>
                         </md-chip-template>
