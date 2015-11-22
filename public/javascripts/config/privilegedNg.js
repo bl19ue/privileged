@@ -13,7 +13,8 @@ function configure($stateProvider, $urlRouterProvider){
     $stateProvider.state('register', {
         url: '/register',
         templateUrl: '/partials/register.ejs',
-        controller: 'registerController'
+        controller: 'registerController',
+        controllerAs: 'registerVm'
     });
     $stateProvider.state('home', {
         url: '/home',
@@ -23,6 +24,12 @@ function configure($stateProvider, $urlRouterProvider){
         resolve: {
             feedsProv: getProblemFeeds
         }
+    });
+    $stateProvider.state('problem', {
+        url: '/problem',
+        templateUrl: '/partials/problem.ejs',
+        controller: 'problemController',
+        controllerAs: 'problemVm'
     });
     $urlRouterProvider.otherwise('register');
 }
