@@ -178,11 +178,15 @@ router.get('/feeds/:page_num', ensureAuthorized, ensureInterestsOrSearch, checkR
  * Returns single problem with it's post
  */
 router.get('/problem/:problem_id', ensureAuthorized, function(req, res) {
-    databaseCalls.problemDatabaseCalls.findProblemById(req.params.problem_id).done(function(obj) {
-        databaseCalls.postDatabaseCalls.findPostsByProblemId(req.params.problem_id).done(function(problems_obj) {
-            obj.problems = problems_obj;
-            response(obj, obj.type, res);
+    databaseCalls.problemDatabaseCalls.findProblemById(req.params.problem_id).done(function(problemObj) {
+        databaseCalls.teamDatabaseCalls.findTeamsByProblemId(req.params.problem_id).done(function(teamsObj) {
+            problemObj.teams = teamsObj.data;
+            response(problemObj, problemObj.type, res);
         });
+        //databaseCalls.postDatabaseCalls.findPostsByProblemId(req.params.problem_id).done(function(problems_obj) {
+        //    obj.problems = problems_obj;
+        //    response(obj, obj.type, res);
+        //});
     });
 });
 
