@@ -27,8 +27,9 @@ function configure($stateProvider, $urlRouterProvider){
     $urlRouterProvider.otherwise('register');
 }
 
-getProblemFeeds.$inject = ['userService', 'feedService'];
+getProblemFeeds.$inject = ['$localStorage', 'feedService'];
 
-function getProblemFeeds(userService, feedService) {
-    return feedService.getFeeds(userService.user.token, [], 0);
+function getProblemFeeds($localStorage, feedService) {
+    var token = $localStorage.user.token;
+    return feedService.getFeeds(token, [], 0);
 }

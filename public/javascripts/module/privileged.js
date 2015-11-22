@@ -5,5 +5,6 @@
 angular
     .module('myApp', [
         'ui.router',
-        'ngMaterial'
+        'ngMaterial',
+        'ngStorage'
     ]);

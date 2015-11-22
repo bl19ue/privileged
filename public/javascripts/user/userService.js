@@ -2,9 +2,9 @@ angular
     .module('myApp')
     .factory('userService', UserService);
 
-UserService.$inject = ['$http'];
+UserService.$inject = ['$http', '$localStorage'];
 
-function UserService ($http) {
+function UserService ($http, $localStorage) {
     var userObject = {
         user: {},
         token: ''
@@ -47,6 +47,7 @@ function UserService ($http) {
     function signinResponse(response) {
         if(response.status === 200) {
             angular.copy(response.data.data, userObject.user);
+            $localStorage.user = userObject.user;
             userObject.token = response.data.token;
         } else {
             console.log('error404');
@@ -63,6 +64,7 @@ function UserService ($http) {
     function resgisterResponse (response) {
         if(response.status === 200) {
             angular.copy(response.data.data, userObject.user);
+            $localStorage.set('user', userObject.user);
             userObject.token = response.data.token;
         } else {
             console.log('error404');
