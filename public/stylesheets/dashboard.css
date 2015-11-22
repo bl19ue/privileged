@@ -6,16 +6,16 @@
 .dashboard-header-inner .logo img { width: 35px; margin-right: 10px; }
 .searchBox {width: 50%; float: left; margin: 0.5% 10%; padding: 0px; border: 1px solid rgba(255,255,255,0.15); }
 .searchBox input { float: left; height: 42px; width: 90%; border: 1px solid #546E7A; }
-.searchBox img { float: left; height: 42px; width: auto; }
+.searchBox a { float: left; height: 42px; width: auto; }
 .logout {float: right; margin: 1.5% 0; }
 .logout a.action { margin: 0.5% 0; padding: 10px; color: rgba(255,255,255,1); border: 1px solid #ed485c; border-radius: 4px; }
 .logout a.action:hover { background: #ed485c; color: #fff; text-decoration: none; cursor: pointer; }
 
 .dashboard-body { position: absolute; height: 91%; width: 100%; background: #F3F3F3; color: #000; }
 .dashboard-body .containers { position: relative; float: left; margin: 1% 1%; }
-.uiScrollableArea { height: 100%; overflow: hidden; }
+.uiScrollableArea { height: 100%; overflow: hidden; margin-top: -10px; }
 .uiScrollableAreaWrap { height: 100%; overflow-x: hidden; overflow-y: auto; position: relative; margin-right: -30px; padding-right: 19px; }
-.uiScrollableAreaBody { position: relative; }
+.uiScrollableAreaBody { position: relative; margin-top: -10px;}
 .dashboard-body .sidebar { width: 20%; min-height: 98%; background: #FBFBFB; }
 .dashboard-body .left h3 { text-align: center; }
 .dashboard-body .nav-links { height: auto; width: 100%; font-size: 16px; margin: 5px; }

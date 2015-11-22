@@ -5,24 +5,17 @@ angular
     .module('myApp')
     .controller('feedController', FeedController);
 
-FeedController.$inject = ['$stateParams', 'feedsProv'];
+FeedController.$inject = ['$scope', '$stateParams', 'feedsProv'];
 
-function FeedController($stateParams, feedsProv){
+function FeedController($scope, $stateParams, feedsProv){
     var feedVm = this;
 
     feedVm.userData = $stateParams.myParam;
     feedVm.feeds = feedsProv.data;
 
     feedVm.readonly = false;
-    //vm.interests = [];
 
-    //vm.roInterests = angular.copy(vm.interests);
-    feedVm.tags = [];
-
-    feedVm.newInterest = function(chip) {
-        return {
-            name: chip,
-            type: 'unknown'
-        };
-    };
+    $scope.$on('searchFeed', function(event, response) {
+        feedVm.feeds = response.data;
+    });
 }

@@ -7,7 +7,7 @@ var messages = require('../utils/messages');
 var https = require("https");
 //var databaseCalls = require('../utils/databaseCalls');
 //var httpStatus = require('http-status-codes');
-var unirest = require('unirest')
+
 
 var mongoose = require('mongoose');
 //var teamSchema=require('teamSchema');
