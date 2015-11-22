@@ -1,0 +1,25 @@
+<header class="main-header">
+    <a href="#" class="logo">
+        <img src="images/logo-top.png" alt="">
+
+    </a>
+    <nav class="navbar navbar-static-top">
+        <button type="button" class="navbar-toggle navbar-left-toggle" data-toggle="offcanvas" data-placement="left" ng-click="headVm.toggleMainSidebar()" >
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <div class="searchBox has-feedback">
+            <input type="text" class="form-control" placeholder="Search">
+            <i class="glyphicon glyphicon-search form-control-feedback"></i>
+
+        </div>
+        <div class="navbar-custom-menu logout">
+            <a class="action" data-target="#action" ng-click="feedVm.logout()" style="margin-right: 10px;">Logout</a>
+
+            <a href="#" data-toggle="control-sidebar" ng-click="headVm.toggleControlSidebar()">
+                <span class="glyphicon glyphicon-list" style="font-size:18px;"></span>
+            </a>
+        </div>
+    </nav>
+</header>

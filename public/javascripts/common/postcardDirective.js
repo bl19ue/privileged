@@ -6,7 +6,7 @@ angular
     .directive('postcard', Postcard);
 
     function Postcard() {
-        return ({
+        return {
             restrict: 'E',
             replace: true,
             templateUrl: '/components/card.html',
@@ -22,5 +22,5 @@ angular
                 };
                 console.log('data: ' + scope.data.title);
             }
-        })
+        }
     }
