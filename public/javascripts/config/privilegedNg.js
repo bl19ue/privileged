@@ -22,6 +22,7 @@ function configure($stateProvider, $urlRouterProvider){
         controller: 'feedController',
         controllerAs: 'feedVm',
         resolve: {
+            isAuthenticated: isAuthenticated,
             feedsProv: getProblemFeeds
         }
     });
@@ -29,7 +30,10 @@ function configure($stateProvider, $urlRouterProvider){
         url: '/problem',
         templateUrl: '/partials/problem.ejs',
         controller: 'problemController',
-        controllerAs: 'problemVm'
+        controllerAs: 'problemVm',
+        resolve: {
+            isAuthenticated: isAuthenticated
+        }
     });
     $urlRouterProvider.otherwise('register');
 }
@@ -39,4 +43,14 @@ getProblemFeeds.$inject = ['$localStorage', 'feedService'];
 function getProblemFeeds($localStorage, feedService) {
     var token = $localStorage.user.token;
     return feedService.getFeeds(token, [], 0);
+}
+
+isAuthenticated.$inject = ['$localStorage', '$location'];
+
+function isAuthenticated($localStorage, $location) {
+    if($localStorage.user) {
+        return true;
+    } else {
+        $location.path('/login');
+    }
 }

@@ -12,6 +12,7 @@ function UserService ($http, $localStorage) {
 
     userObject.signin = signin;
     userObject.register = register;
+    userObject.logout = logout;
 
     /**
      * Sign in service
@@ -64,12 +65,24 @@ function UserService ($http, $localStorage) {
     function resgisterResponse (response) {
         if(response.status === 200) {
             angular.copy(response.data.data, userObject.user);
-            $localStorage.set('user', userObject.user);
+            $localStorage.user = userObject.user;
             userObject.token = response.data.token;
         } else {
             console.log('error404');
         }
         return response;
+    }
+
+    /**
+     * For logging out
+     */
+    function logout() {
+        delete $localStorage.user;
+        if($localStorage.user) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     return userObject;
