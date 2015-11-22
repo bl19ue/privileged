@@ -1,5 +1,3 @@
-body { font-family: 'Lato', Arial, Helvetica, sans-serif; color:#fff; height: 100%; background: url('../images/login-background.jpg'); font-weight: 300; font-size: 14px;}
-html { height: 100%; width:100%; background: url('../images/login-background.jpg'); fill-opacity: 0.2;}
 body { font-family: 'Lato', Arial, Helvetica, sans-serif; color:#fff; height: 100%; background: rgba(35,41,48,1); font-weight: 300; font-size: 14px; overflow-x: hidden;}
 html { height: 100%; width:100%; background: rgba(35,41,48,1); }
 * {
@@ -36,17 +34,3 @@ input[type="text"] { height: 42px; border: 1px solid #546E7A; }
 .conatiner-body{ margin-top: -10%; max-width: auto; max-height: auto; }
 .forgot-msg { margin-top: 0; color: black; text-align: center; padding: 0 20px 20px 20px; font-size: 30px; font-weight:100; }
 /* -------------------------------------------- Dialog End -----------------------------------------*/
-/* -------------------------------------------- Page Header ----------------------------------------*/
-
-/*.navbar { width: 100%; font-size: 12px; position: fixed; left: 0; top: 0; z-index: 9; }
-.navbar li { display: inline-block; position: relative; margin-top: 5px; margin-left: 5px; }
-.navbar li a { padding: 10px; color: rgba(255,255,255,0.35); }
-.navbar li a.action { padding: 10px; color: rgba(255,255,255,1); border: 1px solid #ed485c; border-radius: 4px; }
-.navbar li a.action:hover { background: #ed485c; color: #fff; text-decoration: none; }
-.navbar li:hover a, .navbar li:focus a, .navbar li.active a { color: rgba(255,255,255,0.8); background: rgba(255,255,255,0.025); border-radius: 4px; text-decoration: none; }
-.navbar-inner { width: 100%; margin: 0 auto; font-size: 14px; padding: 25px 100px; }
-.navbar-inner.logo { float: left; font-size: 16px; font-weight: 600; }
-.navbar-inner.logo img { width: 35px; margin-right: 10px; }
-#navbar-toggle { display: none; cursor: pointer; }
-#navigation { float: right; margin-top: 10px; } /*
-/* -------------------------------------------- Header Ends----------------------------------------*/

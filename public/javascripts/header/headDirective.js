@@ -20,7 +20,6 @@ function BodyHeader($rootScope, $state, userService, feedService, $localStorage)
         headVm.toggleControlSidebar = toggleControlSidebar;
 
         function toggleMainSidebar() {
-
             $rootScope.$broadcast('toggle-main-sidebar', !mainSidebar);
         }
 
