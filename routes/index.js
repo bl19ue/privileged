@@ -50,6 +50,20 @@ router.post('/register', function(req, res) {
     });
 });
 
+router.get('/statistics', function(req, res) {
+    //total commits,
+    //total line of code,
+    //total teams,
+    //total people,
+    //language skills by people,
+    //total tags mentioned
+
+    databaseCalls.teamDatabaseCalls.getAllTeams().done(function() {
+
+    });
+
+});
+
 process.on('uncaughtException', function(err) {
     console.log("Error:" + err);
 });

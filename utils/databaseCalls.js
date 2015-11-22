@@ -86,6 +86,12 @@ var userDatabaseCalls = {
         return deferred.promise;
     },
 
+    /**
+     * Returns user by id
+     *
+     * @param user_id
+     * @returns {*}
+     */
     findUserById : function(user_id) {
         var deferred = q.defer();
         var object = {};
@@ -99,6 +105,37 @@ var userDatabaseCalls = {
             } else if(user) {
                 object.isError = false;
                 object.data = user;
+                object.type = httpStatus.OK;
+                deferred.resolve(object);
+            } else {
+                object.isError = false;
+                object.errorMessage = messages.USER_NOT_FOUND;
+                object.type = httpStatus.NOT_FOUND;
+                deferred.resolve(object);
+            }
+        });
+
+        return deferred.promise;
+    },
+
+    /**
+     * Returns all users
+     *
+     * @returns {*}
+     */
+    getAllUsers : function() {
+        var deferred = q.defer();
+        var object = {};
+        userSchema.find({}, function(err, users) {
+
+            if(err) {
+                object.isError = true;
+                object.errorMessage = err;
+                object.type = httpStatus.INTERNAL_SERVER_ERROR;
+                deferred.resolve(object);
+            } else if(users) {
+                object.isError = false;
+                object.data = users;
                 object.type = httpStatus.OK;
                 deferred.resolve(object);
             } else {
@@ -435,6 +472,37 @@ var teamDatabaseCalls = {
                 deferred.resolve(object);
             }
         });
+        return deferred.promise;
+    },
+
+    /**
+     * Returns all the teams
+     *
+     * @returns {*}
+     */
+    getAllTeams : function() {
+        var deferred = q.defer();
+        var object = {};
+        teamSchema.find({}, function(err, teams) {
+
+            if(err) {
+                object.isError = true;
+                object.errorMessage = err;
+                object.type = httpStatus.INTERNAL_SERVER_ERROR;
+                deferred.resolve(object);
+            } else if(teams) {
+                object.isError = false;
+                object.data = teams;
+                object.type = httpStatus.OK;
+                deferred.resolve(object);
+            } else {
+                object.isError = false;
+                object.errorMessage = messages.USER_NOT_FOUND;
+                object.type = httpStatus.NOT_FOUND;
+                deferred.resolve(object);
+            }
+        });
+
         return deferred.promise;
     },
 
