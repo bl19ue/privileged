@@ -1,12 +1,33 @@
 <div class="dashboard">
+    <!-- Header directive as a element  -->
     <body-header></body-header>
-    <div class="dashboard-body">
+    <!-- <div class="dashboard-body">
         <div class="sidebar left containers">
             <h3>My Projects</h3>
             <div class="nav-links" ng-repeat="i in [1,2,3,4,5,6]">
                 <li><a href="#"></a>title</li>
             </div>
         </div>
+
+        <div class="sidebar right containers">
+            <div class="cont-right-top blocks">
+
+            </div>
+            <div class="cont-right-bottom blocks">
+
+            </div>
+        </div>
+    </div> -->
+
+    <aside class="main-sidebar" ng-class="feedVm.sidebarstateClass" style="min-height: 956px;">
+        <section class="sidebar" style="height:auto">
+            <h3>My Projects</h3>
+            <ul class="sidebar-menu" ng-repeat="i in [1,2,3,4,5,6]">
+                <li><a href="#">title</a></li>
+            </ul>
+        </section>
+    </aside>
+    <div class="content-wrapper" style="min-height:906px">
         <div class="body-middle containers uiScrollableArea">
             <div class="uiScrollableAreaWrap scrollable">
                 <div class="uiScrollableAreaBody">
@@ -16,13 +37,12 @@
                 </div>
             </div>
         </div>
-        <div class="sidebar right containers">
-            <div class="cont-right-top blocks">
-
-            </div>
-            <div class="cont-right-bottom blocks">
-
-            </div>
-        </div>
     </div>
+
+    <aside class="control-sidebar">
+        <h3>My Projects</h3>
+        <ul class="sidebar-menu" ng-repeat="i in [1,2,3,4,5,6]">
+            <li><a href="#">title</a></li>
+        </ul>
+    </aside>
 </div>

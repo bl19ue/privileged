@@ -10,10 +10,23 @@ BodyHeader.$inject = ['$rootScope', '$state', 'userService', 'feedService', '$lo
 function BodyHeader($rootScope, $state, userService, feedService, $localStorage) {
     function headController (){
         var headVm = this;
+        var mainSidebar = false;
+        var controlSidebar = false;
 
         headVm.search = search;
         headVm.newProblem = newProblem;
         headVm.logout = logout;
+        headVm.toggleMainSidebar = toggleMainSidebar;
+        headVm.toggleControlSidebar = toggleControlSidebar;
+
+        function toggleMainSidebar() {
+
+            $rootScope.$broadcast('toggle-main-sidebar', !mainSidebar);
+        }
+
+        function toggleControlSidebar() {
+            $rootScope.$broadcast('toggle-control-sidebar', !controlSidebar);
+        }
 
         function search(){
             headVm.searchArr = [];
@@ -38,7 +51,7 @@ function BodyHeader($rootScope, $state, userService, feedService, $localStorage)
     return {
         restrict: 'E',
         replace: true,
-        templateUrl: '/components/header.html',
+        templateUrl: '/partials/header.ejs',
         controller: headController,
         controllerAs: 'headVm',
         bindToController: true

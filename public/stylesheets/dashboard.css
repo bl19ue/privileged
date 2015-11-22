@@ -1,4 +1,4 @@
-
+/*
 .dashboard { height: 100%; width: 100%; background-color: #fff; }
 .dashboard-header { height: 55px; background: url('../images/background.jpg') bottom center; border-top: 0; color: #E0E0E0; opacity: 0.8; }
 .dashboard-header-inner { width: 100%; margin: 0 auto; font-size: 14px; padding: 0px 100px; }
@@ -19,18 +19,7 @@
 .dashboard-body .sidebar { width: 20%; min-height: 98%; background: #FBFBFB; }
 .dashboard-body .left h3 { text-align: center; }
 .dashboard-body .nav-links { height: auto; width: 100%; font-size: 16px; margin: 5px; }
-.dashboard-body .body-middle { width: 54%; height: 98%; background: transparent; }
-.content-scroll .content { height: 100px; }
-.dashboard-body .center { width: 50%; height: 100%; }
-.dashboard-body .containers .blocks { float: left; width: 100%; min-height: 45%; margin-top: 5px; border: solid red 1px; }
 
-md-content .md-default-theme, md-content { background-color: transparent; }
-md-card .card-content p { margin-bottom: 0; }
-md-card .trim-desc { width: 100%; overflow: hidden; display: inline-block; }
-md-card .trim-desc p { margin-bottom: 0; }
-.glyphicon-icons { float: left; font-size: 16px; font-weight: 600; }
-.glyphicon-icons img { margin-left: 20px; width: auto; height: 20px; }
-.glyphicon-icons p { margin-left: 5px; }
 
 
 .login-box-msg, .register-box-msg { margin: 0; text-align: center; padding: 0 20px 20px 20px; font-size: 30px; font-weight:100; }
@@ -46,3 +35,19 @@ md-card .trim-desc p { margin-bottom: 0; }
 .btn-submit { min-width: 150px; background-color: #ed485c; transition: all 0.4s ease-in-out; font-size: 14px; padding: 15px; color: white; }
 .btn-submit:hover { background-color: #d84153; color:white; font-size: 16px; }
 .form-theme { background: rgba(35,41,49,0.05); border-top: 1px solid rgba(35,41,49,0.05); }
+
+*/
+
+md-content .md-default-theme, md-content { background-color: transparent; }
+md-card .card-content p { margin-bottom: 0; }
+md-card .trim-desc { width: 100%; overflow: hidden; display: inline-block; }
+md-card .trim-desc p { margin-bottom: 0; }
+.glyphicon-icons { float: left; font-size: 16px; font-weight: 600; }
+.glyphicon-icons img { margin-left: 20px; width: auto; height: 20px; }
+.glyphicon-icons p { margin-left: 5px; }
+
+
+.dashboard-body .body-middle { width: 54%; height: 98%; background: transparent; }
+.content-scroll .content { height: 100px; }
+.dashboard-body .center { width: 50%; height: 100%; }
+.dashboard-body .containers .blocks { float: left; width: 100%; min-height: 45%; margin-top: 5px; border: solid red 1px; }
