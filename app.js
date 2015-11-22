@@ -48,7 +48,7 @@ app.use('/users', users);
 app.use('/me', me);
 app.use('/post', post);
 app.use('/upload', mediaupload);
-app.use('/',team);
+app.use('/team',team);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

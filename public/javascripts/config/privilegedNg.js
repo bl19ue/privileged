@@ -8,13 +8,19 @@ function configure($stateProvider, $urlRouterProvider){
     $stateProvider.state('login', {
         url: '/login',
         templateUrl: '/partials/login.ejs',
-        controller: 'loginController'
+        controller: 'loginController',
+        resolve: {
+            isNotAuthorized: isNotAuthorized
+        }
     });
     $stateProvider.state('register', {
         url: '/register',
         templateUrl: '/partials/register.ejs',
         controller: 'registerController',
-        controllerAs: 'registerVm'
+        controllerAs: 'registerVm',
+        resolve: {
+            isNotAuthorized: isNotAuthorized
+        }
     });
     $stateProvider.state('home', {
         url: '/home',
@@ -53,4 +59,14 @@ function isAuthenticated($localStorage, $location) {
     } else {
         $location.path('/login');
     }
+}
+
+isNotAuthorized.$inject = ['$localStorage', '$location'];
+
+function isNotAuthorized($localStorage, $location) {
+    if($localStorage.user) {
+        $location.path('/home');
+    }
+
+    return true;
 }

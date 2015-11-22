@@ -1,3 +1,5 @@
+body { font-family: 'Lato', Arial, Helvetica, sans-serif; color:#fff; height: 100%; background: url('../images/login-background.jpg'); font-weight: 300; font-size: 14px;}
+html { height: 100%; width:100%; background: url('../images/login-background.jpg'); fill-opacity: 0.2;}
 body { font-family: 'Lato', Arial, Helvetica, sans-serif; color:#fff; height: 100%; background: rgba(35,41,48,1); font-weight: 300; font-size: 14px; overflow-x: hidden;}
 html { height: 100%; width:100%; background: rgba(35,41,48,1); }
 * {
