@@ -1,28 +1,4 @@
-<ul id="menu" class="mfb-component--br mfb-fountain" data-mfb-toggle="hover" ng-controller="mfbController as mfb">
-    <li class="mfb-component__wrap">
-        <a class="mfb-component__button--main">
-            <i class="mfb-component__main-icon--resting ion-plus-round"></i>
-            <i class="mfb-component__main-icon--active ion-close-round"></i>
-        </a>
-        <ul class="mfb-component__list">
-            <li>
-                <a ng-click="mfb.logout()" data-mfb-label="Logout" class="mfb-component__button--child">
-                    <i class="mfb-component__child-icon ion-log-out"></i>
-                </a>
-            </li>
-            <li>
-                <a ng-click="mfb.showStat()" data-mfb-label="Stats" class="mfb-component__button--child">
-                    <i class="mfb-component__child-icon ion-stats-bars"></i>
-                </a>
-            </li>
-            <li>
-                <a ng-click="mfb.addProblem()"  data-mfb-label="Add Problem" class="mfb-component__button--child">
-                    <i class="mfb-component__child-icon ion-ios-compose-outline"></i>
-                </a>
-            </li>
-        </ul>
-    </li>
-</ul>
+<floating-btn></floating-btn>
 <div class="dashboard">
     <!-- Header directive as a element  -->
     <body-header></body-header>
