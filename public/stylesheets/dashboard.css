@@ -1,7 +1,10 @@
-.dashboard-body .body-middle { width: 54%; height: 98%; background: transparent; }
+.flt-elm { position: "lr" }
+.dashboard { height: 100%; width: 100%; background-color: #fff; }
+.uiScrollableArea { height: 100%; width: 70%; overflow: hidden; margin: 0 0 0 20px; padding-top: 70px }
+.uiScrollableAreaWrap { height: 100%; overflow-x: hidden; overflow-y: auto; position: relative; margin-right: -30px; padding-right: 19px; }
+.uiScrollableAreaBody { position: relative; margin-top: -10px;}
 .content-scroll .content { height: 100px; }
 .dashboard-body .center { width: 50%; height: 100%; }
-.dashboard-body .containers .blocks { float: left; width: 100%; min-height: 45%; margin-top: 5px; border: solid red 1px; }
 md-content .md-default-theme, md-content { background-color: transparent; }
 md-card .card-content p { margin-bottom: 0; }
 md-card .trim-desc { width: 100%; overflow: hidden; display: inline-block; }
@@ -9,3 +12,8 @@ md-card .trim-desc p { margin-bottom: 0; }
 .glyphicon-icons { float: left; font-size: 16px; font-weight: 600; }
 .glyphicon-icons img { margin-left: 20px; width: auto; height: 20px; }
 .glyphicon-icons p { margin-left: 5px; }
+@media all and (max-width: 767px) {
+    .uiScrollableArea{padding-top: 15px }
+    .speed-dial { position: absolute; right: 100px; bottom: 20px }
+    .uiScrollableArea { width: 100%; margin: 0 }
+}

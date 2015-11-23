@@ -4,7 +4,8 @@
 (function () {
     'use strict';
 
-    angular.module('myApp')
+    angular
+        .module('myApp')
         //upload service for file uploads
         .factory('problemService', problemService);
 
@@ -39,7 +40,6 @@
          */
 
         function submitProblem(problem) {
-
             var url = '/me/problem';
             var header = {'authorization': "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InN2YWxlY2hhOTEiLCJwYXNzd29yZCI6InBhc3N3b3JkIiwiZmlyc3RfbmFtZSI6IlN1bWl0IiwibGFzdF9uYW1lIjoiVmFsZWNoYSIsIl9pZCI6IjU2NDkxOWZjYmM5Mjc4ZmQwZTRiNjRhOSIsImV4cGVydGlzZSI6W10sImludGVyZXN0cyI6WyJNb25nb0RCIiwiQW5kcm9pZCIsIk5vZGVqcyIsIkphdmFzY3JpcHQiLCJKYXZhIl0sInRlYW1zX3dvcmtpbmciOltdLCJ0ZWFtc19vd25lZCI6W10sInByb2JsZW1zX3dvcmtpbmciOltdLCJwcm9ibGVtc19vd25lZCI6W119.tWWVN5dHXBlYTLYlzlJrHRgSJFhllfmBPq9Ej9j0Qr8"};
             return $http({
@@ -49,9 +49,6 @@
                 data: problem
             });
         }
-
-
         return problemObject;
     }
-
 })();

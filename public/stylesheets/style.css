@@ -8,10 +8,12 @@ html { height: 100%; width:100%; background: rgba(35,41,48,1); }
  -o-transition: background .4s ease-in-out, color .4s ease-in-out, border .4s ease-in-out
 }
 .clear { clear: both }
+.speed-dial { position: absolute; right: 100px; z-index: 9999 }
 /* -------------------------------------------- Login/SignUp -----------------------------------------*/
 input[type="text"] { height: 42px; border: 1px solid #546E7A; }
-.login-logo, .register-logo { font-size: 35px; text-align: center; margin-bottom: 25px; font-weight: 300; }
-.login-logo a, .register-logo a { color: #fafafa; transition: transform .2s linear; }
+.login-logo, .register-logo { text-align: center }
+.login-logo img, .register-logo img { url('../images/logo.png'); width: 200px; margin-bottom: 25px; }
+.login-logo a, .register-logo a { transition: transform .2s linear; }
 .login-logo a:hover, .register-logo a:hover { color: #fafafa; text-decoration: none; transform: scale(1.1,1.1); transition: transform 500ms linear 0ms; cursor: pointer;}
 .login-box, .register-box { width: 50%; margin: 5% auto; }
 .login-box-body, .register-box-body { background: #fff; padding: 20px; border-top: 0; color: #E0E0E0; border-radius: 3px; }
