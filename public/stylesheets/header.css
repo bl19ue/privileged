@@ -2,7 +2,7 @@
 .navbar form { margin-top: 0px; }
 .searchBox { width: 55%; height: 0; float: left; margin: 1.2% 10%; padding: 0px; border: 1px solid rgba(255,255,255,0.15); border-radius: 5px }
 .searchBox input { height: 30px; border-radius: 0}
-.searchBox i { border: 1px solid #5A5555; height: 30px }
+.searchBox i { height: 30px }
 .glyphicon-search::before { font-size: 15px; color: #5A5555; position: relative; bottom: 1px }
 .logout { float: right; margin: 13px 10px; }
 .logout a.action { margin: 0.5% 0; padding: 6px; color: #fff; border: 1px solid #ed485c; border-radius: 4px; }

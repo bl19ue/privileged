@@ -28,6 +28,7 @@
          */
         function getSignedS3Request(file) {
 
+
             var url = 'http://localhost:3000/upload/sign_request?filename=' + file.name + '&filetype=' + file.type;
             // just return the call, use then in controller
             return $http.get(url);
