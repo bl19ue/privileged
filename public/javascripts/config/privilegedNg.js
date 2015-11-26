@@ -9,6 +9,7 @@ function configure($stateProvider, $urlRouterProvider){
         url: '/login',
         templateUrl: '/partials/login.ejs',
         controller: 'loginController',
+        controllerAs: 'loginVm',
         resolve: {
             isNotAuthorized: isNotAuthorized
         }
