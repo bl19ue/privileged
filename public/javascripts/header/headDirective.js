@@ -1,13 +1,10 @@
-/**
- * Created by Neeraj on 11/21/2015.
- */
 (function (){
     angular
         .module('myApp')
         .directive('bodyHeader', BodyHeader);
 
-    BodyHeader.$inject = ['$rootScope', '$state', 'userService', 'feedService', '$localStorage'];
-    function BodyHeader($rootScope, $state, userService, feedService, $localStorage) {
+    BodyHeader.$inject = ['$rootScope', 'feedService', '$localStorage'];
+    function BodyHeader($rootScope, feedService, $localStorage) {
         function headController (){
             var headVm = this;
             var mainSidebar = false;

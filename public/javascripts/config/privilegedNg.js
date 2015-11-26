@@ -59,7 +59,7 @@ function configure($stateProvider, $urlRouterProvider){
             isAuthenticated: isAuthenticated
         }
     });
-    $urlRouterProvider.otherwise('register');
+    $urlRouterProvider.otherwise('home');
 }
 
 getProblemFeeds.$inject = ['$localStorage', 'feedService'];

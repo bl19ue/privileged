@@ -14,9 +14,30 @@
     <div class="content-wrapper" style="min-height:906px">
         <div class="body-middle uiScrollableArea">
             <div class="uiScrollableAreaWrap scrollable">
+
                 <div class="uiScrollableAreaBody">
+
+                    <!--for top pagination-->
+                    <div id="wrapper" style="text-align: center">
+                        <ul class="pagination">
+                            <li ng-repeat="page in feedVm.range(feedVm.pages)">
+                                <a ng-click="feedVm.updateFeeds(page)">{{page}}</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!--feeds-->
                     <div ng-repeat="feed in feedVm.feeds">
                         <postcard item="feed"></postcard>
+                    </div>
+
+                    <!--for bottom pagination-->
+                    <div id="wrapper" style="text-align: center">
+                        <ul class="pagination">
+                            <li ng-repeat="page in feedVm.range(feedVm.pages)">
+                                <a ng-click="feedVm.updateFeeds(page)">{{page}}</a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
