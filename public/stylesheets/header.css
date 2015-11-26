@@ -1,14 +1,14 @@
 .navbar { background: url('../images/background.jpg') bottom center; -webkit-transition: margin-left .3s ease-in-out; -o-transition: margin-left .3s ease-in-out; transition: margin-left .3s ease-in-out; margin-bottom: 0; margin-left: 230px; border: none; min-height: 50px; border-radius: 0 }
 .navbar form { margin-top: 0px; }
-.searchBox { width: 35%; height: 0; float: left; margin: 1.2% 10%; padding: 0px; border: 1px solid rgba(255,255,255,0.15); }
+.searchBox { width: 55%; height: 0; float: left; margin: 1.2% 10%; padding: 0px; border: 1px solid rgba(255,255,255,0.15); border-radius: 5px }
 .searchBox input { height: 30px; border-radius: 0}
-.searchBox i { border: 1px solid #5A5555; height: 30px }
+.searchBox i { height: 30px }
 .glyphicon-search::before { font-size: 15px; color: #5A5555; position: relative; bottom: 1px }
 .logout { float: right; margin: 13px 10px; }
 .logout a.action { margin: 0.5% 0; padding: 6px; color: #fff; border: 1px solid #ed485c; border-radius: 4px; }
 .logout a.action:hover { background: #ed485c; color: #fff; text-decoration: none; cursor: pointer; }
 .logo { background: url('../images/background.jpg') bottom center; -webkit-transition: width .3s ease-in-out; -o-transition: width .3s ease-in-out; transition: width .3s ease-in-out; display: block; float: left; height: 50px; font-size: 20px; line-height: 50px; text-align: center; width: 230px; font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; padding: 0 15px; font-weight: 300; overflow: hidden; border-bottom: 0 solid transparent; }
-a.logo img { width: 35px; margin-right: 10px; }
+a.logo img { width: 200px; margin-right: 10px; }
 a.logo span.logo-lg { display: block; }
 nav > button { position: relative; float: left; left: 82px; }
 nav > button > span { background-color: white; }

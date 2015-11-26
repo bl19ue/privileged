@@ -1,10 +1,10 @@
-/**
- * Created by Neeraj on 11/17/2015.
- */
+/*** Created by Neeraj on 11/17/2015. */
 
 angular
     .module('myApp', [
         'ui.router',
         'ngMaterial',
-        'ngStorage'
+        'ngStorage',
+        'ng-mfb',
+        'angularMoment'
     ]);

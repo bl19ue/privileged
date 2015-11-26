@@ -1,6 +1,4 @@
-/**
- * Created by ashishnarkhede on 11/17/15.
- */
+/*** Created by ashishnarkhede on 11/17/15. ***/
 (function () {
     'use strict';
 
@@ -22,18 +20,32 @@
         self.progress = undefined;
         self.submitdisabled  = false;
         self.readonly = false;
+    ProblemController.$inject = ['$scope','problemService', '$stateParams']
+
+    function ProblemController(scope, problemService, stateParams){
+        var problemVm = this;
+        problemVm.attachment = undefined;
+        problemVm.title = undefined;
+        problemVm.myFile = undefined;
+        problemVm.problem = {};
+        problemVm.problem.mediaurls = [];
+        problemVm.progressVisible = false;
+        problemVm.progress = undefined;
+        problemVm.submitdisabled  = false;
+        problemVm.readonly = false;
         //angular chips for technology tags
-        self.technologies = [''];
-        self.roTechnologies = angular.copy(self.technologies);
-        self.techtags = [];
+        problemVm.technologies = [''];
+        problemVm.roTechnologies = angular.copy(problemVm.technologies);
+        problemVm.techtags = [];
         //angular chips for tools tags
-        self.tools = [''];
-        self.roTools = angular.copy(self.tools);
-        self.tooltags = [];
-        self.newTechnology = createTechnologyChip;
-        self.newTool = createNewToolChip;
-        self.uploadMedia = uploadMedia;
-        self.submitProblem = submitProblem;
+        problemVm.tools = [''];
+        problemVm.roTools = angular.copy(problemVm.tools);
+        problemVm.tooltags = [];
+        problemVm.newTechnology = createTechnologyChip;
+        problemVm.newTool = createNewToolChip;
+        problemVm.uploadMedia = uploadMedia;
+        problemVm.submitProblem = submitProblem;
+        problemVm.problem_detail = stateParams.data;
 
         function createTechnologyChip(chip) {
             return {
@@ -49,7 +61,6 @@
             };
         }
 
-
         /**
          * This method creates a new problem using data provided by the user
          */
@@ -58,6 +69,9 @@
             newProblem.tools = self.roTools;
             newProblem.technologies = self.roTechnologies;
             console.log(newProblem.problem_media);
+            var newProblem = problemVm.problem;
+            newProblem.tools = problemVm.roTools;
+            newProblem.technologies = problemVm.roTechnologies;
 
             problemService.submitProblem(newProblem).then(function(response){
                 if(response.status === 200) {
@@ -76,7 +90,7 @@
         function uploadMedia() {
             var signedURL;
             var file;
-            file = self.myFile;
+            file = problemVm.myFile;
             //get a signed S3 request for the file selected by user
             problemService.getSignedS3Request(file).then(function(response){
                 //if signed request is received successfully
@@ -95,9 +109,9 @@
                     // make the file publically downloadable
                     xhr.setRequestHeader('x-amz-acl', 'public-read');
                     //disable the submit while file is being uploaded
-                    self.submitdisabled = true;
+                    problemVm.submitdisabled = true;
                     // set the progress bar value to zero in case user uploads multiple files back to back
-                    self.progress = 0;
+                    problemVm.progress = 0;
 
                     xhr.onload = function() {
                         //if file upload request is completed successfully
@@ -106,14 +120,16 @@
                             // clean up code
                             self.submitdisabled = false;
                             self.problem.problem_media.push(self.mediabucketurl + file.name);
+                            problemVm.submitdisabled = false;
+                            problemVm.problem.mediaurls.push(file.name);
                         }
                     };
                     xhr.onerror = function() {
                         alert("Could not upload file.");
-                        self.submitdisabled = false;
+                        problemVm.submitdisabled = false;
                     };
 
-                    self.progressVisible = true;
+                    problemVm.progressVisible = true;
                     console.log(signedURL);
                     xhr.send(file);
 
@@ -133,11 +149,13 @@
                 if (evt.lengthComputable) {
                     self.progress = Math.round(evt.loaded * 100 / evt.total);
                     if(self.progress === 100) {
+                    problemVm.progress = Math.round(evt.loaded * 100 / evt.total);
+                    if(problemVm.progress == 100) {
                         // enable the submit button once upload is completed suucessfully
-                        self.submitdisabled = false;
+                        problemVm.submitdisabled = false;
                     }
                 } else {
-                    self.progress = 'unable to compute'
+                    problemVm.progress = 'unable to compute'
                 }
             })
         }
@@ -149,7 +167,7 @@
         function uploadComplete(evt) {
             /* This event is raised when the server send back a response */
             console.log(evt.target.responseText);
-            self.submitdisabled = false;
+            problemVm.submitdisabled = false;
         }
 
         /**
@@ -158,7 +176,7 @@
          */
         function uploadFailed(evt) {
             alert("There was an error attempting to upload the file.");
-            self.submitdisabled = false;
+            problemVm.submitdisabled = false;
         }
 
         /**
@@ -167,8 +185,8 @@
          */
         function uploadCanceled(evt) {
             scope.$apply(function(){
-                self.progressVisible = false;
-                self.submitdisabled = false;
+                problemVm.progressVisible = false;
+                problemVm.submitdisabled = false;
             })
             alert("The upload has been canceled by the user or the browser dropped the connection.");
         }

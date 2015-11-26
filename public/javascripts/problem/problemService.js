@@ -4,7 +4,8 @@
 (function () {
     'use strict';
 
-    angular.module('myApp')
+    angular
+        .module('myApp')
         //upload service for file uploads
         .factory('problemService', problemService);
 
@@ -27,8 +28,8 @@
          * @returns {*|{get}}
          */
         function getSignedS3Request(file) {
-
             var url = '/upload/sign_request?filename=' + file.name + '&filetype=' + file.type;
+            var url = 'http://localhost:3000/upload/sign_request?filename=' + file.name + '&filetype=' + file.type;
             // just return the call, use then in controller
             return $http.get(url);
         }
@@ -39,7 +40,6 @@
          * @returns {*}
          */
         function submitProblem(problem) {
-
             var url = '/me/problem';
             var header = {authorization: $localStorage.user.token};
             return $http({
@@ -74,5 +74,4 @@
 
         return problemObject;
     }
-
 })();
