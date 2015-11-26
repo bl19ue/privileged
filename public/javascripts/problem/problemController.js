@@ -5,8 +5,8 @@
         .module('myApp')
         .controller('problemController', ProblemController);
 
-    ProblemController.$inject = ['$rootScope', '$scope','problemService', '$stateParams'];
-    function ProblemController(rootScope, scope, problemService, stateParams){
+    ProblemController.$inject = ['$rootScope', '$state', '$scope','problemService', '$stateParams'];
+    function ProblemController(rootScope, state, scope, problemService, stateParams){
         var problemVm = this;
         problemVm.attachment = undefined;
         problemVm.title = undefined;
@@ -18,11 +18,11 @@
         problemVm.submitdisabled  = false;
         problemVm.readonly = false;
         //angular chips for technology tags
-        problemVm.technologies = [''];
+        problemVm.technologies = [];
         problemVm.roTechnologies = angular.copy(problemVm.technologies);
         problemVm.techtags = [];
         //angular chips for tools tags
-        problemVm.tools = [''];
+        problemVm.tools = [];
         problemVm.roTools = angular.copy(problemVm.tools);
         problemVm.tooltags = undefined;
 
@@ -32,7 +32,7 @@
         problemVm.uploadMedia = uploadMedia;
         problemVm.submitProblem = submitProblem;
         problemVm.problem_detail = stateParams.data;
-        problemVm.myProblemList = [];
+        problemVm.myProblemList = problemService.myProblemFeeds;
 
 
         function createTechnologyChip(chip) {
@@ -67,6 +67,7 @@
             problemService.submitProblem(newProblem).then(function(response){
                 if(response.status === 200) {
                     console.log('Problem created: ' + newProblem);
+                    state.go('problem-detail');
                 } else {
                     console.log('Failed');
                 }

@@ -6,11 +6,10 @@
         .factory('problemService', problemService);
 
     problemService.$inject = ['$http', '$localStorage'];
-
     function problemService($http, $localStorage){
         var problemObject = {
             problem: '',
-            myProblemFeeds: ''
+            myProblemFeeds: []
         };
 
         problemObject.getSignedS3Request = getSignedS3Request;
@@ -53,7 +52,7 @@
 
         function getMyProblemLsPromise(response){
             if (response.status === 200) {
-                angular.copy(response.data, problemObject.myProblemFeeds);
+                angular.copy(response.data.data, problemObject.myProblemFeeds);
             }
             return response;
         }

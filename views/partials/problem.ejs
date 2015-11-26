@@ -1,7 +1,14 @@
+<floating-btn class="floating-btn"></floating-btn>
 <div class="dashboard">
-    <div class="dashboard-header">
-
-    </div>
+    <body-header></body-header>
+    <aside class="main-sidebar" ng-class="feedVm.sidebarstateClass" style="min-height: 956px;">
+        <section class="sidebar" style="height:auto">
+            <h3>My Projects</h3>
+            <ul class="sidebar-menu" ng-repeat="problem in feedVm.myProblemList">
+                <li><a ng-click="">{{problem.title}}</a></li>
+            </ul>
+        </section>
+    </aside>
     <div class="dashboard-body">
         <div class="row">
             <div class="col-md-3"></div>

@@ -13,7 +13,7 @@
         feedVm.controlSidebarState = false;
         feedVm.userData = $stateParams.myParam;
         feedVm.feeds = feedsProv.data.data;
-        feedVm.myProblemList = myFeedsProv.data;
+        feedVm.myProblemList = myFeedsProv.data.data;
         feedVm.updateFeeds = updateFeeds;
         feedVm.pages = Math.ceil($localStorage.total_results / 10);
         feedVm.range = range;
@@ -55,12 +55,11 @@
 
         function range(num) {
             var range = [];
-            for(var i=0;i<num;i++) {
+            for(var i = 0; i < num; i++) {
                 range.push(i+1);
             }
 
             return range;
         }
     }
-
 })();
