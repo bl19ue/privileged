@@ -1,9 +1,9 @@
 angular.module('myApp')
     .factory('feedService', FeedService);
 
-FeedService.$inject = ['$http'];
+FeedService.$inject = ['$http', '$localStorage'];
 
-function FeedService($http) {
+function FeedService($http, $localStorage) {
     var feedsObject = {
         feeds: []
     };
@@ -20,6 +20,7 @@ function FeedService($http) {
      * @returns {*|{get}}
      */
     function getFeeds(token, request, page_num) {
+        $localStorage.search_request = request;
         var headers = {'authorization': token};
         var query = '';
         for (var i = 0; i < request.length; i++) {
@@ -41,11 +42,9 @@ function FeedService($http) {
      */
     function getFeedsResponse(response) {
         if (response.status === 200) {
+            $localStorage.total_results = response.data.total_results;
             angular.copy(response.data, feedsObject.feeds);
-        } else {
-            //logging
         }
-
         return response;
     }
 

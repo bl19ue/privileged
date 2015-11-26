@@ -139,6 +139,8 @@ var checkRedis = function(req, res, next) {
     databaseCalls.redisCalls.findRequestByToken(req.token).done(function(requestObj) {
         if(requestObj && compareArray(requestObj, search)) {
             databaseCalls.redisCalls.findResultsByToken(req.token).done(function(resultObj) {
+                var parentObj = {};
+                parentObj.total_results = resultObj.length;
                 var page_num = req.params.page_num;
                 page_num = page_num * 10;
                 if(page_num + 10 <= resultObj.length - 1) {
@@ -149,7 +151,8 @@ var checkRedis = function(req, res, next) {
                 for(var i=0;i<resultObj.length;i++) {
                     resultObj[i] = JSON.parse(resultObj[i]);
                 }
-                response(resultObj, httpStatus.OK, res);
+                parentObj.data = resultObj;
+                response(parentObj, httpStatus.OK, res);
             });
         } else {
             next();
@@ -171,6 +174,7 @@ router.get('/feeds/:page_num', ensureAuthorized, ensureInterestsOrSearch, checkR
         } else {
             problemsObj.data = problemsObj.data.slice(0, 11);
         }
+
         response(problemsObj, problemsObj.type, res);
     });
 });

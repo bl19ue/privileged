@@ -5,9 +5,9 @@ angular
     .module('myApp')
     .directive('bodyHeader', BodyHeader);
 
-BodyHeader.$inject = ['$rootScope', '$state', 'userService', 'feedService', '$localStorage'];
+BodyHeader.$inject = ['$rootScope', 'feedService', '$localStorage'];
 
-function BodyHeader($rootScope, $state, userService, feedService, $localStorage) {
+function BodyHeader($rootScope, feedService, $localStorage) {
     function headController (){
         var headVm = this;
         var mainSidebar = false;
@@ -26,6 +26,7 @@ function BodyHeader($rootScope, $state, userService, feedService, $localStorage)
         function search(){
             headVm.searchArr = [];
             headVm.searchArr.push(headVm.inStr);
+
             feedService.getFeeds($localStorage.user.token, headVm.searchArr, 0).then(function (response){
                 $rootScope.$broadcast('searchFeed', response);
             });

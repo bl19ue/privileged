@@ -1,27 +1,11 @@
 /*** Created by ashishnarkhede on 11/17/15. ***/
 (function () {
     'use strict';
-
-    angular.module('myApp')
+    angular
+        .module('myApp')
         .controller('problemController', ProblemController);
 
-    ProblemController.$inject = ['$scope','problemService']
-
-    function ProblemController(scope, problemService){
-
-        var self = this;
-        self.attachment = undefined;
-        self.title = undefined;
-        self.myFile = undefined;
-        self.problem = {};
-        self.mediabucketurl = "https://cmpe295b-sjsu-bigdatasecurity.s3.amazonaws.com/";
-        self.problem.problem_media = [];
-        self.progressVisible = false;
-        self.progress = undefined;
-        self.submitdisabled  = false;
-        self.readonly = false;
-    ProblemController.$inject = ['$scope','problemService', '$stateParams']
-
+    ProblemController.$inject = ['$scope','problemService', '$stateParams'];
     function ProblemController(scope, problemService, stateParams){
         var problemVm = this;
         problemVm.attachment = undefined;
@@ -41,6 +25,8 @@
         problemVm.tools = [''];
         problemVm.roTools = angular.copy(problemVm.tools);
         problemVm.tooltags = [];
+
+        problemVm.getProblems = getProblems;
         problemVm.newTechnology = createTechnologyChip;
         problemVm.newTool = createNewToolChip;
         problemVm.uploadMedia = uploadMedia;
@@ -54,6 +40,9 @@
             };
         }
 
+        function getProblems(){
+
+        }
         function createNewToolChip(chip) {
             return {
                 name: chip,
@@ -145,19 +134,20 @@
          * @param evt
          */
         function uploadProgress(evt) {
-            scope.$apply(function(){
+            scope.$apply(function() {
                 if (evt.lengthComputable) {
                     self.progress = Math.round(evt.loaded * 100 / evt.total);
-                    if(self.progress === 100) {
-                    problemVm.progress = Math.round(evt.loaded * 100 / evt.total);
-                    if(problemVm.progress == 100) {
-                        // enable the submit button once upload is completed suucessfully
-                        problemVm.submitdisabled = false;
+                    if (self.progress === 100) {
+                        problemVm.progress = Math.round(evt.loaded * 100 / evt.total);
+                        if (problemVm.progress == 100) {
+                            // enable the submit button once upload is completed suucessfully
+                            problemVm.submitdisabled = false;
+                        }
+                    } else {
+                        problemVm.progress = 'unable to compute'
                     }
-                } else {
-                    problemVm.progress = 'unable to compute'
                 }
-            })
+            });
         }
 
         /**
