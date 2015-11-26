@@ -56,7 +56,8 @@ function configure($stateProvider, $urlRouterProvider){
         controllerAs: 'problemVm',
         params: {'data': null},
         resolve: {
-            isAuthenticated: isAuthenticated
+            isAuthenticated: isAuthenticated,
+            problemDetailProvider: getProblemDetail
         }
     });
     $stateProvider.state('statistic', {
@@ -69,6 +70,15 @@ function configure($stateProvider, $urlRouterProvider){
         }
     });
     $urlRouterProvider.otherwise('home');
+}
+
+
+getProblemDetail.$inject = ['$stateParams', 'problemService'];
+
+function getProblemDetail($stateParams, problemService) {
+    var problemId = $stateParams.data._id;
+    console.log(problemId);
+    return problemService.getProblem(problemId);
 }
 
 getProblemFeeds.$inject = ['$localStorage', 'feedService'];

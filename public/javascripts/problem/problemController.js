@@ -5,8 +5,8 @@
         .module('myApp')
         .controller('problemController', ProblemController);
 
-    ProblemController.$inject = ['$scope','problemService', '$stateParams'];
-    function ProblemController(scope, problemService, stateParams){
+    ProblemController.$inject = ['$scope','problemService', 'problemDetailProvider', '$stateParams'];
+    function ProblemController(scope, problemService, problemDetailProvider, stateParams){
         var problemVm = this;
         problemVm.attachment = undefined;
         problemVm.title = undefined;
@@ -32,7 +32,12 @@
         problemVm.uploadMedia = uploadMedia;
         problemVm.submitProblem = submitProblem;
         problemVm.problem_detail = stateParams.data;
+        // bind data from the resolve
+        problemVm.problemDetail = problemDetailProvider.data.data;
+        problemVm.technologies = problemVm.problemDetail.technologies;
+        problemVm.tools = problemVm.problemDetail.tools;
 
+        console.log(problemVm.problemDetail);
 
         function createTechnologyChip(chip) {
             return {
@@ -44,6 +49,7 @@
         function getProblems(){
 
         }
+
         function createNewToolChip(chip) {
             return {
                 name: chip,
@@ -58,7 +64,6 @@
             var newProblem = self.problem;
             newProblem.tools = self.roTools;
             newProblem.technologies = self.roTechnologies;
-            console.log(newProblem.problem_media);
             var newProblem = problemVm.problem;
             newProblem.tools = problemVm.roTools;
             newProblem.technologies = problemVm.roTechnologies;
