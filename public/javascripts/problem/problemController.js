@@ -7,6 +7,7 @@
 
     ProblemController.$inject = ['$scope','problemService', 'problemDetailProvider', '$stateParams'];
     function ProblemController(scope, problemService, problemDetailProvider, stateParams){
+
         var problemVm = this;
         problemVm.attachment = undefined;
         problemVm.title = undefined;
@@ -24,9 +25,9 @@
         //angular chips for tools tags
         problemVm.tools = [''];
         problemVm.roTools = angular.copy(problemVm.tools);
-        problemVm.tooltags = [];
+        problemVm.tooltags = undefined;
 
-        problemVm.getProblems = getProblems;
+        //problemVm.getProblems = getProblems;
         problemVm.newTechnology = createTechnologyChip;
         problemVm.newTool = createNewToolChip;
         problemVm.uploadMedia = uploadMedia;
@@ -37,6 +38,7 @@
         problemVm.technologies = problemVm.problemDetail.technologies;
         problemVm.tools = problemVm.problemDetail.tools;
 
+        problemVm.myProblemList = [];
         console.log(problemVm.problemDetail);
 
         function createTechnologyChip(chip) {
@@ -46,9 +48,10 @@
             };
         }
 
-        function getProblems(){
-
-        }
+        scope.$on('getProblemList', function(event, response) {
+            problemVm.myProblemList = response.data;
+            scope.$digest();
+        });
 
         function createNewToolChip(chip) {
             return {
@@ -57,9 +60,7 @@
             };
         }
 
-        /**
-         * This method creates a new problem using data provided by the user
-         */
+        /*** This method creates a new problem using data provided by the user ***/
         function submitProblem() {
             var newProblem = self.problem;
             newProblem.tools = self.roTools;
@@ -68,20 +69,17 @@
             newProblem.tools = problemVm.roTools;
             newProblem.technologies = problemVm.roTechnologies;
 
+
             problemService.submitProblem(newProblem).then(function(response){
                 if(response.status === 200) {
                     console.log('Problem created: ' + newProblem);
-                }
-                else {
+                } else {
                     console.log('Failed');
                 }
             });
         }
 
-        /**
-         * This method uploads the media into AWS S3 bucket
-         */
-
+        /*** This method uploads the media into AWS S3 bucket ***/
         function uploadMedia() {
             var signedURL;
             var file;
@@ -113,8 +111,8 @@
                         if (xhr.status === 200) {
                             console.log("File upload complete");
                             // clean up code
-                            self.submitdisabled = false;
-                            self.problem.problem_media.push(self.mediabucketurl + file.name);
+                            problemVm.submitdisabled = false;
+                            problemVm.problem.problem_media.push(problemVm.mediabucketurl + file.name);
                             problemVm.submitdisabled = false;
                             problemVm.problem.mediaurls.push(file.name);
                         }
@@ -142,8 +140,8 @@
         function uploadProgress(evt) {
             scope.$apply(function() {
                 if (evt.lengthComputable) {
-                    self.progress = Math.round(evt.loaded * 100 / evt.total);
-                    if (self.progress === 100) {
+                    problemVm.progress = Math.round(evt.loaded * 100 / evt.total);
+                    if (problemVm.progress === 100) {
                         problemVm.progress = Math.round(evt.loaded * 100 / evt.total);
                         if (problemVm.progress == 100) {
                             // enable the submit button once upload is completed suucessfully

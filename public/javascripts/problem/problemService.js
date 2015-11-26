@@ -9,12 +9,14 @@
 
     function problemService($http, $localStorage){
         var problemObject = {
-            problem: ''
+            problem: '',
+            myProblemFeeds: ''
         };
 
         problemObject.getSignedS3Request = getSignedS3Request;
         problemObject.submitProblem = submitProblem;
         problemObject.getProblem = getProblem;
+        problemObject.myProblemList = myProblemList;
 
         /**
          * This method gets the signed s3 request from the server
@@ -41,6 +43,19 @@
                 headers: header,
                 data: problem
             });
+        }
+
+        function myProblemList(token){
+            var header = {authorization: token};
+            var url = '/me/myproblems';
+            return $http.get(url, {headers: header}).then(getMyProblemLsPromise);
+        }
+
+        function getMyProblemLsPromise(response){
+            if (response.status === 200) {
+                angular.copy(response.data, problemObject.myProblemFeeds);
+            }
+            return response;
         }
 
         /**
