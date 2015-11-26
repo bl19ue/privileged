@@ -34,6 +34,7 @@
         problemVm.problem_detail = stateParams.data;
         problemVm.myProblemList = [];
 
+
         function createTechnologyChip(chip) {
             return {
                 name: chip,
@@ -53,13 +54,12 @@
             };
         }
 
-        /**
-         * This method creates a new problem using data provided by the user
-         */
+        /*** This method creates a new problem using data provided by the user ***/
         function submitProblem() {
             var newProblem = problemVm.problem;
             newProblem.tools = problemVm.roTools;
             newProblem.technologies = problemVm.roTechnologies;
+
             var newProblem = problemVm.problem;
             newProblem.tools = problemVm.roTools;
             newProblem.technologies = problemVm.roTechnologies;
@@ -67,16 +67,13 @@
             problemService.submitProblem(newProblem).then(function(response){
                 if(response.status === 200) {
                     console.log('Problem created: ' + newProblem);
-                }
-                else {
+                } else {
                     console.log('Failed');
                 }
             });
         }
 
-        /**
-         * This method uploads the media into AWS S3 bucket
-         */
+        /*** This method uploads the media into AWS S3 bucket ***/
         function uploadMedia() {
             var signedURL;
             var file;

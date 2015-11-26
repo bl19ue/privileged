@@ -6,6 +6,7 @@
         .factory('problemService', problemService);
 
     problemService.$inject = ['$http', '$localStorage'];
+
     function problemService($http, $localStorage){
         var problemObject = {
             problem: '',

@@ -42,6 +42,15 @@ function configure($stateProvider, $urlRouterProvider){
             isAuthenticated: isAuthenticated
         }
     });
+    $stateProvider.state('team', {
+        url: '/team',
+        templateUrl: '/partials/team.ejs',
+        controller: 'teamController',
+        controllerAs: 'teamVm',
+        resolve: {
+            isAuthenticated: isAuthenticated
+        }
+    });
     $stateProvider.state('problem-detail', {
         templateUrl: '/partials/problemDetails.ejs',
         controller: 'problemController',
