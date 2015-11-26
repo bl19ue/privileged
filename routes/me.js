@@ -165,12 +165,24 @@ router.get('/feeds/:page_num', ensureAuthorized, ensureInterestsOrSearch, checkR
     databaseCalls.problemDatabaseCalls.findProblemBySearch(search).done(function(problemsObj) {
         databaseCalls.redisCalls.saveRequestAndResult(search, problemsObj.data, req.token);
         //For sending not more than 10 results
+        problemsObj.total_results = problemsObj.data.length;
         if(problemsObj.data.length < 10) {
-            problemsObj.data = problemsObj.data.slice(0, obj.data.length);
+            problemsObj.data = problemsObj.data.slice(0, problemsObj.data.length);
         } else {
             problemsObj.data = problemsObj.data.slice(0, 11);
         }
         response(problemsObj, problemsObj.type, res);
+    });
+});
+
+router.get('/myproblems', ensureAuthorized, function(req ,res) {
+    databaseCalls.userDatabaseCalls.findUserByToken(req.token).done(function(userObj) {
+        var problems = userObj.data._doc.problems_owned;
+        problems = problems.concat(userObj.data._doc.problems_working);
+
+        databaseCalls.problemDatabaseCalls.findProblemsByIds(problems).done(function(problemsObj) {
+            response(problemsObj, problemsObj.type, res);
+        });
     });
 });
 
@@ -183,10 +195,6 @@ router.get('/problem/:problem_id', ensureAuthorized, function(req, res) {
             problemObj.teams = teamsObj.data;
             response(problemObj, problemObj.type, res);
         });
-        //databaseCalls.postDatabaseCalls.findPostsByProblemId(req.params.problem_id).done(function(problems_obj) {
-        //    obj.problems = problems_obj;
-        //    response(obj, obj.type, res);
-        //});
     });
 });
 
@@ -252,7 +260,7 @@ router.post('/problem/:problem_id/teams', ensureAuthorized, function(req, res) {
 router.post('/problem/:problem_id/teams/:team_id/join', ensureAuthorized, function(req, res) {
     databaseCalls.teamDatabaseCalls.findTeamByTeamId(req.params.team_id).done(function(teamObj) {
         if(teamObj.type === httpStatus.OK) {
-            var team = teamObj.data;
+            var team = teamObj.data[0];
             databaseCalls.userDatabaseCalls.findUserByToken(req.token).done(function(userObj) {
                 if(userObj.type === httpStatus.OK) {
                     var user = userObj.data;

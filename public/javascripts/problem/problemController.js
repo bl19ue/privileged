@@ -16,7 +16,8 @@
         self.title = undefined;
         self.myFile = undefined;
         self.problem = {};
-        self.problem.mediaurls = [];
+        self.mediabucketurl = "https://cmpe295b-sjsu-bigdatasecurity.s3.amazonaws.com/";
+        self.problem.problem_media = [];
         self.progressVisible = false;
         self.progress = undefined;
         self.submitdisabled  = false;
@@ -56,6 +57,7 @@
             var newProblem = self.problem;
             newProblem.tools = self.roTools;
             newProblem.technologies = self.roTechnologies;
+            console.log(newProblem.problem_media);
 
             problemService.submitProblem(newProblem).then(function(response){
                 if(response.status === 200) {
@@ -103,7 +105,7 @@
                             console.log("File upload complete");
                             // clean up code
                             self.submitdisabled = false;
-                            self.problem.mediaurls.push(file.name);
+                            self.problem.problem_media.push(self.mediabucketurl + file.name);
                         }
                     };
                     xhr.onerror = function() {
@@ -130,7 +132,7 @@
             scope.$apply(function(){
                 if (evt.lengthComputable) {
                     self.progress = Math.round(evt.loaded * 100 / evt.total);
-                    if(self.progress == 100) {
+                    if(self.progress === 100) {
                         // enable the submit button once upload is completed suucessfully
                         self.submitdisabled = false;
                     }

@@ -223,6 +223,43 @@ var problemDatabaseCalls = {
     },
 
     /**
+     * Returns problems by collection of ids
+     *
+     * @param problem_ids
+     * @returns {*}
+     */
+    findProblemsByIds : function (problem_ids) {
+        var ids = [];
+        for(var i=0;i<problem_ids.length;i++) {
+            ids.push(new ObjectId(problem_ids[i]));
+        }
+
+        var deferred = q.defer();
+        var object = {};
+        problemSchema.find({_id: {$in: ids}}, function (err, problems) {
+
+                if (err) {
+                    object.isError = true;
+                    object.errorMessage = err;
+                    object.type = httpStatus.INTERNAL_SERVER_ERROR;
+                    deferred.resolve(object);
+                } else if (problems) {
+                    object.isError = false;
+                    object.data = problems;
+                    object.type = httpStatus.OK;
+                    deferred.resolve(object);
+                } else {
+                    object.isError = false;
+                    object.errorMessage = messages.ITEM_NOT_FOUND;
+                    object.type = httpStatus.NOT_FOUND;
+                    deferred.resolve(object);
+                }
+            });
+
+        return deferred.promise;
+    },
+
+    /**
      * Find problem by it's id
      *
      * @param id
