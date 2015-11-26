@@ -25,6 +25,8 @@
         problemVm.tools = [''];
         problemVm.roTools = angular.copy(problemVm.tools);
         problemVm.tooltags = [];
+
+        problemVm.getProblems = getProblems;
         problemVm.newTechnology = createTechnologyChip;
         problemVm.newTool = createNewToolChip;
         problemVm.uploadMedia = uploadMedia;
@@ -38,6 +40,9 @@
             };
         }
 
+        function getProblems(){
+
+        }
         function createNewToolChip(chip) {
             return {
                 name: chip,
