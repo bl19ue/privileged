@@ -38,8 +38,10 @@ function configure($stateProvider, $urlRouterProvider){
         templateUrl: '/partials/problem.ejs',
         controller: 'problemController',
         controllerAs: 'problemVm',
+        params: {'data': null},
         resolve: {
-            isAuthenticated: isAuthenticated
+            isAuthenticated: isAuthenticated,
+            problemDetailProvider: getProblemDetail
         }
     });
     $stateProvider.state('team', {
@@ -77,9 +79,11 @@ function configure($stateProvider, $urlRouterProvider){
 getProblemDetail.$inject = ['$stateParams', 'problemService'];
 
 function getProblemDetail($stateParams, problemService) {
-    var problemId = $stateParams.data._id;
-    console.log(problemId);
-    return problemService.getProblem(problemId);
+    if($stateParams.data !== null){
+        var problemId = $stateParams.data._id;
+        console.log(problemId);
+        return problemService.getProblem(problemId);
+    }
 }
 
 getProblemFeeds.$inject = ['$localStorage', 'feedService'];

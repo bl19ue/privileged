@@ -36,9 +36,12 @@
         problemVm.myProblemList = problemService.myProblemFeeds;
 
         // bind data from the resolve
-        problemVm.problemDetail = problemDetailProvider.data.data;
-        problemVm.technologies = problemVm.problemDetail.technologies;
-        problemVm.tools = problemVm.problemDetail.tools;
+        if(problemDetailProvider !== undefined){
+            problemVm.problemDetail = problemDetailProvider.data.data;
+            problemVm.technologies = problemVm.problemDetail.technologies;
+            problemVm.tools = problemVm.problemDetail.tools;
+        }
+
 
         function createTechnologyChip(chip) {
             return {

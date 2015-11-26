@@ -8,11 +8,14 @@
     margin-top: 30px;
     width: 100%;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    margin-top: 90px;
 }
+
 
 .box.box-problem {
     border-top-color: firebrick;
 }
+
 .box.box-primary {
     border-top-color: #3c8dbc;
 }

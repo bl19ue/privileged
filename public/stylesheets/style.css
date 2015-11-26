@@ -1,6 +1,6 @@
 label { color: black; }
-body { font-family:  fontAwesome, arial, helvetica, sans-serif; color:#fff; height: 100%; background: rgba(35,41,48,1); font-weight: 300; font-size: 14px; overflow-x: hidden;}
-html { height: 100%; width:100%; background: rgba(35,41,48,1); }
+body { font-family:  fontAwesome, arial, helvetica, sans-serif; color:#fff; height: 100%; background: white; font-weight: 300; font-size: 14px; overflow-x: hidden;}
+html { height: 100%; width:100%;  background: white; } /*background: rgba(35,41,48,1);*/
 * {
  margin:0; padding:0;
  transition: background .4s ease-in-out, color .4s ease-in-out, border .4s ease-in-out;
@@ -11,16 +11,31 @@ html { height: 100%; width:100%; background: rgba(35,41,48,1); }
 .clear { clear: both }
 .speed-dial { position: absolute; right: 100px; z-index: 9999 }
 /* -------------------------------------------- Login/SignUp -----------------------------------------*/
+.register-login-container { background: url('../images/login-background.jpg'); width: 100%; height: 100%; padding-top: 10%; overflow-y: auto; }
+
 input[type="text"] { height: 42px; border: 1px solid #546E7A; }
 textarea { border: 1px solid #546E7A;}
-.login-logo, .register-logo { text-align: center }
-.login-logo img, .register-logo img { url('../images/logo.png'); width: 200px; margin-bottom: 25px; }
-.login-logo a, .register-logo a { transition: transform .2s linear; }
-.login-logo a:hover, .register-logo a:hover { color: #fafafa; text-decoration: none; transform: scale(1.1,1.1); transition: transform 500ms linear 0ms; cursor: pointer;}
-.login-box, .register-box { width: 50%; margin: 5% auto; }
-.login-box-body, .register-box-body { background: #fff; padding: 20px; border-top: 0; color: #E0E0E0; border-radius: 3px; }
-.login-box-msg, .register-box-msg { margin: 0; text-align: center; padding: 0 20px 20px 20px; font-size: 30px; font-weight:100; }
-.login-box-anchor, .register-box-anchor { text-align: center; margin-top: -10%; transition: transform .3s linear; }
+.login-logo,
+.register-logo {  text-align: center;}
+.login-logo img, .register-logo img { url('../images/logo.png'); width: 200px; }
+.login-logo a,
+.register-logo a {  color: #444;  }
+.login-page,
+.register-page {  background: #d2d6de;  }
+.login-box,
+.register-box { width: 100%; height: 100%; }
+@media (max-width: 768px) {
+ .login-box,
+ .register-box {
+  width: 100%;
+ }
+}
+.login-box-body,
+.register-box-body { background: #fff; padding: 20px; border-top: 0; color: #E0E0E0; border-radius: 3px; }
+.login-box-body .form-control-feedback,
+.register-box-body .form-control-feedback {  color: #777;  }
+.login-box-msg,
+.register-box-msg {  margin: 0;  text-align: center;  padding: 0 20px 20px 20px; font-size: 16px; }.login-box-anchor, .register-box-anchor { padding-top: 12px; text-align: center; transition: transform .3s linear; }
 .login-box-anchor a:hover, .register-box-anchor a:hover { text-decoration: none; cursor: pointer; transform: scale(1.1); transition: transform 500ms linear 0ms; }
 .login-separator { border-left: solid 2px grey; }
 .icon-support { position: relative; }
@@ -28,7 +43,7 @@ textarea { border: 1px solid #546E7A;}
 .control-label:after { content:"*"; color:red; margin-left: 5px; }
 .item { width: 100%; display: block; padding: 0 75px 25px; text-align: left; text-transform: uppercase; padding: 0; margin: 4px; color: #919498; font-size: 12px; font-weight: 300; }
 .form-row { width: 100%; padding: 0 75px 25px; text-align: left; }
-.signup-footer { display: block; text-align: center; padding: 25px 25px 75px; }
+.signup-footer { display: block; text-align: center; }
 .btn-submit { min-width: 150px; background-color: #ed485c; transition: all 0.4s ease-in-out; font-size: 14px; padding: 15px; color: white; }
 .btn-submit:hover { background-color: #d84153; color:white; font-size: 16px; }
 .form-theme { background: rgba(35,41,49,0.05); border-top: 1px solid rgba(35,41,49,0.05); }
@@ -38,3 +53,4 @@ textarea { border: 1px solid #546E7A;}
 .conatiner-body{ margin-top: -10%; max-width: auto; max-height: auto; }
 .forgot-msg { margin-top: 0; color: black; text-align: center; padding: 0 20px 20px 20px; font-size: 30px; font-weight:100; }
 /* -------------------------------------------- Dialog End -----------------------------------------*/
+
