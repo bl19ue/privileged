@@ -16,9 +16,75 @@
             <div class="uiScrollableAreaWrap scrollable">
                 <div class="uiScrollableAreaBody">
                     <h2>Problem Detail</h2>
-                    <div>
-                        {{ problemVm.problem_detail.title }}
-                    </div>
+
+                        <!-- Problem Detail -->
+                        <md-content>
+                            <md-card>
+                                <md-card-content>
+                                    <div class="row card-content">
+                                        <div class="col-md-10">
+                                            <p class="title">{{ problemVm.problemDetail.title }}</p>
+                                            <p class="date" am-time-ago="problemVm.problemDetail.date"></p>
+                                        </div>
+                                    </div>
+                                    <p>
+                                        {{ problemVm.problemDetail.description }}
+                                    </p>
+
+                                    <div class="col-md-2 card-media-container" ng-repeat="img in problemVm.problemDetail.problem_media">
+                                       <a href="{{img}}" target="_blank"> <img ng-src="{{img}}" class="card-media" alt="Attachment not available" /> </a>
+                                    </div>
+                                    <!-- Technologies chips -->
+                                    <div class="row">
+                                        <div class="col-md-10 card-chips">
+                                            <p>Technologies:</p>
+                                            <md-chips readonly="true" ng-model="problemVm.technologies"></md-chips>
+                                        </div>
+                                    </div>
+                                    <!-- Tools chips -->
+                                    <div class="row">
+                                        <div class="col-md-10 card-chips" ng-if="problemVm.tools.length">
+                                            <p>Tools:</p>
+                                            <md-chips readonly="true" ng-model="problemVm.tools"></md-chips>
+                                        </div>
+                                    </div>
+                                </md-card-content>
+
+                            </md-card>
+                        </md-content>
+                        <!-- / Problem Detail Card -->
+                    <!-- Teams and Solutions-->
+                    <h3>Teams and Solutions</h3>
+
+                    <md-content ng-repeat="team in problemVm.problemDetail.teams">
+                        <md-card>
+                            <md-card-content>
+                                <div class="row card-content">
+                                    <div class="col-md-10">
+                                        <p class="title">{{ team.name }}</p>
+                                        <p class="date">{{ team.owner }}</p>
+                                    </div>
+                                </div>
+                                <p>
+                                    {{ team.solution_text }}
+                                </p>
+
+                                <div class="col-md-2 card-media-container" ng-repeat="img in team.solution_media">
+                                    <a href="{{img}}" target="_blank"> <img ng-src="{{img}}" class="card-media" alt="Attachment not available" /> </a>
+                                </div>
+                                <!-- Technologies chips -->
+                                <div class="row">
+                                    <div class="col-md-10 card-chips">
+                                        <p>Technologies:</p>
+                                        <md-chips readonly="true" ng-model="team.technologies"></md-chips>
+                                    </div>
+                                </div>
+                            </md-card-content>
+
+                        </md-card>
+                    </md-content>
+
+
                 </div>
             </div>
         </div>

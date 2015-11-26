@@ -5,8 +5,9 @@
         .module('myApp')
         .controller('problemController', ProblemController);
 
-    ProblemController.$inject = ['$rootScope', '$state', '$scope','problemService', '$stateParams'];
-    function ProblemController(rootScope, state, scope, problemService, stateParams){
+    ProblemController.$inject = ['$scope', '$state','problemService', 'problemDetailProvider', '$stateParams'];
+    function ProblemController(scope, state, problemService, problemDetailProvider, stateParams){
+
         var problemVm = this;
         problemVm.attachment = undefined;
         problemVm.title = undefined;
@@ -34,6 +35,10 @@
         problemVm.problem_detail = stateParams.data;
         problemVm.myProblemList = problemService.myProblemFeeds;
 
+        // bind data from the resolve
+        problemVm.problemDetail = problemDetailProvider.data.data;
+        problemVm.technologies = problemVm.problemDetail.technologies;
+        problemVm.tools = problemVm.problemDetail.tools;
 
         function createTechnologyChip(chip) {
             return {
@@ -56,10 +61,9 @@
 
         /*** This method creates a new problem using data provided by the user ***/
         function submitProblem() {
-            var newProblem = problemVm.problem;
-            newProblem.tools = problemVm.roTools;
-            newProblem.technologies = problemVm.roTechnologies;
-
+            var newProblem = self.problem;
+            newProblem.tools = self.roTools;
+            newProblem.technologies = self.roTechnologies;
             var newProblem = problemVm.problem;
             newProblem.tools = problemVm.roTools;
             newProblem.technologies = problemVm.roTechnologies;
@@ -81,28 +85,21 @@
             file = problemVm.myFile;
             //get a signed S3 request for the file selected by user
             problemService.getSignedS3Request(file).then(function(response){
-                //if signed request is received successfully
                 if(response.status === 200){
                     signedURL = response.data.signed_request;
                     console.log(response.data);
-                    // upload the file with the signed request
                     var xhr = new XMLHttpRequest();
-                    // define event listeners to track update status and progress
                     xhr.upload.addEventListener("progress", uploadProgress, false);
                     xhr.addEventListener("load", uploadComplete, false);
                     xhr.addEventListener("error", uploadFailed, false);
                     xhr.addEventListener("abort", uploadCanceled, false);
-                    // open a PUT request to upload the file
                     xhr.open("PUT", signedURL);
                     // make the file publically downloadable
                     xhr.setRequestHeader('x-amz-acl', 'public-read');
-                    //disable the submit while file is being uploaded
                     problemVm.submitdisabled = true;
-                    // set the progress bar value to zero in case user uploads multiple files back to back
                     problemVm.progress = 0;
 
                     xhr.onload = function() {
-                        //if file upload request is completed successfully
                         if (xhr.status === 200) {
                             console.log("File upload complete");
                             // clean up code
@@ -120,7 +117,6 @@
                     problemVm.progressVisible = true;
                     console.log(signedURL);
                     xhr.send(file);
-
                 }
                 else {
                     console.log(response);
@@ -139,7 +135,6 @@
                     if (problemVm.progress === 100) {
                         problemVm.progress = Math.round(evt.loaded * 100 / evt.total);
                         if (problemVm.progress == 100) {
-                            // enable the submit button once upload is completed suucessfully
                             problemVm.submitdisabled = false;
                         }
                     } else {
@@ -154,7 +149,6 @@
          * @param evt
          */
         function uploadComplete(evt) {
-            /* This event is raised when the server send back a response */
             console.log(evt.target.responseText);
             problemVm.submitdisabled = false;
         }

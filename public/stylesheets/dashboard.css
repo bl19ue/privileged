@@ -20,3 +20,14 @@ md-card-content p { margin-bottom: 0; }
     .speed-dial { position: absolute; right: 100px; bottom: 20px }
     .uiScrollableArea { width: 100%; margin: 0 }
 }
+.card-media-container { margin-right:15px; float: left; }
+.card-media { width: 100px; height: 100px; margin-top: 16px; border-radius: 3px; }
+
+.card-chips {padding-top: 3%;}
+@media screen and (max-width: 992px) {
+    .card-chips {
+        padding-top: 3%;
+    }
+}
+.card-chips {clear: both;}
+.card-chips p { font-size: 14px; font-weight: bold;}
