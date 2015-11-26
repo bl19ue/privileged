@@ -1,18 +1,12 @@
-/**
- * Created by ashishnarkhede on 11/19/15.
- */
+/*** Created by ashishnarkhede on 11/19/15. ***/
 (function () {
     'use strict';
-
     angular
         .module('myApp')
-        //upload service for file uploads
         .factory('problemService', problemService);
 
     problemService.$inject = ['$http', '$localStorage'];
-
     function problemService($http, $localStorage){
-
         var problemObject = {
             problem: ''
         };
@@ -27,9 +21,8 @@
          * @param file object
          * @returns {*|{get}}
          */
-        function getSignedS3Request(file) {
+        function getSignedS3Request (file) {
             var url = '/upload/sign_request?filename=' + file.name + '&filetype=' + file.type;
-            // just return the call, use then in controller
             return $http.get(url);
         }
 
@@ -38,7 +31,7 @@
          * @param problem
          * @returns {*}
          */
-        function submitProblem(problem) {
+        function submitProblem (problem) {
             var url = '/me/problem';
             var header = {authorization: $localStorage.user.token};
             return $http({
