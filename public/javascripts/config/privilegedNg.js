@@ -29,7 +29,8 @@ function configure($stateProvider, $urlRouterProvider){
         controllerAs: 'feedVm',
         resolve: {
             isAuthenticated: isAuthenticated,
-            feedsProv: getProblemFeeds
+            feedsProv: getProblemFeeds,
+            myFeedsProv: getProblemList
         }
     });
     $stateProvider.state('problem', {
@@ -67,6 +68,12 @@ getProblemFeeds.$inject = ['$localStorage', 'feedService'];
 function getProblemFeeds($localStorage, feedService) {
     var token = $localStorage.user.token;
     return feedService.getFeeds(token, [], 0);
+}
+
+getProblemList.$inject = ['$localStorage', 'problemService'];
+function getProblemList($localStorage, problemService){
+    var token = $localStorage.user.token;
+    return problemService.myProblemList(token);
 }
 
 isAuthenticated.$inject = ['$localStorage', '$location'];

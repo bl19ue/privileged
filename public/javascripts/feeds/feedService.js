@@ -21,6 +21,7 @@ function FeedService($http, $localStorage) {
      */
     function getFeeds(token, request, page_num) {
         $localStorage.search_request = request;
+        console.log(token);
         var headers = {'authorization': token};
         var query = '';
         for (var i = 0; i < request.length; i++) {

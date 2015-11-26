@@ -5,14 +5,15 @@
         .module('myApp')
         .controller('feedController', FeedController);
 
-    FeedController.$inject = ['$scope', '$stateParams', 'feedsProv', 'feedService', '$localStorage'];
+    FeedController.$inject = ['$scope', '$stateParams', 'feedsProv', 'myFeedsProv', 'feedService', '$localStorage'];
 
-    function FeedController($scope, $stateParams, feedsProv, feedService, $localStorage){
+    function FeedController($scope, $stateParams, feedsProv, myFeedsProv, feedService, $localStorage){
         var feedVm = this;
         feedVm.mainSidebarState = false;
         feedVm.controlSidebarState = false;
         feedVm.userData = $stateParams.myParam;
         feedVm.feeds = feedsProv.data.data;
+        feedVm.myProblemList = myFeedsProv.data;
         feedVm.updateFeeds = updateFeeds;
         feedVm.pages = Math.ceil($localStorage.total_results / 10);
         feedVm.range = range;

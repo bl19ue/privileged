@@ -5,8 +5,8 @@
         .module('myApp')
         .controller('problemController', ProblemController);
 
-    ProblemController.$inject = ['$scope','problemService', '$stateParams'];
-    function ProblemController(scope, problemService, stateParams){
+    ProblemController.$inject = ['$rootScope', '$scope','problemService', '$stateParams'];
+    function ProblemController(rootScope, scope, problemService, stateParams){
         var problemVm = this;
         problemVm.attachment = undefined;
         problemVm.title = undefined;
@@ -24,14 +24,15 @@
         //angular chips for tools tags
         problemVm.tools = [''];
         problemVm.roTools = angular.copy(problemVm.tools);
-        problemVm.tooltags = [];
+        problemVm.tooltags = undefined;
 
-        problemVm.getProblems = getProblems;
+        //problemVm.getProblems = getProblems;
         problemVm.newTechnology = createTechnologyChip;
         problemVm.newTool = createNewToolChip;
         problemVm.uploadMedia = uploadMedia;
         problemVm.submitProblem = submitProblem;
         problemVm.problem_detail = stateParams.data;
+        problemVm.myProblemList = [];
 
         function createTechnologyChip(chip) {
             return {
@@ -40,9 +41,11 @@
             };
         }
 
-        function getProblems(){
+        scope.$on('getProblemList', function(event, response) {
+            problemVm.myProblemList = response.data;
+            scope.$digest();
+        });
 
-        }
         function createNewToolChip(chip) {
             return {
                 name: chip,
@@ -54,10 +57,9 @@
          * This method creates a new problem using data provided by the user
          */
         function submitProblem() {
-            var newProblem = self.problem;
-            newProblem.tools = self.roTools;
-            newProblem.technologies = self.roTechnologies;
-            console.log(newProblem.problem_media);
+            var newProblem = problemVm.problem;
+            newProblem.tools = problemVm.roTools;
+            newProblem.technologies = problemVm.roTechnologies;
             var newProblem = problemVm.problem;
             newProblem.tools = problemVm.roTools;
             newProblem.technologies = problemVm.roTechnologies;
@@ -75,7 +77,6 @@
         /**
          * This method uploads the media into AWS S3 bucket
          */
-
         function uploadMedia() {
             var signedURL;
             var file;
@@ -107,8 +108,8 @@
                         if (xhr.status === 200) {
                             console.log("File upload complete");
                             // clean up code
-                            self.submitdisabled = false;
-                            self.problem.problem_media.push(self.mediabucketurl + file.name);
+                            problemVm.submitdisabled = false;
+                            problemVm.problem.problem_media.push(problemVm.mediabucketurl + file.name);
                             problemVm.submitdisabled = false;
                             problemVm.problem.mediaurls.push(file.name);
                         }
@@ -136,8 +137,8 @@
         function uploadProgress(evt) {
             scope.$apply(function() {
                 if (evt.lengthComputable) {
-                    self.progress = Math.round(evt.loaded * 100 / evt.total);
-                    if (self.progress === 100) {
+                    problemVm.progress = Math.round(evt.loaded * 100 / evt.total);
+                    if (problemVm.progress === 100) {
                         problemVm.progress = Math.round(evt.loaded * 100 / evt.total);
                         if (problemVm.progress == 100) {
                             // enable the submit button once upload is completed suucessfully

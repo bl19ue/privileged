@@ -210,6 +210,11 @@ router.post('/problem', ensureAuthorized, function(req, res) {
     newProblem.problem_media.push(req.body.mediaurls);
     newProblem.date = new Date().toISOString();
     databaseCalls.problemDatabaseCalls.saveProblem(newProblem).done(function(obj) {
+        databaseCalls.userDatabaseCalls.findUserByToken(req.token).done(function(userObj) {
+            var user = userObj.data;
+            user.problems_owned = obj.data._id;
+            databaseCalls.userDatabaseCalls.saveUser(user).done(function(savedUserObj){});
+        });
         response(obj, obj.type, res);
     });
 });
