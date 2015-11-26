@@ -11,7 +11,7 @@ var userSchema = new mongoose.Schema({
     teams_owned : [String],
     teams_working : [String],
     interests : [String],
-    expertise : [{technology: String}, {score: Number}]
+    expertise : [{technology: String, score: Number}]
 });
 
 

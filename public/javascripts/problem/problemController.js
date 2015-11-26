@@ -1,12 +1,11 @@
 /*** Created by ashishnarkhede on 11/17/15. ***/
 (function () {
     'use strict';
-
-    angular.module('myApp')
+    angular
+        .module('myApp')
         .controller('problemController', ProblemController);
 
-    ProblemController.$inject = ['$scope','problemService', '$stateParams']
-
+    ProblemController.$inject = ['$scope','problemService', '$stateParams'];
     function ProblemController(scope, problemService, stateParams){
         var problemVm = this;
         problemVm.attachment = undefined;
@@ -50,6 +49,10 @@
          * This method creates a new problem using data provided by the user
          */
         function submitProblem() {
+            var newProblem = self.problem;
+            newProblem.tools = self.roTools;
+            newProblem.technologies = self.roTechnologies;
+            console.log(newProblem.problem_media);
             var newProblem = problemVm.problem;
             newProblem.tools = problemVm.roTools;
             newProblem.technologies = problemVm.roTechnologies;
@@ -99,6 +102,8 @@
                         if (xhr.status === 200) {
                             console.log("File upload complete");
                             // clean up code
+                            self.submitdisabled = false;
+                            self.problem.problem_media.push(self.mediabucketurl + file.name);
                             problemVm.submitdisabled = false;
                             problemVm.problem.mediaurls.push(file.name);
                         }
@@ -124,17 +129,20 @@
          * @param evt
          */
         function uploadProgress(evt) {
-            scope.$apply(function(){
+            scope.$apply(function() {
                 if (evt.lengthComputable) {
-                    problemVm.progress = Math.round(evt.loaded * 100 / evt.total);
-                    if(problemVm.progress == 100) {
-                        // enable the submit button once upload is completed suucessfully
-                        problemVm.submitdisabled = false;
+                    self.progress = Math.round(evt.loaded * 100 / evt.total);
+                    if (self.progress === 100) {
+                        problemVm.progress = Math.round(evt.loaded * 100 / evt.total);
+                        if (problemVm.progress == 100) {
+                            // enable the submit button once upload is completed suucessfully
+                            problemVm.submitdisabled = false;
+                        }
+                    } else {
+                        problemVm.progress = 'unable to compute'
                     }
-                } else {
-                    problemVm.progress = 'unable to compute'
                 }
-            })
+            });
         }
 
         /**
