@@ -1,5 +1,5 @@
 /**
- * Created by ashishnarkhede on 11/19/15.
+ * Created by ashishnarkhede on 11/24/15.
  */
 (function () {
     'use strict';
@@ -7,18 +7,18 @@
     angular
         .module('myApp')
         //upload service for file uploads
-        .factory('problemService', problemService);
+        .factory('teamService', teamService);
 
-    problemService.$inject = ['$http', '$localStorage'];
+    teamService.$inject = ['$http', '$localStorage'];
 
-    function problemService($http, $localStorage){
+    function teamService($http, $localStorage){
 
-        var problemObject = {
-            problem: ''
+        var teamObject = {
+            team: ''
         };
 
-        problemObject.getSignedS3Request = getSignedS3Request;
-        problemObject.submitProblem = submitProblem;
+        teamObject.getSignedS3Request = getSignedS3Request;
+        teamObject.submitTeam = submitTeam;
 
         /**
          * This method gets the signed s3 request from the server
@@ -34,21 +34,21 @@
         }
 
         /**
-         * This method creates a new problem
-         * @param problem
+         * This method creates a new team
+         * @param team
          * @returns {*}
          */
 
-        function submitProblem(problem) {
-            var url = '/me/problem';
-            var header = $localStorage.user.token;
+        function submitTeam(team) {
+            var url = '/team';
+           var header = $localStorage.user.token;
             return $http({
                 method: 'post',
                 url: url,
                 headers: header,
-                data: problem
+                data: team
             });
         }
-        return problemObject;
+        return teamObject;
     }
 })();

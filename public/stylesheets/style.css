@@ -1,4 +1,5 @@
 body { font-family: 'Lato', Arial, Helvetica, sans-serif; color:#fff; height: 100%; background: rgba(35,41,48,1); font-weight: 300; font-size: 14px; overflow-x: hidden;}
+label { color: black; }
 html { height: 100%; width:100%; background: rgba(35,41,48,1); }
 * {
  margin:0; padding:0;
@@ -11,6 +12,7 @@ html { height: 100%; width:100%; background: rgba(35,41,48,1); }
 .speed-dial { position: absolute; right: 100px; z-index: 9999 }
 /* -------------------------------------------- Login/SignUp -----------------------------------------*/
 input[type="text"] { height: 42px; border: 1px solid #546E7A; }
+textarea { border: 1px solid #546E7A;}
 .login-logo, .register-logo { text-align: center }
 .login-logo img, .register-logo img { url('../images/logo.png'); width: 200px; margin-bottom: 25px; }
 .login-logo a, .register-logo a { transition: transform .2s linear; }

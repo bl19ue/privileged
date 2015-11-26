@@ -1,46 +1,36 @@
 /**
+ * Created by ashishnarkhede on 11/24/15.
+ *//**
  * Created by ashishnarkhede on 11/17/15.
  */
 (function () {
     'use strict';
 
     angular.module('myApp')
-        .controller('problemController', ProblemController);
+        .controller('teamController', TeamController);
 
-    ProblemController.$inject = ['$scope','problemService']
+    TeamController.$inject = ['$scope','teamService']
 
-    function ProblemController(scope, problemService){
+    function TeamController(scope, teamService){
 
         var self = this;
 
-        self.title = undefined;
         self.myFile = undefined;
-        self.problem = {};
-        self.problem.mediaurls = [];
+        self.team = {};
+        self.team.solution_media = [];
         self.progressVisible = false;
         self.progress = undefined;
         self.submitdisabled  = false;
         self.readonly = false;
         //angular chips for technology tags
         self.technologies = [];
-        self.tools = [];
         self.roTechnologies = angular.copy(self.technologies);
 
-        //angular chips for tools tags
-        self.roTools = angular.copy(self.tools);
         self.newTechnology = createTechnologyChip;
-        self.newTool = createNewToolChip;
         self.uploadMedia = uploadMedia;
-        self.submitProblem = submitProblem;
+        self.submitTeam = submitTeam;
 
         function createTechnologyChip(chip) {
-            return {
-                name: chip,
-                type: 'unknown'
-            };
-        }
-
-        function createNewToolChip(chip) {
             return {
                 name: chip,
                 type: 'unknown'
@@ -51,19 +41,8 @@
         /**
          * This method creates a new problem using data provided by the user
          */
-        function submitProblem() {
-            var newProblem = self.problem;
-            newProblem.tools = self.roTools;
-            newProblem.technologies = self.roTechnologies;
+        function submitTeam() {
 
-            problemService.submitProblem(newProblem).then(function(response){
-                if(response.status === 200) {
-                    console.log('Problem created: ' + newProblem);
-                }
-                else {
-                    console.log('Failed');
-                }
-            });
         }
 
         /**
@@ -75,7 +54,7 @@
             var file;
             file = self.myFile;
             //get a signed S3 request for the file selected by user
-            problemService.getSignedS3Request(file).then(function(response){
+            teamService.getSignedS3Request(file).then(function(response){
                 //if signed request is received successfully
                 if(response.status === 200){
                     signedURL = response.data.signed_request;

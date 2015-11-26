@@ -40,7 +40,18 @@ function configure($stateProvider, $urlRouterProvider){
         resolve: {
             isAuthenticated: isAuthenticated
         }
+    })
+    $stateProvider.state('team', {
+        url: '/team',
+        templateUrl: '/partials/team.ejs',
+        controller: 'teamController',
+        controllerAs: 'teamVm',
+        resolve: {
+            isAuthenticated: isAuthenticated
+        }
     });
+
+
     $urlRouterProvider.otherwise('register');
 }
 
