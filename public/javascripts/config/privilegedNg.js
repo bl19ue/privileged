@@ -40,7 +40,7 @@ function configure($stateProvider, $urlRouterProvider){
         resolve: {
             isAuthenticated: isAuthenticated
         }
-    })
+    });
     $stateProvider.state('team', {
         url: '/team',
         templateUrl: '/partials/team.ejs',
@@ -50,9 +50,25 @@ function configure($stateProvider, $urlRouterProvider){
             isAuthenticated: isAuthenticated
         }
     });
-
-
-    $urlRouterProvider.otherwise('register');
+    $stateProvider.state('problem-detail', {
+        templateUrl: '/partials/problemDetails.ejs',
+        controller: 'problemController',
+        controllerAs: 'problemVm',
+        params: {'data': null},
+        resolve: {
+            isAuthenticated: isAuthenticated
+        }
+    });
+    $stateProvider.state('statistic', {
+        url: '/stats',
+        templateUrl: '/partials/statistic.ejs',
+        controller: 'statController',
+        controllerAs: 'statVm',
+        resolve: {
+            isAuthenticated: isAuthenticated
+        }
+    });
+    $urlRouterProvider.otherwise('home');
 }
 
 getProblemFeeds.$inject = ['$localStorage', 'feedService'];

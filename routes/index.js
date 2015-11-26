@@ -27,7 +27,10 @@ router.get('/', function(req, res, next) {
  */
 router.post('/authenticate', function(req, res) {
     databaseCalls.userDatabaseCalls.findUserByEmail(req.body.email, req.body.password).done(function(obj) {
-        response(obj, obj.type, res);
+        obj.data.token = jwt.sign(obj.data, "secret");
+        databaseCalls.userDatabaseCalls.saveUser(obj.data).done(function(userObj) {
+            response(userObj, userObj.type, res);
+        });
     });
 });
 

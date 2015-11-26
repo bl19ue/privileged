@@ -2,20 +2,22 @@
     <md-card>
         <md-card-content>
             <div class="row card-content">
-                <div class="col-md-2"><img alt="Profile Imgae"></div>
+                <div class="col-md-1"><img class="profile-img" src="images/like.png" alt="Profile Image"></div>
                 <div class="col-md-10">
-                    <p>{{ feedItem.title }}</p>
-                    <p>Date : {{ feedItem.postDate}}</p>
+                    <p class="title" ng-click="feedItem.getProblem()">{{ feedItem.title }}</p>
+                    <p class="date" am-time-ago="feedItem.postDate"></p>
                 </div>
             </div>
-            <p class="trim-desc">
+            <p class="trim-desc" ng-click="feedItem.getProblem()">
                 {{ feedItem.desc | limitTo: feedItem.limit }}{{feedItem.desc.length > feedItem.limit ? '...':''}}
             </p>
         </md-card-content>
         <md-card-actions layout="row" layout-align="start center">
-            <div class="col-md-2 glyphicon-icons" layout="row"><img src="/images/like.png"><p>Likes</p></div>
-            <div class="col-md-2 glyphicon-icons" layout="row"><img src="/images/people.png"><p>People</p></div>
-            <div class="col-md-2 glyphicon-icons" layout="row"><img src="/images/team1.png"><p>Teams</p></div>
+            <div class="col-md-2 glyphicon-icons" layout="row"><img src="/images/like.png">
+                <p class="date" ng-click="incr()">{{count}}</p>
+            </div>
+            <div class="col-md-2 glyphicon-icons" layout="row"><img src="/images/people.png"><p class="date">People</p></div>
+            <div class="col-md-2 glyphicon-icons" layout="row"><img src="/images/team1.png"><p class="date">Teams</p></div>
         </md-card-actions>
     </md-card>
 </md-content>

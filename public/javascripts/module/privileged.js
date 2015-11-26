@@ -5,5 +5,6 @@ angular
         'ui.router',
         'ngMaterial',
         'ngStorage',
-        'ng-mfb'
+        'ng-mfb',
+        'angularMoment'
     ]);
