@@ -33,6 +33,7 @@
         problemVm.submitProblem = submitProblem;
         problemVm.problem_detail = stateParams.data;
 
+
         function createTechnologyChip(chip) {
             return {
                 name: chip,

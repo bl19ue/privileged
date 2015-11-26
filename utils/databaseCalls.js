@@ -55,7 +55,8 @@ var userDatabaseCalls = {
 
     /**
      * Calls mongoDB server to find a user by his email and password.
-     *
+
+
      * @param email
      * @param password
      * @returns {*}
