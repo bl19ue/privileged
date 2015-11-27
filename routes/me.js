@@ -114,7 +114,7 @@ var ensureInterestsOrSearch = function(req, res, next) {
             } else {
                 databaseCalls.userDatabaseCalls.findUserByToken(req.token).done(function(userObj) {
                     if(userObj.type === httpStatus.OK) {
-                        search = userObj.data._doc.interests;
+                        search = userObj.data.interests;
                         databaseCalls.redisCalls.saveUserInterests(req.token, search);
                         req.search = search;
                         next();

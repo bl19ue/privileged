@@ -27,7 +27,7 @@
         problemVm.roTools = angular.copy(problemVm.tools);
         problemVm.tooltags = undefined;
 
-        //problemVm.getProblems = getProblems;
+        problemVm.getProblem = getProblem;
         problemVm.newTechnology = createTechnologyChip;
         problemVm.newTool = createNewToolChip;
         problemVm.uploadMedia = uploadMedia;
@@ -42,12 +42,19 @@
             problemVm.tools = problemVm.problemDetail.tools;
         }
 
+        scope.$on('getProblem', function(event, data) {
+
+        });
 
         function createTechnologyChip(chip) {
             return {
                 name: chip,
                 type: 'unknown'
             };
+        }
+
+        function getProblem(){
+            state.go('problem-detail');
         }
 
         scope.$on('getProblemList', function(event, response) {
