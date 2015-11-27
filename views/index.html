@@ -1,78 +1,57 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Privileged4All</title>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <meta name="og:description" content="Privileged4All will enable sport clubs to create a professional website with endless awesome features and help them organise their club like never before!" />
-    <meta name="og:author" content="Void()" />
-    <meta name="og:title" content="Privileged4All" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="og:keywords" content="education, team, teams, management, team management, website, responsive" />
+    <head>
+        <title>Privileged4All</title>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+        <meta name="og:description" content="Privileged will enable people to create an environment that will help others in education. Our motto is communicate and learn!" />
+        <meta name="og:author" content="Void()" />
+        <meta name="og:title" content="Privileged4All" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="og:keywords" content="education, team, teams, management, communication, interaction, people, education with communication, help in education." />
 
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.js"></script>
+        <script src="/bower_components/jquery/dist/jquery.js"></script>
+        <script src="/bower_components/fullpage.js/jquery.fullPage.min.js"></script>
+        <script src="/bower_components/fullpage.js/vendors/jquery.easings.min.js"></script>
+        <script src="/bower_components/fullpage.js/vendors/jquery.slimscroll.min.js"></script>
 
-    <script src="/bower_components/jquery/dist/jquery.js"></script>
-    <script src="/bower_components/fullpage.js/jquery.fullPage.min.js"></script>
-    <script src="/bower_components/fullpage.js/vendors/jquery.easings.min.js"></script>
-    <script src="/bower_components/fullpage.js/vendors/jquery.slimscroll.min.js"></script>
+        <!-- Stylesheets -->
+        <link href='https://fonts.googleapis.com/css?family=Lato:400,100,300,700,900' rel='stylesheet' type='text/css' />
+        <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="/bower_components/fullpage.js/jquery.fullPage.css" />
+        <link rel='stylesheet' href='/stylesheets/index.css' />
 
-    <script src="javascripts/privilegedNg.js"></script>
-    <script src="javascripts/controller/homeCtrl.js"></script>
-
-    <!-- Stylesheets -->
-    <link href='https://fonts.googleapis.com/css?family=Lato:400,100,300,700,900' rel='stylesheet' type='text/css' />
-    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="/bower_components/fullpage.js/jquery.fullPage.css" />
-    <link rel='stylesheet' href='/stylesheets/index.css' />
-
-    <script>
-         $(document).ready(function() {
-             $('#fullpage').fullpage({
-                 anchors: ['start','features', 'roadmap', 'started'],
-                 resize: true,
-                 animateAnchor:false,
-                 scrollOverflow: true,
-                 autoScrolling:true,
-                 slidesNavigation: true,
-                 fitSection: false,
-                 fitToSection: true,
-                 fitToSectionDelay: 100,
-                 menu: '#navigation',
-                 continuousVertical:false,
-                 css3: true,
-                 onLeave: function(index, nextIndex, direction){
-                    console.log("onLeave--" + "index: " + index + " nextIndex: " + nextIndex + " direction: " +  direction);
-                 },
-                 afterLoad: function(anchorLink, index){
-                    console.log("afterLoad--" + "anchorLink: " + anchorLink + " index: " + index );
-                 },
-                 afterSlideLoad: function(anchorLink, index, slideAnchor, slideIndex){
-                    console.log("afterSlideLoad--" + "anchorLink: " + anchorLink + " index: " + index + " slideAnchor: " + slideAnchor + " slideIndex: " + slideIndex);
-                 },
-                 onSlideLeave: function(anchorLink, index, slideIndex, direction){
-                    console.log("onSlideLeave--" + "anchorLink: " + anchorLink + " index: " + index + " slideIndex: " + slideIndex + " direction: " + direction);
-                 },
-                 afterRender: function(){
-                    console.log("afterRender");
-                 },
-                 afterResize: function(){
-                    console.log("afterResize");
-                 }
+        <script>
+             $(document).ready(function() {
+                 $('#fullpage').fullpage({
+                     anchors: ['start','features', 'roadmap', 'started'],
+                     resize: true,
+                     animateAnchor:false,
+                     scrollOverflow: true,
+                     autoScrolling:true,
+                     slidesNavigation: true,
+                     fitSection: false,
+                     fitToSection: true,
+                     fitToSectionDelay: 100,
+                     menu: '#navigation',
+                     continuousVertical:false,
+                     css3: true
+                 });
              });
-         });
-    </script>
-</head>
+        </script>
+    </head>
     <body>
         <div class="navbar">
             <div class="navbar-inner">
                 <div class="logo"><img src="images/logo.png" alt=""></div>
-                <div data-toggle="modal" data-target="#menu" id="navbar-toggle"><i class="btr bt-bars"></i></div>
+                <div id="login">
+                    <li><a href="/index#/login" class="action">Login</a></li>
+                </div>
                 <div id="navigation">
                     <li data-menuanchor="start"><a href="#start">Start</a></li>
                     <li data-menuanchor="features"><a href="#features">Features</a></li>
                     <li data-menuanchor="roadmap"><a href="#roadmap">Roadmap</a></li>
                     <li data-menuanchor="started"><a href="#started">Get Started</a></li>
-                    <li><a href="/index#/login" class="action" data-toggle="modal" data-target="#action">Login</a></li>
+                    <li ><a href="/index#/login" class="action">Login</a></li>
                 </div>
                 <div class="lang">
                     <a href="#" class="active">en</a>
