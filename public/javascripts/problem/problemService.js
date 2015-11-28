@@ -51,7 +51,7 @@
         }
 
         function getMyProblemLsPromise(response){
-            if (response.status === 200) {
+            if (response.data.type === 200) {
                 angular.copy(response.data.data, problemObject.myProblemFeeds);
             } else {
                 delete $localStorage.user;

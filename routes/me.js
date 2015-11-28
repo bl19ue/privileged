@@ -189,7 +189,7 @@ router.get('/myproblems', ensureAuthorized, function(req ,res) {
                 response(problemsObj, problemsObj.type, res);
             });
         } else {
-            response(userObj, userObj.type, res);
+            response(userObj, httpStatus.OK, res);
         }
     });
 });
