@@ -50,8 +50,6 @@ nav > button > span { background-color: white; }
 }
 @media (max-width: 991px) {
   .main-header .navbar-custom-menu a, .main-header .navbar-right a { color: inherit; background: transparent; }
-  .content-header > .breadcrumb { position: relative; margin-top: 5px; top: 0; right: 0; float: none; background: #d2d6de; padding-left: 10px; }
-  .content-header > .breadcrumb li:before { color: #97a0b3; }
   .navbar-custom-menu .navbar-nav > li { float: left; }
   .navbar-custom-menu .navbar-nav { margin: 0; float: left; }
   .navbar-custom-menu .navbar-nav > li > a { padding-top: 15px; padding-bottom: 15px; line-height: 20px; }

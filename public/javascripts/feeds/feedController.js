@@ -5,9 +5,9 @@
         .module('myApp')
         .controller('feedController', FeedController);
 
-    FeedController.$inject = ['$scope', '$rootScope', '$stateParams', 'feedsProv', 'myFeedsProv', 'feedService', '$localStorage'];
+    FeedController.$inject = ['$scope', '$state', '$stateParams', 'feedsProv', 'myFeedsProv', 'feedService', '$localStorage'];
 
-    function FeedController($scope, $rootScope, $stateParams, feedsProv, myFeedsProv, feedService, $localStorage){
+    function FeedController($scope, $state, $stateParams, feedsProv, myFeedsProv, feedService, $localStorage){
         var feedVm = this;
         feedVm.mainSidebarState = false;
         feedVm.controlSidebarState = false;
@@ -21,7 +21,7 @@
         feedVm.getProblem = getProblem;
 
         function getProblem(id){
-            $rootScope.$broadcast('getProblem', id);
+            $state.go('problem-detail', {data: id});
         }
 
         $scope.$on('searchFeed', function(event, response) {

@@ -78,7 +78,6 @@ function configure($stateProvider, $urlRouterProvider){
 
 
 getProblemDetail.$inject = ['$stateParams', 'problemService'];
-
 function getProblemDetail($stateParams, problemService) {
     if($stateParams.data !== null){
         var problemId = $stateParams.data._id;
@@ -88,7 +87,6 @@ function getProblemDetail($stateParams, problemService) {
 }
 
 getProblemFeeds.$inject = ['$localStorage', 'feedService'];
-
 function getProblemFeeds($localStorage, feedService) {
     var token = $localStorage.user.token;
     return feedService.getFeeds(token, [], 0);

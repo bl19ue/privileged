@@ -1,4 +1,4 @@
-.floating-btn { z-index: 9999 }
+.floating-btn { z-index: 9999; bottom: 0; right: 0 }
 .dashboard { height: 100%; width: 100%; background-color: #fff; }
 .uiScrollableArea { height: 100%; width: 70%; overflow: hidden; margin: 0 0 0 20px; padding-top: 70px }
 .uiScrollableAreaWrap { height: 100%; overflow-x: hidden; overflow-y: auto; position: relative; margin-right: -30px; padding-right: 19px; }
@@ -15,19 +15,17 @@ md-card-content p { margin-bottom: 0; }
 .glyphicon-icons { float: left; font-size: 16px; font-weight: 600; }
 .glyphicon-icons img { margin-left: 20px; width: auto; height: 20px; }
 .glyphicon-icons p { margin-left: 5px; }
-@media all and (max-width: 767px) {
-    .uiScrollableArea{padding-top: 15px }
-    .speed-dial { position: absolute; right: 100px; bottom: 20px }
-    .uiScrollableArea { width: 100%; margin: 0 }
-}
 .card-media-container { margin-right:15px; float: left; }
 .card-media { width: 100px; height: 100px; margin-top: 16px; border-radius: 3px; }
-
 .card-chips {padding-top: 3%;}
+.card-chips {clear: both;}
+.card-chips p { font-size: 14px; font-weight: bold;}
 @media screen and (max-width: 992px) {
     .card-chips {
         padding-top: 3%;
     }
 }
-.card-chips {clear: both;}
-.card-chips p { font-size: 14px; font-weight: bold;}
+@media all and (max-width: 767px) {
+    .uiScrollableArea{padding-top: 15px }
+    .uiScrollableArea { width: 100%; margin: 0 }
+}

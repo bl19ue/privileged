@@ -42,8 +42,8 @@
             problemVm.tools = problemVm.problemDetail.tools;
         }
 
-        scope.$on('getProblem', function(event, data) {
-
+        scope.$on('getProblem', function(event, id) {
+            state.go('problem-detail', { data: id});
         });
 
         function createTechnologyChip(chip) {
@@ -53,8 +53,8 @@
             };
         }
 
-        function getProblem(){
-            state.go('problem-detail');
+        function getProblem(id){
+            state.go('problem-detail', { data: id});
         }
 
         scope.$on('getProblemList', function(event, response) {

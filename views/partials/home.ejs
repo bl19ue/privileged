@@ -7,7 +7,7 @@
         <section class="sidebar" style="height:auto">
             <h3>My Projects</h3>
             <ul class="sidebar-menu" ng-repeat="problem in feedVm.myProblemList">
-                <li><a ng-click="feedVm.getProblem('{{problem._id}}')">{{problem.title}}</a></li>
+                <li><a ng-click="feedVm.getProblem(problem)">{{problem.title}}</a></li>
             </ul>
         </section>
     </aside>

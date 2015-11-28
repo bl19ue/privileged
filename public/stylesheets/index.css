@@ -156,4 +156,7 @@ body { font-family: 'Lato', Arial, Helvetica, sans-serif; color:#fff; height: 10
 
  .login-box, .register-box { width: 90%; margin-top: 20px; }
 }
+@media only screen and (max-width : 480px) {
+ .lang { margin-top: -30px; margin-right: 70px; }
+}
 /* -------------------------------------------- Media Que End ----------------------------------------*/
