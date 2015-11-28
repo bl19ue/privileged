@@ -43,14 +43,8 @@ router.get('/', function(req, res) {
  * body: email, password
  */
 router.post('/authenticate', function(req, res) {
-    databaseCalls.userDatabaseCalls.findUserByEmail(req.body.email, req.body.password).done(function(obj) {
-        var crypto = {};
-        crypto.email = req.body.email;
-        crypto.password = req.body.password;
-        obj.data.token = jwt.sign(crypto, "secret");
-        databaseCalls.userDatabaseCalls.saveUser(obj.data).done(function(userObj) {
-            response(userObj, userObj.type, res);
-        });
+    databaseCalls.userDatabaseCalls.findUserByEmail(req.body.email, req.body.password).done(function(userObj) {
+        response(userObj, userObj.type, res);
     });
 });
 
