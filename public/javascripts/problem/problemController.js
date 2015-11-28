@@ -43,9 +43,9 @@
             problemVm.tools = problemVm.problemDetail.tools;
         }
 
-        scope.$on('getProblem', function(event, id) {
-            state.go('problem-detail', { data: id});
-        });
+        //scope.$on('getProblem', function(event, id) {
+        //    state.go('problem-detail', { data: id});
+        //});
 
         function createTechnologyChip(chip) {
             return {
@@ -55,7 +55,14 @@
         }
 
         function getProblem(id){
-            state.go('problem-detail', { data: id});
+            problemService.getProblem(id).then(function (response){
+                if(response !== undefined){
+                    problemVm.problemDetail = response.data.data;
+                    problemVm.technologies = problemVm.problemDetail.technologies;
+                    problemVm.tools = problemVm.problemDetail.tools;
+                    scope.$digest();
+                }
+            });
         }
 
         scope.$on('getProblemList', function(event, response) {
