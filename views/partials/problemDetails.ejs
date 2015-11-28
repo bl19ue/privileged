@@ -7,7 +7,7 @@
         <section class="sidebar" style="height:auto">
             <h3>My Projects</h3>
             <ul class="sidebar-menu" ng-repeat="problem in problemVm.myProblemList">
-                <li><a href="#">{{problem.title}}</a></li>
+                <li><a ng-click="problemVm.getProblem(problem._id)">{{problem.title}}</a></li>
             </ul>
         </section>
     </aside>
@@ -16,7 +16,6 @@
             <div class="uiScrollableAreaWrap scrollable">
                 <div class="uiScrollableAreaBody">
                     <h2>Problem Detail</h2>
-
                         <!-- Problem Detail -->
                         <md-content>
                             <md-card>
@@ -80,11 +79,8 @@
                                     </div>
                                 </div>
                             </md-card-content>
-
                         </md-card>
                     </md-content>
-
-
                 </div>
             </div>
         </div>
