@@ -29,4 +29,3 @@ md-card-content p { margin-bottom: 0; }
     .uiScrollableArea{padding-top: 15px }
     .uiScrollableArea { width: 100%; margin: 0 }
 }
-@media screen and (max-width: 480px) { .floating-btn{ z-index:9999; bottom:38%; right:220px; } }

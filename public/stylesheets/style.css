@@ -13,7 +13,7 @@ html { height: 100%; width:100%;  background: white; } /*background: rgba(35,41,
 /* -------------------------------------------- Login/SignUp -----------------------------------------*/
 .register-login-container { background: url('../images/login-background.jpg'); width: 100%; height: 100%; padding-top: 10%; overflow-y: auto; }
 
-input[type="text"] { height: 42px; border: 1px solid #546E7A; }
+input[type="text"], input[type="password"] { height: 42px; border: 1px solid #546E7A; }
 textarea { border: 1px solid #546E7A;}
 .login-logo,
 .register-logo {  text-align: center;}

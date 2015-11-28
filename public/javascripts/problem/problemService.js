@@ -5,8 +5,8 @@
         .module('myApp')
         .factory('problemService', problemService);
 
-    problemService.$inject = ['$http', '$localStorage'];
-    function problemService($http, $localStorage){
+    problemService.$inject = ['$http', '$localStorage', '$state'];
+    function problemService($http, $localStorage, $state){
         var problemObject = {
             problem: '',
             myProblemFeeds: []
@@ -53,6 +53,9 @@
         function getMyProblemLsPromise(response){
             if (response.status === 200) {
                 angular.copy(response.data.data, problemObject.myProblemFeeds);
+            } else {
+                delete $localStorage.user;
+                $state.go('login');
             }
             return response;
         }

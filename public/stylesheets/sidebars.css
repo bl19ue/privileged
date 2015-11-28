@@ -286,7 +286,7 @@ body.hold-transition .main-header .logo {
 .control-sidebar-bg,
 .control-sidebar {
     top: 0;
-    right: -230px;
+    right: 0;
     width: 230px;
     -webkit-transition: right 0.3s ease-in-out;
     -o-transition: right 0.3s ease-in-out;

@@ -18,6 +18,9 @@
 
         feedVm.updateFeeds = updateFeeds;
         feedVm.getProblem = getProblem;
+        //hide the sidebar initially
+        angular.element('.control-sidebar').css('visibility', 'hidden');
+
 
         feedVm.highchartsNG = getHighchartsNg();
 
@@ -42,9 +45,9 @@
         $scope.$on('toggle-control-sidebar', function(event, data) {
             feedVm.controlSidebarState = !feedVm.controlSidebarState;
             if(feedVm.controlSidebarState){
-                angular.element('.control-sidebar').css('transform', 'translate(0,0)');
+                angular.element('.control-sidebar').css('visibility', 'visible');
             } else {
-                angular.element('.control-sidebar').css('transform', 'translate(-230px,0)');
+                angular.element('.control-sidebar').css('visibility', 'hidden');
             }
         });
 
