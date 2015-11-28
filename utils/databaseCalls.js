@@ -43,7 +43,7 @@ var userDatabaseCalls = {
                 object.type = httpStatus.OK;
                 deferred.resolve(object);
             } else {
-                object.isError = false;
+                object.isError = true;
                 object.errorMessage = messages.USER_NOT_FOUND;
                 object.type = httpStatus.NOT_FOUND;
                 deferred.resolve(object);
@@ -250,7 +250,7 @@ var problemDatabaseCalls = {
                     object.type = httpStatus.OK;
                     deferred.resolve(object);
                 } else {
-                    object.isError = false;
+                    object.isError = true;
                     object.errorMessage = messages.ITEM_NOT_FOUND;
                     object.type = httpStatus.NOT_FOUND;
                     deferred.resolve(object);
@@ -281,7 +281,7 @@ var problemDatabaseCalls = {
                 object.type = httpStatus.OK;
                 deferred.resolve(object);
             } else {
-                object.isError = false;
+                object.isError = true;
                 object.errorMessage = messages.ITEM_NOT_FOUND;
                 object.type = httpStatus.NOT_FOUND;
                 deferred.resolve(object);
@@ -312,7 +312,7 @@ var problemDatabaseCalls = {
                 object.type = httpStatus.OK;
                 deferred.resolve(object);
             } else {
-                object.isError = false;
+                object.isError = true;
                 object.errorMessage = messages.CANNOT_SAVE;
                 object.type = httpStatus.NOT_FOUND;
                 deferred.resolve(object);
@@ -349,7 +349,7 @@ var postDatabaseCalls = {
                 object.type = httpStatus.OK;
                 deferred.resolve(object);
             } else {
-                object.isError = false;
+                object.isError = true;
                 object.errorMessage = messages.ITEM_NOT_FOUND;
                 object.type = httpStatus.NOT_FOUND;
                 deferred.resolve(object);
@@ -386,7 +386,7 @@ var commentsDatabaseCalls = {
                 object.type = httpStatus.OK;
                 deferred.resolve(object);
             } else {
-                object.isError = false;
+                object.isError = true;
                 object.errorMessage = messages.ITEM_NOT_FOUND;
                 object.type = httpStatus.NOT_FOUND;
                 deferred.resolve(object);
@@ -436,7 +436,7 @@ var commentsDatabaseCalls = {
                     object.type = httpStatus.OK;
                     deferred.resolve(object);
                 } else {
-                    object.isError = false;
+                    object.isError = true;
                     object.errorMessage = messages.ITEM_NOT_FOUND;
                     object.type = httpStatus.NOT_FOUND;
                     deferred.resolve(object);
@@ -474,7 +474,7 @@ var teamDatabaseCalls = {
                 object.type = httpStatus.OK;
                 deferred.resolve(object);
             } else {
-                object.isError = false;
+                object.isError = true;
                 object.errorMessage = messages.ITEM_NOT_FOUND;
                 object.type = httpStatus.NOT_FOUND;
                 deferred.resolve(object);
@@ -504,7 +504,7 @@ var teamDatabaseCalls = {
                 object.type = httpStatus.OK;
                 deferred.resolve(object);
             } else {
-                object.isError = false;
+                object.isError = true;
                 object.errorMessage = messages.ITEM_NOT_FOUND;
                 object.type = httpStatus.NOT_FOUND;
                 deferred.resolve(object);
@@ -534,7 +534,7 @@ var teamDatabaseCalls = {
                 object.type = httpStatus.OK;
                 deferred.resolve(object);
             } else {
-                object.isError = false;
+                object.isError = true;
                 object.errorMessage = messages.USER_NOT_FOUND;
                 object.type = httpStatus.NOT_FOUND;
                 deferred.resolve(object);
@@ -566,7 +566,7 @@ var teamDatabaseCalls = {
                 object.type = httpStatus.OK;
                 deferred.resolve(object);
             } else {
-                object.isError = false;
+                object.isError = true;
                 object.errorMessage = messages.CANNOT_SAVE;
                 object.type = httpStatus.NOT_FOUND;
                 deferred.resolve(object);

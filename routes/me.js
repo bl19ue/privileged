@@ -181,12 +181,16 @@ router.get('/feeds/:page_num', ensureAuthorized, ensureInterestsOrSearch, checkR
 
 router.get('/myproblems', ensureAuthorized, function(req ,res) {
     databaseCalls.userDatabaseCalls.findUserByToken(req.token).done(function(userObj) {
-        var problems = userObj.data.problems_owned;
-        problems = problems.concat(userObj.data.problems_working);
+        if(userObj.type === httpStatus.OK) {
+            var problems = userObj.data.problems_owned;
+            problems = problems.concat(userObj.data.problems_working);
 
-        databaseCalls.problemDatabaseCalls.findProblemsByIds(problems).done(function(problemsObj) {
-            response(problemsObj, problemsObj.type, res);
-        });
+            databaseCalls.problemDatabaseCalls.findProblemsByIds(problems).done(function(problemsObj) {
+                response(problemsObj, problemsObj.type, res);
+            });
+        } else {
+            response(userObj, userObj.type, res);
+        }
     });
 });
 
