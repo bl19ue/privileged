@@ -19,6 +19,8 @@
         feedVm.updateFeeds = updateFeeds;
         feedVm.getProblem = getProblem;
 
+        feedVm.highchartsNG = getHighchartsNg();
+
         function getProblem(id){
             $state.go('problem-detail', {data: id});
         }
@@ -63,6 +65,39 @@
                 range.push(i+1);
             }
             return range;
+        }
+
+        function getHighchartsNg() {
+            var expertise = $localStorage.user.expertise;
+            var techs = [];
+            var score = [];
+            for(var i=0;i<expertise.length;i++) {
+                techs.push(expertise[i].technology);
+                score.push(expertise[i].score);
+            }
+
+            var highchartsNG = {
+                options: {
+                    chart: {
+                        type: 'bar'
+                    }
+                },
+                xAxis: {
+                    categories: techs,
+                    title: {
+                        text: null
+                    }
+                },
+                series: [{
+                    data: score
+                }],
+                title: {
+                    text: 'Expertise'
+                },
+                loading: false
+            }
+
+            return highchartsNG;
         }
     }
 })();

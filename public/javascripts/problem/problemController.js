@@ -13,7 +13,6 @@
         problemVm.title = undefined;
         problemVm.myFile = undefined;
         problemVm.problem = {};
-        problemVm.problem.mediaurls = [];
         problemVm.progressVisible = false;
         problemVm.progress = undefined;
         problemVm.submitdisabled  = false;
@@ -26,6 +25,8 @@
         problemVm.tools = [];
         problemVm.roTools = angular.copy(problemVm.tools);
         problemVm.tooltags = undefined;
+        problemVm.mediaBucketUrl = "https://cmpe295b-sjsu-bigdatasecurity.s3.amazonaws.com";
+        problemVm.problem_media = [];
 
         problemVm.getProblem = getProblem;
         problemVm.newTechnology = createTechnologyChip;
@@ -71,9 +72,9 @@
 
         /*** This method creates a new problem using data provided by the user ***/
         function submitProblem() {
-            var newProblem = self.problem;
-            newProblem.tools = self.roTools;
-            newProblem.technologies = self.roTechnologies;
+            var newProblem = problemVm.problem;
+            newProblem.tools = problemVm.roTools;
+            newProblem.technologies = problemVm.roTechnologies;
             var newProblem = problemVm.problem;
             newProblem.tools = problemVm.roTools;
             newProblem.technologies = problemVm.roTechnologies;
@@ -81,7 +82,7 @@
             problemService.submitProblem(newProblem).then(function(response){
                 if(response.status === 200) {
                     console.log('Problem created: ' + newProblem);
-                    state.go('problem-detail');
+                    state.go('problem-detail', {data: response.data.data});
                 } else {
                     console.log('Failed');
                 }
@@ -115,8 +116,6 @@
                             // clean up code
                             problemVm.submitdisabled = false;
                             problemVm.problem.problem_media.push(problemVm.mediabucketurl + file.name);
-                            problemVm.submitdisabled = false;
-                            problemVm.problem.mediaurls.push(file.name);
                         }
                     };
                     xhr.onerror = function() {
