@@ -8,10 +8,15 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <div class="searchBox has-feedback">
-            <input type="text" class="form-control" placeholder="Search">
-            <i class="glyphicon glyphicon-search form-control-feedback" ng-click="headVm.search()"></i>
+        <div class="searchBox">
+            <input type="text" placeholder="Search" ng-model="headVm.searchString">
+            <!-- <i class="glyphicon glyphicon-search form-control-feedback" ng-click="headVm.search()"></i> -->
+            <button type="button" class="btn btn-search btn-default" style="border-radius:2px 2px 0 0;" ng-click="headVm.search()">
+                <span class="glyphicon glyphicon-search searchIcon"></span>
+                <span class="label-icon"></span>
+            </button>
         </div>
+
         <div class="navbar-custom-menu logout">
             <a href="#" data-toggle="control-sidebar" ng-click="headVm.toggleControlSidebar()">
             <a href="#/home" data-toggle="control-sidebar" ng-click="headVm.toggleControlSidebar()">

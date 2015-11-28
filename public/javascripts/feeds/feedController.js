@@ -25,8 +25,7 @@
         }
 
         $scope.$on('searchFeed', function(event, response) {
-            feedVm.feeds = response.data;
-            $scope.$digest();
+            feedVm.feeds = response.data.data;
         });
 
         $scope.$on('toggle-main-sidebar', function(event, data){
