@@ -10,6 +10,7 @@
             var mainSidebar = false;
             var controlSidebar = false;
 
+            headVm.searchString = null;
             headVm.search = search;
             headVm.toggleMainSidebar = toggleMainSidebar;
             headVm.toggleControlSidebar = toggleControlSidebar;
@@ -21,8 +22,9 @@
                 $rootScope.$broadcast('toggle-control-sidebar', !controlSidebar);
             }
             function search(){
+                console.log("Searching....");
                 headVm.searchArr = [];
-                headVm.searchArr.push(headVm.inStr);
+                headVm.searchArr.push(headVm.searchString);
                 feedService.getFeeds($localStorage.user.token, headVm.searchArr, 0).then(function (response){
                     $rootScope.$broadcast('searchFeed', response);
                 });
