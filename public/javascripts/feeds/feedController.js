@@ -6,7 +6,6 @@
         .controller('feedController', FeedController);
 
     FeedController.$inject = ['$scope', '$state', '$stateParams', 'feedsProv', 'myFeedsProv', 'feedService', '$localStorage'];
-
     function FeedController($scope, $state, $stateParams, feedsProv, myFeedsProv, feedService, $localStorage){
         var feedVm = this;
         feedVm.mainSidebarState = false;
@@ -25,8 +24,7 @@
         }
 
         $scope.$on('searchFeed', function(event, response) {
-            feedVm.feeds = response.data;
-            $scope.$digest();
+            feedVm.feeds = response.data.data;
         });
 
         $scope.$on('toggle-main-sidebar', function(event, data){
@@ -64,7 +62,6 @@
             for(var i = 0; i < num; i++) {
                 range.push(i+1);
             }
-
             return range;
         }
     }

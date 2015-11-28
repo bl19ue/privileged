@@ -16,8 +16,25 @@ var response = function(message, status, res) {
 };
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-    res.render('index', { title: 'Express' });
+router.get('/', function(req, res) {
+    var lang = req.query.lang;
+    var fileName = '';
+    if(lang === 'kr' || lang === 'jp') {
+        fileName = lang + ".json";
+    } else {
+        fileName = "en" + ".json";
+    }
+
+    var resources = "./views/resources/";
+    var fs = require('fs');
+    var fileObj;
+    try {
+        fileObj = JSON.parse(fs.readFileSync(resources + fileName, 'utf8'));
+    } catch(err) {
+        console.log(err);
+    }
+
+    res.render('privileged', { indexObj: fileObj });
 });
 
 /**

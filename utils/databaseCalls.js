@@ -661,7 +661,7 @@ var redisCalls = {
         }
 
         for(var i=0;i<results.length;i++) {
-            multi.rpush(token + res, JSON.stringify(results[i]._doc));
+            multi.rpush(token + res, JSON.stringify(results[i]));
         }
 
         multi.exec(function(errors, results1) {});

@@ -1,4 +1,4 @@
-.floating-btn { z-index: 9999; bottom: 0; right: 0 }
+.floating-btn { z-index: 9999 }
 .dashboard { height: 100%; width: 100%; background-color: #fff; }
 .uiScrollableArea { height: 100%; width: 70%; overflow: hidden; margin: 0 0 0 20px; padding-top: 70px }
 .uiScrollableAreaWrap { height: 100%; overflow-x: hidden; overflow-y: auto; position: relative; margin-right: -30px; padding-right: 19px; }
@@ -29,3 +29,4 @@ md-card-content p { margin-bottom: 0; }
     .uiScrollableArea{padding-top: 15px }
     .uiScrollableArea { width: 100%; margin: 0 }
 }
+@media screen and (max-width: 480px) { .floating-btn{ z-index:9999; bottom:38%; right:220px; } }

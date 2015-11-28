@@ -1,0 +1,52 @@
+{
+  "navtoggle": ["Start", "Features", "Roadmap", "Get Started", "Login"],
+  "start": {
+    "heading": "EDUCATION, ONE STEP FURTHER.",
+    "sub": "Awesomeness for both creators and curious",
+    "toggle": "Learn More"
+  },
+  "features": {
+    "heading": "Features",
+    "sub": "WHAT YOU GET",
+    "detail": [
+      {
+        "tag": "EXPOSURE",
+        "heading": "Get to know about current problems",
+        "detail": "Work on current problems that use latest technologies that you will learn while developing many solutions. Your solution will change the world, because you will have the passion in solving problems that you are interested in."
+      },
+      {
+        "tag": "CREATION",
+        "heading": "Be the creator and devise new problems",
+        "detail": "Create new problems that you and others will solve. They can be as big or as small as you want."
+      },
+      {
+        "tag": "TEAM WORK",
+        "heading": "Work not alone, but together",
+        "detail": "Solve problems together with other people who are interested in the same problem. Get to know them, build your profile, build your network."
+      }
+    ]
+  },
+  "roadmap": {
+    "heading": "ROADMAP",
+    "sub": "WHAT WE HAVE BUILT",
+    "detail": [
+      {
+        "date": "NOV 2015",
+        "detail": "We've launched the landing page you're currently exploring. This page has multiple purposes. First of all, we want to make you understand what this platform really is about. Secondly, we want you to know what all the features we have built for this eco-system. This is an early access to the cream population to build the right content."
+      },
+      {
+        "date": "NOV 2015",
+        "detail": "We've collaborated with Github to provide you analysis of your and others' technical expertise and team collaboration."
+      },
+      {
+        "date": "NOV 2015",
+        "detail": "We've built a course recommendation system that will analyze your skills and technical expertise to give you the best recommendation of what you should learn to advance your career path."
+      }
+    ]
+  },
+  "getstarted": {
+    "heading": "Sign up and be a CREATOR and a CURIOUS for free now! You'll be one of the first to taste what this platform can do.",
+    "button": "JOIN!"
+  }
+
+}

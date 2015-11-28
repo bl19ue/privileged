@@ -1,5 +1,5 @@
 <floating-btn class="floating-btn"></floating-btn>
-<div class="dashboard">
+<div class="dashboard" style="overflow-x: hidden;">
     <!-- Header directive as a element  -->
     <body-header></body-header>
 
@@ -14,9 +14,7 @@
     <div class="content-wrapper" style="min-height:906px">
         <div class="body-middle uiScrollableArea">
             <div class="uiScrollableAreaWrap scrollable">
-
                 <div class="uiScrollableAreaBody">
-
                     <!--for top pagination-->
                     <div id="wrapper" style="text-align: center">
                         <ul class="pagination">
@@ -27,7 +25,7 @@
                     </div>
 
                     <!--feeds-->
-                    <div ng-repeat="feed in feedVm.feeds">
+                    <div ng-repeat="feed in feedVm.feeds" ng-if="feedVm.feeds.length > 1">
                         <postcard item="feed"></postcard>
                     </div>
 
