@@ -207,7 +207,6 @@ router.get('/problem/:problem_id', ensureAuthorized, function(req, res) {
  */
 router.post('/problem', ensureAuthorized, function(req, res) {
     var newProblem = new problemSchema(req.body);
-    newProblem.problem_media.push(req.body.mediaurls);
     newProblem.date = new Date().toISOString();
     databaseCalls.problemDatabaseCalls.saveProblem(newProblem).done(function(obj) {
         databaseCalls.userDatabaseCalls.findUserByToken(req.token).done(function(userObj) {

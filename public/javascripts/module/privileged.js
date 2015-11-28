@@ -6,5 +6,6 @@ angular
         'ngMaterial',
         'ngStorage',
         'ng-mfb',
-        'angularMoment'
+        'angularMoment',
+        'highcharts-ng'
     ]);
