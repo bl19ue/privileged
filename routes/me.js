@@ -223,6 +223,18 @@ router.post('/problem', ensureAuthorized, function(req, res) {
 });
 
 /**
+ * For updating the upvote count on the object
+ */
+router.put('/problem/:problem_id/upvotes', ensureAuthorized, function(req, res){
+
+    databaseCalls.problemDatabaseCalls.updateProblemUpvote(req.params.problem_id).done(function(obj){
+        var updatedProblem = obj.data;
+        response(obj, obj.type, res);
+    });
+});
+
+
+/**
  * For getting all the teams working on this problem
  */
 router.get('/problem/:problem_id/teams', ensureAuthorized, function(req, res) {

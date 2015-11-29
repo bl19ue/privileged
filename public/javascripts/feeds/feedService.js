@@ -9,6 +9,14 @@ function FeedService($http, $localStorage) {
     };
 
     feedsObject.getFeeds = getFeeds;
+    feedsObject.incrementUpvoteCount = incrementUpvoteCount;
+
+    /**
+     * increses the upvote count for a problem
+     */
+    function incrementUpvoteCount(problemId) {
+
+    }
 
     /**
      * Returns feeds based on the search query passed, if nothing is passed

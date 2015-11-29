@@ -320,8 +320,44 @@ var problemDatabaseCalls = {
         });
 
         return deferred.promise;
+    },
+
+    /**
+     * update the upvote count for the problem
+     */
+    updateProblemUpvote : function(id) {
+        var deferred = q.defer();
+        var object = {};
+
+        var query = {'_id': id};
+        var update = {$inc: {'upvotes': 1}};
+
+        problemSchema.update(query, update, function(err, updated_problem) {
+            if(err) {
+                object.isError = true;
+                object.errorMessage = err;
+                object.type = httpStatus.INTERNAL_SERVER_ERROR;
+                deferred.resolve(object);
+            }
+            else if(updated_problem) {
+                object.isError = false;
+                object.message = messages.SAVED_SUCCESSFULLY;
+                object.data = updated_problem;
+                object.type = httpStatus.OK;
+                deferred.resolve(object);
+            }
+            else {
+                object.isError = true;
+                object.errorMessage = messages.CANNOT_SAVE;
+                object.type = httpStatus.NOT_FOUND;
+                deferred.resolve(object);
+            }
+        });
+        return deferred.promise;
     }
+
 };
+
 
 /**
  * Post database calls

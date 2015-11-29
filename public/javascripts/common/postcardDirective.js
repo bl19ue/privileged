@@ -5,8 +5,8 @@
         .module('myApp')
         .directive('postcard', Postcard);
 
-    Postcard.$inject = ['$state', '$localStorage'];
-    function Postcard(state, $localStorage) {
+    Postcard.$inject = ['$state', '$localStorage', 'feedService'];
+    function Postcard(state, $localStorage, feedService) {
         return {
             restrict: 'E',
             replace: true,
@@ -25,6 +25,7 @@
                         return;
                     }
                     // TODO: server call to update upvotes.
+
 
                     scope.count = scope.count + 1;
                     $localStorage.user.likes.push(scope.data._id);

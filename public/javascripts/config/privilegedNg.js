@@ -2,9 +2,10 @@ angular
     .module('myApp')
     .config(configure);
 
-configure.$inject = ['$stateProvider', '$urlRouterProvider'];
+configure.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider'];
 
-function configure($stateProvider, $urlRouterProvider){
+function configure($stateProvider, $urlRouterProvider, $locationProvider){
+    $locationProvider.html5Mode(true).hashPrefix('!');
     $stateProvider.state('login', {
         url: '/login',
         templateUrl: '/partials/login.ejs',
@@ -14,6 +15,7 @@ function configure($stateProvider, $urlRouterProvider){
             isNotAuthorized: isNotAuthorized
         }
     });
+
     $stateProvider.state('register', {
         url: '/register',
         templateUrl: '/partials/register.ejs',
@@ -75,7 +77,7 @@ function configure($stateProvider, $urlRouterProvider){
             isAuthenticated: isAuthenticated
         }
     });
-    $urlRouterProvider.otherwise('home');
+    $urlRouterProvider.otherwise('login');
 }
 
 
@@ -108,13 +110,14 @@ function getProblemList($localStorage, problemService){
     return problemService.myProblemList(token);
 }
 
-isAuthenticated.$inject = ['$localStorage', '$location'];
+isAuthenticated.$inject = ['$localStorage', '$location', '$state'];
 
-function isAuthenticated($localStorage, $location) {
+function isAuthenticated($localStorage, $location, $state) {
     if($localStorage.user) {
         return true;
     } else {
-        $location.path('/login');
+        //$location.path('/login');
+        $state.go('login');
     }
 }
 
