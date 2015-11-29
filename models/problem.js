@@ -10,7 +10,7 @@ var problemSchema = new mongoose.Schema({
     github_url: String,
     my_solution : String,
     date: String,
-    upvotes: Number,
+    upvotes: {type: Number, default: 0},
     people: [String],
     teams: [String]
 });

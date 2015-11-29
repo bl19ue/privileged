@@ -5,6 +5,7 @@ angular
 configure.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider'];
 
 function configure($stateProvider, $urlRouterProvider, $locationProvider){
+    // enable HTML% mode to remove hashbang (#!) from the url
     $locationProvider.html5Mode(true).hashPrefix('!');
     $stateProvider.state('login', {
         url: '/login',
@@ -71,10 +72,11 @@ function configure($stateProvider, $urlRouterProvider, $locationProvider){
     $stateProvider.state('statistic', {
         url: '/stats',
         templateUrl: '/partials/statistic.ejs',
-        controller: 'statController',
-        controllerAs: 'statVm',
+        controller: 'statsController',
+        controllerAs: 'statsVm',
         resolve: {
-            isAuthenticated: isAuthenticated
+            isAuthenticated: isAuthenticated,
+            statsProvider: getStats
         }
     });
     $urlRouterProvider.otherwise('login');
@@ -113,6 +115,7 @@ function getProblemList($localStorage, problemService){
 isAuthenticated.$inject = ['$localStorage', '$location', '$state'];
 
 function isAuthenticated($localStorage, $location, $state) {
+
     if($localStorage.user) {
         return true;
     } else {
@@ -122,11 +125,15 @@ function isAuthenticated($localStorage, $location, $state) {
 }
 
 isNotAuthorized.$inject = ['$localStorage', '$location'];
-
 function isNotAuthorized($localStorage, $location) {
     if($localStorage.user) {
         $location.path('/home');
     }
 
     return true;
+}
+
+getStats.$inject = ['statsService'];
+function getStats(statsService) {
+    return statsService.getStatistics();
 }

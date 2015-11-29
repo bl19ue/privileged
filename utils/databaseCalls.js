@@ -6,6 +6,7 @@ var userSchema = mongoose.model('user');
 var postSchema = mongoose.model('post');
 var teamSchema = mongoose.model('team');
 var commentSchema = mongoose.model('comment');
+var githubSchema = mongoose.model('githubstats');
 
 var httpStatus = require('http-status-codes');
 var q = require('q');
@@ -613,6 +614,37 @@ var teamDatabaseCalls = {
     }
 };
 
+var githubDatabaseCalls = {
+    /**
+     * returns everything
+     *
+     * @returns {*|promise}
+     */
+    getGithubStats : function() {
+        var deferred = q.defer();
+        var object = {};
+        githubSchema.find({}, function(err, stats) {
+            if(err) {
+                object.isError = true;
+                object.errorMessage = err;
+                object.type = httpStatus.INTERNAL_SERVER_ERROR;
+                deferred.resolve(object);
+            } else if(stats) {
+                object.isError = false;
+                object.data = stats;
+                object.type = httpStatus.OK;
+                deferred.resolve(object);
+            } else {
+                object.isError = true;
+                object.errorMessage = messages.ITEM_NOT_FOUND;
+                object.type = httpStatus.NOT_FOUND;
+                deferred.resolve(object);
+            }
+        });
+        return deferred.promise;
+    }
+};
+
 var req = "request";
 var res = "result";
 var interests = "interests";
@@ -703,6 +735,12 @@ var redisCalls = {
         multi.exec(function(errors, results1) {});
     },
 
+    /**
+     * Saves a user's interest
+     *
+     * @param token
+     * @param interestsObj
+     */
     saveUserInterests : function(token, interestsObj) {
         cache.del(token + interests);
         var multi = cache.multi();
@@ -723,3 +761,4 @@ exports.redisCalls = redisCalls;
 exports.postDatabaseCalls = postDatabaseCalls;
 exports.commentsDatabaseCalls = commentsDatabaseCalls;
 exports.teamDatabaseCalls = teamDatabaseCalls;
+exports.githubDatabaseCalls = githubDatabaseCalls;

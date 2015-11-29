@@ -75,9 +75,11 @@ router.get('/statistics', function(req, res) {
     //language skills by people,
     //total tags mentioned
 
-    databaseCalls.teamDatabaseCalls.getAllTeams().done(function() {
+    databaseCalls.githubDatabaseCalls.getGithubStats().done(handleGithubResponse);
 
-    });
+    function handleGithubResponse(statsObj) {
+        response(statsObj, statsObj.type, res);
+    }
 
 });
 
