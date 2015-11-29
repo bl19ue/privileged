@@ -25,6 +25,7 @@
                         return;
                     }
                     // TODO: server call to update upvotes.
+
                     scope.count = scope.count + 1;
                     $localStorage.user.likes.push(scope.data._id);
                 }

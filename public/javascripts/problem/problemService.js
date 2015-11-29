@@ -16,6 +16,9 @@
         problemObject.submitProblem = submitProblem;
         problemObject.getProblem = getProblem;
         problemObject.myProblemList = myProblemList;
+        problemObject.submitTeam = submitTeam;
+        problemObject.getTeams = getTeams;
+
 
         /**
          * This method gets the signed s3 request from the server
@@ -79,6 +82,41 @@
          * @returns {*}
          */
         function getProblemPromise(response) {
+            return response;
+        }
+
+        /**
+         * This method creates a new team
+         * @param team
+         * @returns {*}
+         */
+        function submitTeam(team, problemId) {
+            var url = '/me/problem/'+ problemId +'/teams';
+            var header = {authorization: $localStorage.user.token};
+            return $http({
+                method: 'post',
+                url: url,
+                headers: header,
+                data: team
+            });
+        }
+
+        /**
+         * Returns a list of teams for a problem id
+         * @param problemId
+         * @returns {*}
+         */
+        function getTeams(problemId) {
+            var url = "/me/problem/"+ problemId + "/teams";
+            var header = {authorization: $localStorage.user.token};
+            return $http.get(url, {headers: header}).then(getTeamsPromise);
+        }
+
+        /**
+         * Promise handler for list of teams
+         */
+        function getTeamsPromise(response) {
+            console.log(response);
             return response;
         }
 

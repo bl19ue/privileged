@@ -5,8 +5,8 @@
         .module('myApp')
         .controller('problemController', ProblemController);
 
-    ProblemController.$inject = ['$scope', '$state','problemService', 'problemDetailProvider', '$stateParams'];
-    function ProblemController(scope, state, problemService, problemDetailProvider, stateParams){
+    ProblemController.$inject = ['$scope', '$state','problemService', 'problemDetailProvider', 'teamsProvider', '$stateParams', '$localStorage'];
+    function ProblemController(scope, state, problemService, problemDetailProvider, teamsProvider, stateParams, $localStorage){
 
         var problemVm = this;
         problemVm.attachment = undefined;
@@ -27,6 +27,12 @@
         problemVm.tooltags = undefined;
         problemVm.mediaBucketUrl = "https://cmpe295b-sjsu-bigdatasecurity.s3.amazonaws.com";
         problemVm.problem_media = [];
+        problemVm.mainSidebarState = false;
+        problemVm.controlSidebarState = false;
+        problemVm.showModal = false;
+        problemVm.team = {};
+        // this list holds the team details
+        problemVm.teams = [];
 
         problemVm.getProblem = getProblem;
         problemVm.newTechnology = createTechnologyChip;
@@ -35,6 +41,15 @@
         problemVm.submitProblem = submitProblem;
         problemVm.problem_detail = stateParams.data;
         problemVm.myProblemList = problemService.myProblemFeeds;
+        problemVm.submitTeam = submitTeam;
+
+        angular.element('.control-sidebar').css('visibility', 'hidden');
+        problemVm.toggleModal = function(){
+
+            problemVm.showModal = !problemVm.showModal;
+        };
+
+        problemVm.highchartsNG = getHighchartsNg();
 
         // bind data from the resolve
         if(problemDetailProvider !== undefined){
@@ -43,9 +58,31 @@
             problemVm.tools = problemVm.problemDetail.tools;
         }
 
-        //scope.$on('getProblem', function(event, id) {
-        //    state.go('problem-detail', { data: id});
-        //});
+        if(teamsProvider !== undefined) {
+            problemVm.teams = teamsProvider.data.data;
+        }
+
+        /**
+         * Handle events to toggle sidebars
+         */
+        scope.$on('toggle-main-sidebar', function(event, data){
+            console.log(data);
+            problemVm.mainSidebarState = !problemVm.mainSidebarState;
+            if(problemVm.mainSidebarState){
+                angular.element('.main-sidebar').css('transform', 'translate(0,0)');
+            } else {
+                angular.element('.main-sidebar').css('transform', 'translate(-230px,0)');
+            }
+        });
+
+        scope.$on('toggle-control-sidebar', function(event, data) {
+            problemVm.controlSidebarState = !problemVm.controlSidebarState;
+            if(problemVm.controlSidebarState){
+                angular.element('.control-sidebar').css('visibility', 'visible');
+            } else {
+                angular.element('.control-sidebar').css('visibility', 'hidden');
+            }
+        });
 
         function createTechnologyChip(chip) {
             return {
@@ -54,13 +91,39 @@
             };
         }
 
+        function submitTeam() {
+            var newTeam = problemVm.team;
+            newTeam.tools = problemVm.roTools;
+            newTeam.technologies = problemVm.roTechnologies;
+
+            problemService.submitTeam(newTeam, stateParams.data._id).then(function(response){
+                if(response.status === 200) {
+                    console.log('Team created: ' + newTeam);
+                    console.log(response.data.data);
+                    // close the modal once team is created
+                    angular.element('.modal').modal('hide');
+                    // update the list of teams with the newly added team
+                    problemVm.teams.push(response.data.data);
+
+                } else {
+                    console.log('Failed');
+                }
+            });
+        }
+
         function getProblem(id){
             problemService.getProblem(id).then(function (response){
                 if(response !== undefined){
                     problemVm.problemDetail = response.data.data;
                     problemVm.technologies = problemVm.problemDetail.technologies;
                     problemVm.tools = problemVm.problemDetail.tools;
-                    scope.$digest();
+
+                    problemService.getTeams(id).then(function(response) {
+                       problemVm.teams = [];
+                        problemVm.teams = response.data.data;
+
+                    });
+                    //scope.$digest();
                 }
             });
         }
@@ -79,9 +142,6 @@
 
         /*** This method creates a new problem using data provided by the user ***/
         function submitProblem() {
-            var newProblem = problemVm.problem;
-            newProblem.tools = problemVm.roTools;
-            newProblem.technologies = problemVm.roTechnologies;
             var newProblem = problemVm.problem;
             newProblem.tools = problemVm.roTools;
             newProblem.technologies = problemVm.roTechnologies;
@@ -188,6 +248,41 @@
                 problemVm.submitdisabled = false;
             })
             alert("The upload has been canceled by the user or the browser dropped the connection.");
+        }
+
+
+
+        function getHighchartsNg() {
+            var expertise = $localStorage.user.expertise;
+            var techs = [];
+            var score = [];
+            for(var i=0;i<expertise.length;i++) {
+                techs.push(expertise[i].technology);
+                score.push(expertise[i].score);
+            }
+
+            var highchartsNG = {
+                options: {
+                    chart: {
+                        type: 'bar'
+                    }
+                },
+                xAxis: {
+                    categories: techs,
+                    title: {
+                        text: null
+                    }
+                },
+                series: [{
+                    data: score
+                }],
+                title: {
+                    text: 'Expertise'
+                },
+                loading: false
+            }
+
+            return highchartsNG;
         }
     }
 })();

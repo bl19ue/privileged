@@ -3,7 +3,7 @@
     <!-- Header directive as a element  -->
     <body-header></body-header>
 
-    <aside class="main-sidebar" ng-class="feedVm.sidebarstateClass" style="min-height: 956px;">
+    <aside class="main-sidebar" ng-class="feedVm.sidebarstateClass" style="height:auto;">
         <section class="sidebar" style="height:auto">
             <h3>My Projects</h3>
             <ul class="sidebar-menu" ng-repeat="problem in problemVm.myProblemList">
@@ -11,18 +11,18 @@
             </ul>
         </section>
     </aside>
-    <div class="content-wrapper" style="min-height:906px">
+    <div class="content-wrapper" style="height:auto">
         <div class="body-middle uiScrollableArea">
             <div class="uiScrollableAreaWrap scrollable">
                 <div class="uiScrollableAreaBody">
-                    <h2>Problem Detail</h2>
+                   <!-- <h2>Problem Detail</h2> -->
                         <!-- Problem Detail -->
                         <md-content>
                             <md-card>
                                 <md-card-content>
                                     <div class="row card-content">
                                         <div class="col-md-10">
-                                            <p class="title">{{ problemVm.problemDetail.title }}</p>
+                                            <p class="title" style="font-size: x-large">{{ problemVm.problemDetail.title }}</p>
                                             <p class="date" am-time-ago="problemVm.problemDetail.date"></p>
                                         </div>
                                     </div>
@@ -54,14 +54,14 @@
                         <!-- / Problem Detail Card -->
                     <!-- Teams and Solutions-->
                     <h3>Teams and Solutions</h3>
+                    <div class="row newBtnContainer"><button class="btn btnSubmitIdea" ng-click="problemVm.toggleModal()">New Team</button></div>
 
-                    <md-content ng-repeat="team in problemVm.problemDetail.teams">
+                    <md-content ng-repeat="team in problemVm.teams">
                         <md-card>
                             <md-card-content>
                                 <div class="row card-content">
                                     <div class="col-md-10">
                                         <p class="title">{{ team.name }}</p>
-                                        <p class="date">{{ team.owner }}</p>
                                     </div>
                                 </div>
                                 <p>
@@ -84,9 +84,86 @@
                 </div>
             </div>
         </div>
+
+        <!-- Button trigger modal -->
+        <div class="container">
+            <modal title="New team form" visible="problemVm.showModal">
+                <div class="row">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6">
+                        <div class="box box-problem" style="margin-top: 0">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Your team</h3>
+                            </div><!-- /.box-header -->
+                            <!-- form start -->
+                            <form class="form-horizontal">
+                                <div class="box-body">
+                                    <div class="form-group">
+                                        <label for="inputTitle" class="col-sm-2 ctrl-label-required">Problem</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" ng-value="problemVm.problemDetail.title" ng-bind="problemVm.problemDetail.title" class="form-control" id="inputTitle" placeholder="Problem Title">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputName" class="col-sm-2 ctrl-label-required">Name</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" ng-model="problemVm.team.name" class="form-control" id="inputName" placeholder="Team Name">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputOwner" class="col-sm-2 ctrl-label-required">Owner</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" ng-model="problemVm.team.owner" class="form-control" id="inputOwner" placeholder="Owner">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputSolution" class="col-sm-2 ctrl-label-required">Solution</label>
+                                        <div class="col-sm-10">
+                                            <textarea id="inputSolution" cols="50" ng-model="problemVm.team.solution_text" rows="6" class="form-control" placeholder="Solution description"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="technologies" class="col-sm-2 ctrl-label">Technologies</label>
+                                        <md-content class="md-padding chips-container" layout="column">
+                                            <md-chips class='problem-chips' ng-model="problemVm.roTechnologies" readonly="problemVm.readonly">
+                                                <md-chip-template>
+                                                    <strong>{{$chip}}</strong>
+                                                </md-chip-template>
+                                            </md-chips>
+                                        </md-content>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputGithub" class="col-sm-2 ctrl-label-required">Github Url</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" ng-model="problemVm.team.github_url" class="form-control" id="inputGithub" placeholder="Github url">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-sm-2"></div>
+                                        <div class="col-sm-10">
+                                            <div ng-show="problemVm.progressVisible">
+                                                <div>{{problemVm.progress}}%</div>
+                                                <progress value="{{problemVm.progress}}" max="100"></progress>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div><!-- /.box-body -->
+                                <div class="box-footer">
+                                    <button class="btn btnSubmitIdea" ng-disabled="problemVm.submitdisabled" ng-click="problemVm.submitTeam()">Submit</button>
+                                </div><!-- /.box-footer -->
+                            </form>
+                        </div><!-- box box-info -->
+                    </div> <!-- col-md-6 -->
+                    <div class="col-md-3"></div>
+                </div>
+            </modal>
+        </div>
+
     </div>
 
     <aside class="control-sidebar">
-        <highchart id="chart1" config="feedVm.highchartsNG"></highchart>
+        <highchart id="chart1" config="problemVm.highchartsNG"></highchart>
     </aside>
 </div>
