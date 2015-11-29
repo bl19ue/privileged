@@ -14,6 +14,7 @@ require('./models/user');
 require('./models/post');
 require('./models/team');
 require('./models/comment');
+require('./models/githubstats');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');

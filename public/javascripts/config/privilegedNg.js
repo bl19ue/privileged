@@ -67,10 +67,11 @@ function configure($stateProvider, $urlRouterProvider){
     $stateProvider.state('statistic', {
         url: '/stats',
         templateUrl: '/partials/statistic.ejs',
-        controller: 'statController',
-        controllerAs: 'statVm',
+        controller: 'statsController',
+        controllerAs: 'statsVm',
         resolve: {
-            isAuthenticated: isAuthenticated
+            isAuthenticated: isAuthenticated,
+            statsProvider: getStats
         }
     });
     $urlRouterProvider.otherwise('home');
@@ -99,7 +100,6 @@ function getProblemList($localStorage, problemService){
 }
 
 isAuthenticated.$inject = ['$localStorage', '$location'];
-
 function isAuthenticated($localStorage, $location) {
     if($localStorage.user) {
         return true;
@@ -109,11 +109,15 @@ function isAuthenticated($localStorage, $location) {
 }
 
 isNotAuthorized.$inject = ['$localStorage', '$location'];
-
 function isNotAuthorized($localStorage, $location) {
     if($localStorage.user) {
         $location.path('/home');
     }
 
     return true;
+}
+
+getStats.$inject = ['statsService'];
+function getStats(statsService) {
+    return statsService.getStatistics();
 }
