@@ -8,8 +8,7 @@
     FeedController.$inject = ['$scope', '$state', '$stateParams', 'feedsProv', 'myFeedsProv', 'feedService', '$localStorage'];
     function FeedController($scope, $state, $stateParams, feedsProv, myFeedsProv, feedService, $localStorage){
         var feedVm = this;
-        feedVm.mainSidebarState = false;
-        feedVm.controlSidebarState = false;
+
         feedVm.userData = $stateParams.myParam;
         feedVm.feeds = feedsProv.data.data;
         feedVm.myProblemList = myFeedsProv.data.data;
@@ -18,9 +17,11 @@
 
         feedVm.updateFeeds = updateFeeds;
         feedVm.getProblem = getProblem;
+
+        feedVm.mainSidebarState = false;
+        feedVm.controlSidebarState = false;
         //hide the sidebar initially
         angular.element('.control-sidebar').css('visibility', 'hidden');
-
 
         feedVm.highchartsNG = getHighchartsNg();
 

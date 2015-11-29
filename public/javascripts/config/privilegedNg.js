@@ -42,7 +42,8 @@ function configure($stateProvider, $urlRouterProvider){
         params: {'data': null},
         resolve: {
             isAuthenticated: isAuthenticated,
-            problemDetailProvider: getProblemDetail
+            problemDetailProvider: getProblemDetail,
+            teamsProvider: getTeams
         }
     });
     $stateProvider.state('team', {
@@ -61,7 +62,8 @@ function configure($stateProvider, $urlRouterProvider){
         params: {'data': null},
         resolve: {
             isAuthenticated: isAuthenticated,
-            problemDetailProvider: getProblemDetail
+            problemDetailProvider: getProblemDetail,
+            teamsProvider: getTeams
         }
     });
     $stateProvider.state('statistic', {
@@ -76,6 +78,14 @@ function configure($stateProvider, $urlRouterProvider){
     $urlRouterProvider.otherwise('home');
 }
 
+
+getTeams.$inject = ['$stateParams', 'problemService'];
+function getTeams($stateParams, problemService) {
+    if($stateParams.data != null) {
+        var problemId = $stateParams.data._id;
+        return problemService.getTeams(problemId);
+    }
+}
 
 getProblemDetail.$inject = ['$stateParams', 'problemService'];
 function getProblemDetail($stateParams, problemService) {
