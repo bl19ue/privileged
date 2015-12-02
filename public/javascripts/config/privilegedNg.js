@@ -6,7 +6,7 @@ configure.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider'
 
 function configure($stateProvider, $urlRouterProvider, $locationProvider){
     // enable HTML% mode to remove hashbang (#!) from the url
-    $locationProvider.html5Mode(true).hashPrefix('!');
+    // $locationProvider.html5Mode(true).hashPrefix('!');
     $stateProvider.state('login', {
         url: '/login',
         templateUrl: '/partials/login.ejs',
