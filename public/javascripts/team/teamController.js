@@ -20,6 +20,8 @@
         teamVm.team = teamDetailsProvider;
         teamVm.team.problem = $localStorage.problem;
         teamVm.technologies = teamDetailsProvider.technologies;
+        teamVm.commentText = undefined;
+
         teamVm.joinTeam = joinTeam;
         teamVm.comment = comment;
         teamVm.getComments = getComments;
@@ -48,6 +50,7 @@
             }
         });
 
+
        function init(){
             var loggedInUser = $localStorage.user.first_name + " " + $localStorage.user.last_name;
             if(teamVm.team.members.indexOf(loggedInUser) !== -1) {
@@ -56,7 +59,10 @@
             else { angular.element('.btnJoinTeam').css('display', 'block'); }
         }
 
-       function joinTeam() {
+        /**
+         * Join a team
+         */
+        function joinTeam() {
            teamService.joinTeam(teamVm.team).then(function(response){
                if(response.status === 200) {
                    console.log(response);
@@ -64,11 +70,21 @@
            });
        }
 
+        /**
+         * Submit a comment
+         */
        function comment() {
-
+            teamService.postComment(teamVm.team._id, teamVm.commentText).then(function(response){
+               if(response.status === 200) {
+                   console.log(response);
+               }
+            });
        }
 
-       function getComments() {
+        /**
+         * Get a list of comments
+         */
+        function getComments() {
 
        }
     }

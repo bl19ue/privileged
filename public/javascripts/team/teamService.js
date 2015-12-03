@@ -19,6 +19,7 @@
 
         teamObject.getSignedS3Request = getSignedS3Request;
         teamObject.joinTeam = joinTeam;
+        teamObject.postComment = postComment;
 
         /**
          * This method gets the signed s3 request from the server
@@ -47,6 +48,13 @@
                 headers: header,
                 data: team
             });
+        }
+
+        /**
+         * Post a comment
+         */
+        function postComment(teamId, comment) {
+            var url = "";
         }
 
         return teamObject;
