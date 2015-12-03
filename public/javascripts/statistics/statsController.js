@@ -8,12 +8,14 @@
         .module('myApp')
         .controller('statsController', StatsController);
 
-    StatsController.$inject = ['$scope', '$localStorage', '$state', 'statsProvider'];
-    function StatsController($scope, $localStorage, $state, statsProvider){
+    StatsController.$inject = ['$scope', '$localStorage', '$state', 'statsProvider', 'myFeedsProv'];
+    function StatsController($scope, $localStorage, $state, statsProvider, myFeedsProv){
         var statsVm = this;
 
         statsVm.getContributorChart = getContributorChart;
         statsVm.getLineOfCodeChart = getLineOfCodeChart;
+        statsVm.myProblemList = myFeedsProv.data.data;
+        statsVm.getProblem = getProblem;
         statsVm.expertiseChart = getExpertiseChart();
 
         statsVm.mainSidebarState = false;
@@ -40,6 +42,10 @@
             }
         });
 
+
+        function getProblem(id){
+            $state.go('problem-detail', {data: id});
+        }
 
         var stats = statsProvider.data.data;
 

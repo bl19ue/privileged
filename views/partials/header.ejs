@@ -1,9 +1,9 @@
 <header class="main-header">
-    <a href="#" class="logo">
+    <a class="logo" ng-click="headVm.goHome()">
         <img src="images/logo.png" alt="">
     </a>
     <nav class="navbar navbar-static-top">
-        <button type="button" class="navbar-toggle navbar-left-toggle" data-toggle="offcanvas" data-placement="left" ng-click="headVm.toggleMainSidebar()" >
+        <button type="button" class="navbar-toggle navbar-left-toggle" data-toggle="offcanvas" data-placement="left" ng-click="headVm.toggleMainSidebar()" style="margin-top: 10px;">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -12,16 +12,20 @@
             <input type="text" placeholder="Search" ng-model="headVm.searchString">
             <!-- <i class="glyphicon glyphicon-search form-control-feedback" ng-click="headVm.search()"></i> -->
             <button type="button" class="btn btn-search btn-default" style="border-radius:2px 2px 0 0;" ng-click="headVm.search()">
-                <span class="glyphicon glyphicon-search searchIcon"></span>
-                <span class="label-icon"></span>
+                Go
             </button>
         </div>
 
         <div class="navbar-custom-menu logout">
 
-            <a href="" data-toggle="control-sidebar" ng-click="headVm.toggleControlSidebar()">
+          <!--  <a href="" data-toggle="control-sidebar" ng-click="headVm.toggleControlSidebar()" class="navbar-toggle navbar-left-toggle">
                 <span class="glyphicon glyphicon-list" style="font-size:18px;"></span>
-            </a>
+            </a> -->
+            <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-placement="left" ng-click="headVm.toggleControlSidebar()">
+                <span class="icon-bar" style="background-color: powderblue"></span>
+                <span class="icon-bar" style="background-color: powderblue"></span>
+                <span class="icon-bar" style="background-color: powderblue"></span>
+            </button>
         </div>
     </nav>
 </header>

@@ -76,7 +76,9 @@ function configure($stateProvider, $urlRouterProvider, $locationProvider){
         controllerAs: 'statsVm',
         resolve: {
             isAuthenticated: isAuthenticated,
-            statsProvider: getStats
+            statsProvider: getStats,
+            myFeedsProv: getProblemList
+
         }
     });
     $urlRouterProvider.otherwise('login');

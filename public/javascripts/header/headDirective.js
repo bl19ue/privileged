@@ -3,8 +3,8 @@
         .module('myApp')
         .directive('bodyHeader', BodyHeader);
 
-    BodyHeader.$inject = ['$rootScope', 'feedService', '$localStorage'];
-    function BodyHeader($rootScope, feedService, $localStorage) {
+    BodyHeader.$inject = ['$state', '$rootScope', 'feedService', '$localStorage'];
+    function BodyHeader($state, $rootScope, feedService, $localStorage) {
         function headController (){
             var headVm = this;
             var mainSidebar = false;
@@ -14,6 +14,11 @@
             headVm.search = search;
             headVm.toggleMainSidebar = toggleMainSidebar;
             headVm.toggleControlSidebar = toggleControlSidebar;
+            headVm.goHome = goHome;
+
+            function goHome() {
+                $state.go('home');
+            }
 
             function toggleMainSidebar() {
                 $rootScope.$broadcast('toggle-main-sidebar', !mainSidebar);

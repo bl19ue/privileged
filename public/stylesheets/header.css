@@ -1,10 +1,10 @@
 .navbar { background: url('../images/background.jpg') bottom center; -webkit-transition: margin-left .3s ease-in-out; -o-transition: margin-left .3s ease-in-out; transition: margin-left .3s ease-in-out; margin-bottom: 0; margin-left: 230px; border: none; min-height: 50px; border-radius: 0 }
 .navbar form { margin-top: 0px; }
-.searchBox { width: 55%; height: 0; float: left; margin: 1.2% 10%; padding: 0px; border-radius: 5px }
-.searchBox input { height: 30px; width: 85%; border-radius: 0; color: black;}
-.searchBox button { height: 30px; margin-left: -5px; margin-bottom: 3px; width: 5%;}
+.searchBox { width: 60%; height: 0; float: left; margin: 1.2% 10%; padding: 0px; border-radius: 5px }
+.searchBox input { height: 30px; width: 75%; border-radius: 0; color: black;}
+.searchBox button { height: 30px; margin-left: -5px; margin-bottom: 3px; width: auto;}
 .searchIcon {left: -6px;}
-.logout { float: right; margin: 13px 20px; }
+.logout { float: right; }
 .logout a:hover { color: #fff; text-decoration: none; cursor: pointer; }
 .logo { background: url('../images/background.jpg') bottom center; -webkit-transition: width .3s ease-in-out; -o-transition: width .3s ease-in-out; transition: width .3s ease-in-out; display: block; float: left; height: 50px; font-size: 20px; line-height: 50px; text-align: center; width: 230px; font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; padding: 0 15px; font-weight: 300; overflow: hidden; border-bottom: 0 solid transparent; }
 a.logo img { width: 200px; margin-right: 10px; }
@@ -12,12 +12,12 @@ a.logo span.logo-lg { display: block; }
 nav > button { position: relative; float: left; left: 82px; }
 nav > button > span { background-color: white; }
 .navbar-left-toggle { position: relative; float: left; left:0; }
-.navbar-toggle { color: #fff; border: 0; margin: 0; padding: 15px 15px; }
+.navbar-toggle { color: #fff; border: 0; margin: 0}
 /** Component: Main Header **/
 .main-header { position: fixed; right: 0; left: 0; top: 0; max-height: 100px; z-index: 1030; }
 .main-header > .navbar { -webkit-transition: margin-left 0.3s ease-in-out; -o-transition: margin-left 0.3s ease-in-out; transition: margin-left 0.3s ease-in-out; margin-bottom: 0; margin-left: 230px; border: none; min-height: 50px; border-radius: 0; }
 .layout-top-nav .main-header > .navbar { margin-left: 0; }
-.main-header .navbar-custom-menu, .main-header .navbar-right { float: right; }
+.main-header .navbar-custom-menu, .main-header .navbar-right { float: right; margin: 0px 6px; }
 .main-header .sidebar-toggle { float: left; background-color: transparent; background-image: none; padding: 15px 15px; font-family: fontAwesome; }
 .main-header .sidebar-toggle:before { content: "\f0c9"; }
 .main-header .sidebar-toggle:hover { color: #fff; }
@@ -29,6 +29,7 @@ nav > button > span { background-color: white; }
 .main-header .navbar .nav > li > a > .label { position: absolute; top: 9px; right: 7px; text-align: center; font-size: 9px; padding: 2px 3px; line-height: .9; }
 .main-header .logo { -webkit-transition: width 0.3s ease-in-out; -o-transition: width 0.3s ease-in-out; transition: width 0.3s ease-in-out; display: block; float: left; height: 50px; font-size: 20px; line-height: 50px; text-align: center; width: 230px; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; padding: 0 15px; font-weight: 300; overflow: hidden; }
 .main-header .logo .logo-lg { display: block; }
+.main-header .logo:hover {cursor: pointer;}
 .main-header .logo .logo-mini { display: none }
 .main-header .navbar-brand { color: #fff }
 .content-header { position: relative; padding: 15px 15px 0 15px }
