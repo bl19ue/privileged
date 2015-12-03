@@ -254,7 +254,9 @@ router.post('/problem/:problem_id/teams', ensureAuthorized, function(req, res) {
             newTeam.problem = req.params.problem_id;
             newTeam.owner = user._id;
 
-            databaseCalls.teamDatabaseCalls.saveTeam(newTeam).done(function(teamObj) {
+            var teamArray = [];
+            teamArray.push(newTeam);
+            databaseCalls.teamDatabaseCalls.saveTeam(teamArray).done(function(teamObj) {
                 response(teamObj, teamObj.type, res);
                 var team = teamObj.data;
 
@@ -292,16 +294,28 @@ router.post('/problem/:problem_id/teams/:team_id/join', ensureAuthorized, functi
                     user.problems_working.push(req.params.problem_id);
                     user.teams_working.push(team._id);
 
-                    team.members.push(user.first_name + " " + user.last_name);
-
-                    databaseCalls.teamDatabaseCalls.saveTeam(team).done(function (savedTeamObj) {
-                        response(savedTeamObj, savedTeamObj.type, res);
-                    });
+                    var name = user.first_name + " " + user.last_name;
+                    if(team.members.indexOf(name) != -1) {
+                        team.members.push(name);
+                        var teamArray = [];
+                        teamArray.push(team);
+                        databaseCalls.teamDatabaseCalls.saveTeam(teamArray).done(function (savedTeamObj) {
+                            response(savedTeamObj, savedTeamObj.type, res);
+                        });
+                    } else {
+                        response(teamObj, teamObj.type, res);
+                    }
 
                     databaseCalls.problemDatabaseCalls.findProblemById(req.params.problem_id).done(function (problemObj) {
                         var problem = problemObj.data;
-                        problem.members.push(user.first_name + " " + user.last_name);
-                        databaseCalls.problemDatabaseCalls.saveProblem(problem);
+                        if(!problem.people) {
+                            problem.people = [];
+                        }
+                        var name = user.first_name + " " + user.last_name;
+                        if(problem.people.indexOf(name) == -1) {
+                            problem.people.push(name);
+                            databaseCalls.problemDatabaseCalls.saveProblem(problem);
+                        }
                     });
                 } else {
                     response(userObj, userObj.type, res);

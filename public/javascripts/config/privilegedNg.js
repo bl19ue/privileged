@@ -62,6 +62,7 @@ function configure($stateProvider, $urlRouterProvider, $locationProvider){
         }
     });
     $stateProvider.state('problem-detail', {
+        url: '/problem-detail',
         templateUrl: '/partials/problemDetails.ejs',
         controller: 'problemController',
         controllerAs: 'problemVm',
@@ -94,21 +95,28 @@ function getTeamDetails($stateParams, teamService) {
     return $stateParams.data;
 }
 
-getTeams.$inject = ['$stateParams', 'problemService'];
-function getTeams($stateParams, problemService) {
+getTeams.$inject = ['$stateParams', 'problemService', '$localStorage'];
+function getTeams($stateParams, problemService, $localStorage) {
     if($stateParams.data != null) {
         var problemId = $stateParams.data._id;
-        return problemService.getTeams(problemId);
+    } else {
+        var problemId = $localStorage.problemId;
     }
+
+    return problemService.getTeams(problemId);
 }
 
-getProblemDetail.$inject = ['$stateParams', 'problemService'];
-function getProblemDetail($stateParams, problemService) {
+getProblemDetail.$inject = ['$stateParams', 'problemService', '$localStorage'];
+function getProblemDetail($stateParams, problemService, $localStorage) {
     if($stateParams.data !== null){
+        $localStorage.problemId = $stateParams.data._id;
         var problemId = $stateParams.data._id;
-        console.log(problemId);
-        return problemService.getProblem(problemId);
+    } else {
+        var problemId = $localStorage.problemId;
     }
+
+    console.log(problemId);
+    return problemService.getProblem(problemId);
 }
 
 getProblemFeeds.$inject = ['$localStorage', 'feedService'];
