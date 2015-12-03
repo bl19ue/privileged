@@ -20,13 +20,10 @@
                     if (!$localStorage.user.likes) {
                         $localStorage.user.likes = [];
                     }
-
                     if ($localStorage.user.likes.indexOf(scope.data._id) != -1) {
                         return;
                     }
-                    // TODO: server call to update upvotes.
-
-
+                    feedService.incrementUpvoteCount(scope.data._id);
                     scope.count = scope.count + 1;
                     $localStorage.user.likes.push(scope.data._id);
                 }

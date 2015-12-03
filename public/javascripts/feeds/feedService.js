@@ -12,10 +12,17 @@ function FeedService($http, $localStorage) {
     feedsObject.incrementUpvoteCount = incrementUpvoteCount;
 
     /**
-     * increses the upvote count for a problem
+     * increases the upvote count for a problem
      */
     function incrementUpvoteCount(problemId) {
-
+        var token = $localStorage.user.token;
+        var header = {authorization: token};
+        var url = '/me/problem/' + problemId + '/upvotes';
+        return $http({
+            method: 'post',
+            url: url,
+            headers: header,
+        });
     }
 
     /**
