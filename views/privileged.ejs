@@ -10,7 +10,6 @@
         <meta name="og:keywords" content="education, team, teams, management, communication, interaction, people, education with communication, help in education." />
         <meta name="fragment" content="!" />
 
-
         <script src="/bower_components/jquery/dist/jquery.js"></script>
         <script src="/bower_components/fullpage.js/jquery.fullPage.min.js"></script>
         <script src="/bower_components/fullpage.js/vendors/jquery.easings.min.js"></script>
@@ -23,19 +22,14 @@
         <link rel='stylesheet' href='/stylesheets/index.css' />
 
         <script>
-
             $(document).ready(function() {
-
                 var lang = location.href.split("=")[1];
-                console.log(lang);
                 if(lang === "kr") {
                     console.log("KR");
                     $(".lang a:nth-child(1)").removeClass("active");
                     $(".lang a:nth-child(3)").addClass("active");
                     $(".lang a:nth-child(5)").removeClass("active");
-
-                }
-                else if(lang === "jp") {
+                } else if(lang === "jp") {
                     console.log("JP");
                     $(".lang a:nth-child(1)").removeClass("active");
                     $(".lang a:nth-child(3)").removeClass("active");
@@ -56,14 +50,9 @@
                      continuousVertical:false,
                      css3: true
                  });
-
-
              });
-
-
         </script>
         <base href="/">
-
     </head>
     <body>
         <div class="navbar">
@@ -132,7 +121,7 @@
                             <%= indexObj.features.detail[2].detail %>
                         </div>
                     </div>
-                    <div class="preview"><img src="/images/feature-3.png"></div>
+                    <div class="preview"><img src="/images/feature3.jpg"></div>
                 </div>
                 </div>
             <div class="section roadmap" id="section2">
