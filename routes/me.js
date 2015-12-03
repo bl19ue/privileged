@@ -214,6 +214,7 @@ router.post('/problem', ensureAuthorized, function(req, res) {
     newProblem.date = new Date().toISOString();
     databaseCalls.problemDatabaseCalls.saveProblem(newProblem).done(function(obj) {
         databaseCalls.userDatabaseCalls.findUserByToken(req.token).done(function(userObj) {
+            databaseCalls.redisCalls.flushAll();
             var user = userObj.data;
             user.problems_owned = obj.data._id;
             databaseCalls.userDatabaseCalls.saveUser(user).done(function(savedUserObj){});
@@ -227,7 +228,7 @@ router.post('/problem', ensureAuthorized, function(req, res) {
  */
 router.post('/problem/:problem_id/upvotes', ensureAuthorized, function(req, res){
     databaseCalls.problemDatabaseCalls.updateProblemUpvote(req.params.problem_id).done(function(obj){
-        var updatedProblem = obj.data;
+        databaseCalls.redisCalls.flushAll();
         response(obj, obj.type, res);
     });
 });
@@ -247,6 +248,7 @@ router.get('/problem/:problem_id/teams', ensureAuthorized, function(req, res) {
 router.post('/problem/:problem_id/teams', ensureAuthorized, function(req, res) {
     databaseCalls.userDatabaseCalls.findUserByToken(req.token).done(function(userObj) {
         if(userObj.type === httpStatus.OK) {
+            databaseCalls.redisCalls.flushAll();
             var user = userObj.data;
             var newTeam = new teamSchema(req.body);
             newTeam.problem = req.params.problem_id;
@@ -285,6 +287,7 @@ router.post('/problem/:problem_id/teams/:team_id/join', ensureAuthorized, functi
             var team = teamObj.data[0];
             databaseCalls.userDatabaseCalls.findUserByToken(req.token).done(function(userObj) {
                 if(userObj.type === httpStatus.OK) {
+                    databaseCalls.redisCalls.flushAll();
                     var user = userObj.data;
                     user.problems_working.push(req.params.problem_id);
                     user.teams_working.push(team._id);

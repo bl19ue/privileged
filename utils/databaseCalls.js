@@ -751,6 +751,15 @@ var redisCalls = {
         }
 
         multi.exec(function(errors, results) {});
+    },
+
+    /**
+     * For flushing the data in redis
+     */
+    flushAll: function() {
+        cache.flushall(function(didSucceed) {
+            console.log(didSucceed);
+        });
     }
 };
 
