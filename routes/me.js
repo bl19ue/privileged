@@ -313,9 +313,12 @@ router.post('/problem/:problem_id/teams/:team_id/join', ensureAuthorized, functi
 router.post('/team/:team_id/comments', function(req, res) {
     databaseCalls.teamDatabaseCalls.findTeamByTeamId(req.params.team_id).done(function(teamObj) {
         var team = teamObj.data;
-        team.comments.push(req.body);
+        if(!team.comments){
+            team.comments = [];
+        }
+        team[0].comments.push(req.body);
         databaseCalls.teamDatabaseCalls.saveTeam(team).done(function(teamObj) {
-            response(req.body);
+            response(req.body, httpStatus.OK, res);
         });
     });
 });

@@ -590,6 +590,7 @@ var teamDatabaseCalls = {
     saveTeam : function(team) {
         var deferred = q.defer();
         var object = {};
+        var team = team[0];
         team.save(function(err, savedTeam) {
             if(err) {
                 object.isError = true;

@@ -77,6 +77,7 @@
             teamService.postComment(teamVm.team._id, teamVm.commentText).then(function(response){
                if(response.status === 200) {
                    console.log(response);
+                   teamVm.team.comments.unshift(response.data);
                }
             });
        }

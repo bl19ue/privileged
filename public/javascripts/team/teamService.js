@@ -54,7 +54,15 @@
          * Post a comment
          */
         function postComment(teamId, comment) {
-            var url = "";
+            var url = '/me/team/' + teamId + '/comments';
+            var header = {authorization: $localStorage.user.token};
+            var commentObj = {'name' : $localStorage.user.first_name + " " + $localStorage.user.last_name, 'text': comment}
+            return $http({
+                method: 'post',
+                url: url,
+                headers: header,
+                data: commentObj
+            });
         }
 
         return teamObject;

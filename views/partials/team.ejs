@@ -71,7 +71,7 @@
                     <md-content>
                         <md-card>
                             <md-card-content>
-                                <textarea id="comment" class="commentBox"  row="10"/>
+                                <textarea id="comment" ng-model="teamVm.commentText" class="commentBox"  row="10"/>
                                 <button class="btn btnSubmitIdea" style="float: right" ng-click="teamVm.comment()">Comment</button>
                             </md-card-content>
                         </md-card>
@@ -80,7 +80,16 @@
                     <md-content>
                         <md-card>
                             <md-card-content>
-
+                                <div class="commentsList" ng-repeat="comment in teamVm.team.comments">
+                                    <div class="row card-content">
+                                            <div class="col-md-4"><p style="color:#818186; font-weight: bold;">{{comment.name}}</p></div>
+                                    </div>
+                                    <div>
+                                        <div class="row">
+                                            <div class="col-md-12"><p>{{comment.text}}</p></div>
+                                        </div>
+                                    </div>
+                                </div>
                             </md-card-content>
                         </md-card>
                     </md-content>

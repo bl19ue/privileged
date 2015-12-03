@@ -51,3 +51,8 @@ md-card-content p { margin-bottom: 0; }
     width: 100%;
     margin-bottom: 15px;
 }
+
+.commentsList {
+    padding: 5px 0px 5px 0px;
+    border-bottom: 1px solid #A7C1CC;
+}
