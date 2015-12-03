@@ -226,13 +226,11 @@ router.post('/problem', ensureAuthorized, function(req, res) {
  * For updating the upvote count on the object
  */
 router.put('/problem/:problem_id/upvotes', ensureAuthorized, function(req, res){
-
     databaseCalls.problemDatabaseCalls.updateProblemUpvote(req.params.problem_id).done(function(obj){
         var updatedProblem = obj.data;
         response(obj, obj.type, res);
     });
 });
-
 
 /**
  * For getting all the teams working on this problem
@@ -309,6 +307,16 @@ router.post('/problem/:problem_id/teams/:team_id/join', ensureAuthorized, functi
         } else {
             response(teamObj, teamObj.type, res);
         }
+    });
+});
+
+router.post('/team/:team_id/comments', function(req, res) {
+    databaseCalls.teamDatabaseCalls.findTeamByTeamId(req.params.team_id).done(function(teamObj) {
+        var team = teamObj.data;
+        team.comments.push(req.body);
+        databaseCalls.teamDatabaseCalls.saveTeam(team).done(function(teamObj) {
+            response(req.body);
+        });
     });
 });
 
