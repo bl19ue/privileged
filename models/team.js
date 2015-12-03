@@ -8,7 +8,8 @@ var teamSchema = new mongoose.Schema({
     solution_media: [String],
     members: [String],
     technologies: [String],
-    github_url: String
+    github_url: String,
+    comments: [{name: String, text: String}]
 });
 
 
