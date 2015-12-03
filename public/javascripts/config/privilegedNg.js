@@ -54,8 +54,11 @@ function configure($stateProvider, $urlRouterProvider, $locationProvider){
         templateUrl: '/partials/team.ejs',
         controller: 'teamController',
         controllerAs: 'teamVm',
+        params: {'data': null},
         resolve: {
-            isAuthenticated: isAuthenticated
+            isAuthenticated: isAuthenticated,
+            teamDetailsProvider: getTeamDetails,
+            myFeedsProv: getProblemList
         }
     });
     $stateProvider.state('problem-detail', {
@@ -84,6 +87,12 @@ function configure($stateProvider, $urlRouterProvider, $locationProvider){
     $urlRouterProvider.otherwise('login');
 }
 
+
+getTeamDetails.$inject = ['$stateParams', 'teamService'];
+function getTeamDetails($stateParams, teamService) {
+    console.log($stateParams.data);
+    return $stateParams.data;
+}
 
 getTeams.$inject = ['$stateParams', 'problemService'];
 function getTeams($stateParams, problemService) {

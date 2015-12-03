@@ -2,7 +2,7 @@
     <md-card>
         <md-card-content>
             <div class="row card-content">
-                <div class="col-md-1"><img class="profile-img" src="images/like.png" alt="Profile Image"></div>
+                <div class="col-md-1"><img class="profile-img" src="images/user.png" alt="Profile Image"></div>
                 <div class="col-md-10">
                     <p class="title" ng-click="feedItem.getProblem()">{{ feedItem.title }}</p>
                     <p class="date" am-time-ago="feedItem.postDate"></p>
@@ -16,8 +16,8 @@
             <div class="col-md-2 glyphicon-icons" layout="row"><img src="/images/like.png">
                 <p class="date" ng-click="incr()">{{count}}</p>
             </div>
-            <div class="col-md-2 glyphicon-icons" layout="row"><img src="/images/people.png"><p class="date">People</p></div>
-            <div class="col-md-2 glyphicon-icons" layout="row"><img src="/images/team1.png"><p class="date">Teams</p></div>
+            <div class="col-md-2 glyphicon-icons" layout="row"><img src="/images/people.png"><p class="date">{{feedItem.people}} People</p></div>
+            <div class="col-md-2 glyphicon-icons" layout="row"><img src="/images/team1.png"><p class="date">{{feedItem.teams}} Teams</p></div>
         </md-card-actions>
     </md-card>
 </md-content>

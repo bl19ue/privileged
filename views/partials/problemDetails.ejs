@@ -22,7 +22,7 @@
                                 <md-card-content>
                                     <div class="row card-content">
                                         <div class="col-md-10">
-                                            <p class="title" style="font-size: x-large">{{ problemVm.problemDetail.title }}</p>
+                                            <p class="title" style="font-size: x-large" role="button">{{ problemVm.problemDetail.title }}</p>
                                             <p class="date" am-time-ago="problemVm.problemDetail.date"></p>
                                         </div>
                                     </div>
@@ -61,7 +61,7 @@
                             <md-card-content>
                                 <div class="row card-content">
                                     <div class="col-md-10">
-                                        <p class="title">{{ team.name }}</p>
+                                        <p class="title" style="cursor: pointer" ng-click="problemVm.getTeamDetails(problemVm.teams, team._id)">{{ team.name }}</p>
                                     </div>
                                 </div>
                                 <p>
@@ -89,8 +89,7 @@
         <div class="container">
             <modal title="New team form" visible="problemVm.showModal">
                 <div class="row">
-                    <div class="col-md-3"></div>
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <div class="box box-problem" style="margin-top: 0">
                             <div class="box-header with-border">
                                 <h3 class="box-title">Your team</h3>
@@ -156,7 +155,6 @@
                             </form>
                         </div><!-- box box-info -->
                     </div> <!-- col-md-6 -->
-                    <div class="col-md-3"></div>
                 </div>
             </modal>
         </div>

@@ -42,6 +42,7 @@
         problemVm.problem_detail = stateParams.data;
         problemVm.myProblemList = problemService.myProblemFeeds;
         problemVm.submitTeam = submitTeam;
+        problemVm.getTeamDetails = getTeamDetails;
 
         angular.element('.control-sidebar').css('visibility', 'hidden');
         problemVm.toggleModal = function(){
@@ -89,6 +90,20 @@
                 name: chip,
                 type: 'unknown'
             };
+        }
+
+
+        function getTeamDetails(teams, teamId) {
+            var teamSelected;
+            for(var team in teams) {
+                console.log(team);
+                console.log(teams[team]);
+                if(teams[team]._id === teamId) {
+                    teamSelected = teams[team];
+                }
+            }
+            $localStorage.problem = problemVm.problemDetail;
+            state.go('team', {data: teamSelected});
         }
 
         function submitTeam() {

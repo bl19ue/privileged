@@ -291,7 +291,7 @@ router.post('/problem/:problem_id/teams/:team_id/join', ensureAuthorized, functi
                     user.problems_working.push(req.params.problem_id);
                     user.teams_working.push(team._id);
 
-                    team.members.push(user._id);
+                    team.members.push(user.first_name + " " + user.last_name);
 
                     databaseCalls.teamDatabaseCalls.saveTeam(team).done(function (savedTeamObj) {
                         response(savedTeamObj, savedTeamObj.type, res);
@@ -299,7 +299,7 @@ router.post('/problem/:problem_id/teams/:team_id/join', ensureAuthorized, functi
 
                     databaseCalls.problemDatabaseCalls.findProblemById(req.params.problem_id).done(function (problemObj) {
                         var problem = problemObj.data;
-                        problem.members.push(user._id);
+                        problem.members.push(user.first_name + " " + user.last_name);
                         databaseCalls.problemDatabaseCalls.saveProblem(problem);
                     });
                 } else {

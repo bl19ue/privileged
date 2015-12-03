@@ -18,7 +18,7 @@
         };
 
         teamObject.getSignedS3Request = getSignedS3Request;
-        teamObject.submitTeam = submitTeam;
+        teamObject.joinTeam = joinTeam;
 
         /**
          * This method gets the signed s3 request from the server
@@ -34,14 +34,13 @@
         }
 
         /**
-         * This method creates a new team
+         * Join a team
          * @param team
          * @returns {*}
          */
-
-        function submitTeam(team) {
-            var url = '/team';
-           var header = $localStorage.user.token;
+        function joinTeam(team) {
+            var url = '/me/problem/' + team.problem._id + '/teams/' + team._id + '/join';
+            var header = {authorization: $localStorage.user.token};
             return $http({
                 method: 'post',
                 url: url,
@@ -49,6 +48,7 @@
                 data: team
             });
         }
+
         return teamObject;
     }
 })();

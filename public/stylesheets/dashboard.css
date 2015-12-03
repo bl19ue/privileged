@@ -32,3 +32,22 @@ md-card-content p { margin-bottom: 0; }
     .uiScrollableArea{padding-top: 15px }
     .uiScrollableArea { width: 100%; margin: 0 }
 }
+
+.team-detail-small-title {
+    font-size: larger;
+    font-weight: bold;
+    color: #818186;
+    margin-left: 14px;
+}
+
+.btnJoinTeam {
+    float: right;
+    margin-right: 20px;
+}
+
+.commentBox {
+    border-radius: 5px;
+    border: 1px solid #CFD4D6;
+    width: 100%;
+    margin-bottom: 15px;
+}

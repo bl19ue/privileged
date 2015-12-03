@@ -35,6 +35,8 @@
                     postDate: scope.data.date,
                     desc: scope.data.description,
                     count: scope.data.upvotes,
+                    people: scope.data.people.length,
+                    teams: scope.data.teams.length,
                     limit: 300,
                     getProblem: function () {
                         state.go('problem-detail', {'data': scope.data});

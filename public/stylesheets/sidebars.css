@@ -142,13 +142,20 @@
     padding: 10px 25px 10px 15px;
     font-size: 12px;
 }
-.sidebar-menu li > a > .fa-angle-left {
+.sidebar-menu li > a > .fa-angle-left  {
     width: auto;
     height: auto;
     padding: 0;
     margin-right: 10px;
     margin-top: 3px;
 }
+
+.sidebar-menu li > span  {
+    padding: 12px 5px 12px 15px;
+    display: block;
+    color: #72afd2;
+}
+
 .sidebar-menu li.active > a > .fa-angle-left {
     -webkit-transform: rotate(-90deg);
     -ms-transform: rotate(-90deg);
@@ -509,7 +516,7 @@ body.hold-transition .main-header .logo {
     padding-right: 15px;
 }
 /* H1 - H6 font */
-h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6 { font-family: 'Source Sans Pro', sans-serif; text-align: center }
+h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6 { font-family: 'Source Sans Pro', sans-serif; text-align: center; color:black }
 /* General Links */
 a { color: #3c8dbc }
 a:hover,a:active,a:focus { outline: none; text-decoration: none; color: #72afd2; }
