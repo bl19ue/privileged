@@ -46,7 +46,7 @@
 
         angular.element('.control-sidebar').css('visibility', 'hidden');
         problemVm.toggleModal = function(){
-
+            problemVm.team = {};
             problemVm.showModal = !problemVm.showModal;
         };
 

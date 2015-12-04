@@ -252,8 +252,8 @@ router.post('/problem/:problem_id/teams', ensureAuthorized, function(req, res) {
             var user = userObj.data;
             var newTeam = new teamSchema(req.body);
             newTeam.problem = req.params.problem_id;
-            newTeam.owner = user._id;
-            newTeam.members = user._id;
+            newTeam.owner = user.first_name + " " + user.last_name;
+            newTeam.members = user.first_name + " " + user.last_name;
             var teamArray = [];
             teamArray.push(newTeam);
             databaseCalls.teamDatabaseCalls.saveTeam(teamArray).done(function(teamObj) {
