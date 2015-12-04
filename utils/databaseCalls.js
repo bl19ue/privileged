@@ -80,7 +80,7 @@ var userDatabaseCalls = {
             } else {
                 object.isError = true;
                 object.errorMessage = messages.USER_NOT_FOUND;
-                object.type = httpStatus.NOT_FOUND;
+                object.type = httpStatus.OK;
                 deferred.resolve(object);
             }
         });
