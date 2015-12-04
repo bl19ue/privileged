@@ -31,6 +31,8 @@
 
         $scope.$on('searchFeed', function(event, response) {
             feedVm.feeds = response.data.data;
+            feedVm.pages = Math.ceil($localStorage.total_results / 10);
+            feedVm.range = range;
         });
 
         $scope.$on('toggle-main-sidebar', function(event, data){
