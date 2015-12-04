@@ -53,7 +53,11 @@
 
        function init(){
             var loggedInUser = $localStorage.user.first_name + " " + $localStorage.user.last_name;
+            var userId = $localStorage.user._id;
             if(teamVm.team.members.indexOf(loggedInUser) !== -1) {
+                angular.element('.btnJoinTeam').css('display', 'none');
+            }
+            else if(teamVm.team.members.indexOf(userId) !== -1) {
                 angular.element('.btnJoinTeam').css('display', 'none');
             }
             else { angular.element('.btnJoinTeam').css('display', 'block'); }
